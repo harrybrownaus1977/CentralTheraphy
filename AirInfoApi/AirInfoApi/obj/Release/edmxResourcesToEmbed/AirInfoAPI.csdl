@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirInfoAPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="FlowTech_MasterReportList">
+    <Key>
+      <PropertyRef Name="TemplateID" />
+    </Key>
+    <Property Name="TemplateID" Type="Guid" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PageName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="TableName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RevisionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsDefectReport" Type="Boolean" Nullable="false" />
+    <Property Name="IsInfoReport" Type="Boolean" Nullable="false" />
+    <Property Name="IsTechniciansReport" Type="Boolean" Nullable="false" />
+    <Property Name="IsVavSummary" Type="Boolean" Nullable="false" />
+    <Property Name="Archived" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rpt_PreCommissioningItemsList" Relationship="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" FromRole="FlowTech_MasterReportList" ToRole="Rpt_PreCommissioningItemsList" />
+    <NavigationProperty Name="tblSystemMasterReports" Relationship="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList" FromRole="FlowTech_MasterReportList" ToRole="tblSystemMasterReports" />
+    <NavigationProperty Name="tblSystemReports" Relationship="Self.FK_tblSystemReports_FlowTech_MasterReportList" FromRole="FlowTech_MasterReportList" ToRole="tblSystemReports" />
+  </EntityType>
+  <EntityType Name="luRole">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Hidden" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUsers_luRoles" FromRole="luRoles" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="Rpt_PreCommissioning">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadService" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadCustomer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NonConformance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="Self.FK_Rpt_PreCommissioning_tblSystemReports" FromRole="Rpt_PreCommissioning" ToRole="tblSystemReports" />
+    <NavigationProperty Name="Rpt_PreCommissioningItems" Relationship="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioning" FromRole="Rpt_PreCommissioning" ToRole="Rpt_PreCommissioningItems" />
+  </EntityType>
+  <EntityType Name="Rpt_PreCommissioningItems">
+    <Key>
+      <PropertyRef Name="ReportItemID" />
+    </Key>
+    <Property Name="ReportItemID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID_fk" Type="Guid" />
+    <Property Name="ReportItemListID_fk" Type="Guid" />
+    <Property Name="IsNotApplicable" Type="Boolean" />
+    <Property Name="IsSatisfactory" Type="Boolean" />
+    <Property Name="IsNonConforming" Type="Boolean" />
+    <NavigationProperty Name="Rpt_PreCommissioning" Relationship="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioning" FromRole="Rpt_PreCommissioningItems" ToRole="Rpt_PreCommissioning" />
+    <NavigationProperty Name="Rpt_PreCommissioningItemsList" Relationship="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioningItemsList" FromRole="Rpt_PreCommissioningItems" ToRole="Rpt_PreCommissioningItemsList" />
+  </EntityType>
+  <EntityType Name="Rpt_PreCommissioningItemsList">
+    <Key>
+      <PropertyRef Name="ReportItemListID" />
+    </Key>
+    <Property Name="ReportItemListID" Type="Guid" Nullable="false" />
+    <Property Name="TemplateID_fk" Type="Guid" />
+    <Property Name="CategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ItemName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CategoryOrder" Type="Int32" />
+    <Property Name="FranchiseID_fk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FlowTech_MasterReportList" Relationship="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" FromRole="Rpt_PreCommissioningItemsList" ToRole="FlowTech_MasterReportList" />
+    <NavigationProperty Name="Rpt_PreCommissioningItems" Relationship="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioningItemsList" FromRole="Rpt_PreCommissioningItemsList" ToRole="Rpt_PreCommissioningItems" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblCustomer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Guid" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByUserID_fk" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserID_fk" Type="Guid" />
+    <Property Name="Archived" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BusinessName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ABN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StreetNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StreetName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Suburb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblProjects" Relationship="Self.FK_tblProject_tblCustomers" FromRole="tblCustomers" ToRole="tblProject" />
+  </EntityType>
+  <EntityType Name="tblGroupSystem">
+    <Key>
+      <PropertyRef Name="SystemID" />
+    </Key>
+    <Property Name="SystemID" Type="Guid" Nullable="false" />
+    <Property Name="GroupID_fk" Type="Guid" />
+    <Property Name="Reference" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Service" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblProjectGroup" Relationship="Self.FK_tblGroupSystem_tblProjectGroup" FromRole="tblGroupSystem" ToRole="tblProjectGroup" />
+    <NavigationProperty Name="tblSystemMasterReports" Relationship="Self.FK_tblSystemMasterReports_tblGroupSystem" FromRole="tblGroupSystem" ToRole="tblSystemMasterReports" />
+    <NavigationProperty Name="tblSystemReports" Relationship="Self.FK_tblSystemReports_tblGroupSystem" FromRole="tblGroupSystem" ToRole="tblSystemReports" />
+  </EntityType>
+  <EntityType Name="tblProject">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Guid" Nullable="false" />
+    <Property Name="CustomerID_fk" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="JobNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Suburb" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblProject_tblCustomers" FromRole="tblProject" ToRole="tblCustomers" />
+    <NavigationProperty Name="tblProjectGroups" Relationship="Self.FK_tblProjectGroup_tblProject" FromRole="tblProject" ToRole="tblProjectGroup" />
+    <NavigationProperty Name="tblProjectTechnicians" Relationship="Self.FK_tblProjectTechnicians_tblProject" FromRole="tblProject" ToRole="tblProjectTechnicians" />
+  </EntityType>
+  <EntityType Name="tblProjectGroup">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="Guid" Nullable="false" />
+    <Property Name="ProjectID_fk" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblGroupSystems" Relationship="Self.FK_tblGroupSystem_tblProjectGroup" FromRole="tblProjectGroup" ToRole="tblGroupSystem" />
+    <NavigationProperty Name="tblProject" Relationship="Self.FK_tblProjectGroup_tblProject" FromRole="tblProjectGroup" ToRole="tblProject" />
+  </EntityType>
+  <EntityType Name="tblProjectTechnician">
+    <Key>
+      <PropertyRef Name="ProjectTechnicianID" />
+    </Key>
+    <Property Name="ProjectTechnicianID" Type="Guid" Nullable="false" />
+    <Property Name="ProjectID_fk" Type="Guid" />
+    <Property Name="UserID_fk" Type="Guid" />
+    <NavigationProperty Name="tblProject" Relationship="Self.FK_tblProjectTechnicians_tblProject" FromRole="tblProjectTechnicians" ToRole="tblProject" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblProjectTechnicians_tblUsers" FromRole="tblProjectTechnicians" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblSystemMasterReport">
+    <Key>
+      <PropertyRef Name="SystemMasterReportID" />
+    </Key>
+    <Property Name="SystemMasterReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemID_fk" Type="Guid" />
+    <Property Name="TemplateID_fk" Type="Guid" />
+    <NavigationProperty Name="FlowTech_MasterReportList" Relationship="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList" FromRole="tblSystemMasterReports" ToRole="FlowTech_MasterReportList" />
+    <NavigationProperty Name="tblGroupSystem" Relationship="Self.FK_tblSystemMasterReports_tblGroupSystem" FromRole="tblSystemMasterReports" ToRole="tblGroupSystem" />
+  </EntityType>
+  <EntityType Name="tblSystemReport">
+    <Key>
+      <PropertyRef Name="SystemReportID" />
+    </Key>
+    <Property Name="SystemReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemID_fk" Type="Guid" />
+    <Property Name="TemplateID_fk" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TestReference" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FlowTech_MasterReportList" Relationship="Self.FK_tblSystemReports_FlowTech_MasterReportList" FromRole="tblSystemReports" ToRole="FlowTech_MasterReportList" />
+    <NavigationProperty Name="Rpt_PreCommissioning" Relationship="Self.FK_Rpt_PreCommissioning_tblSystemReports" FromRole="tblSystemReports" ToRole="Rpt_PreCommissioning" />
+    <NavigationProperty Name="tblGroupSystem" Relationship="Self.FK_tblSystemReports_tblGroupSystem" FromRole="tblSystemReports" ToRole="tblGroupSystem" />
+    <NavigationProperty Name="Rpt_FcuCommissioning" Relationship="AirInfoAPIModel.FK_Rpt_FcuCommissioning_tblSystemReports" FromRole="tblSystemReport" ToRole="Rpt_FcuCommissioning" />
+    <NavigationProperty Name="Rpt_FcuCommissioningDirectDrive" Relationship="AirInfoAPIModel.FK_Rpt_FcuCommissioningDirectDrive_tblSystemReports" FromRole="tblSystemReport" ToRole="Rpt_FcuCommissioningDirectDrive" />
+    <NavigationProperty Name="tblSystemReportComments" Relationship="AirInfoAPIModel.FK_tblSystemReportComments_tblSystemReports" FromRole="tblSystemReport" ToRole="tblSystemReportComment" />
+    <NavigationProperty Name="Rpt_VavCommissioning" Relationship="AirInfoAPIModel.FK_Rpt_VavCommissioning_tblSystemReports" FromRole="tblSystemReport" ToRole="Rpt_VavCommissioning" />
+    <NavigationProperty Name="Rpt_AirBalance" Relationship="AirInfoAPIModel.FK_Rpt_AirBalance_tblSystemReports" FromRole="tblSystemReport" ToRole="Rpt_AirBalance" />
+    <NavigationProperty Name="Rpt_PumpCommissioning" Relationship="AirInfoAPIModel.FK_Rpt_PumpCommissioning_tblSystemReports" FromRole="tblSystemReport" ToRole="Rpt_PumpCommissioning" />
+    <NavigationProperty Name="Rpt_SplitPackage" Relationship="AirInfoAPIModel.FK_Rpt_SplitPackage_tblSystemReports" FromRole="tblSystemReport" ToRole="Rpt_SplitPackage" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByUserID_fk" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserID_fk" Type="Guid" />
+    <Property Name="Archived" Type="Boolean" Nullable="false" />
+    <Property Name="RoleID_fk" Type="Int32" Nullable="false" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="LastPasswordChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="ResetCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ResetCodeExpiry" Type="DateTime" Precision="3" />
+    <Property Name="CanDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="luRole" Relationship="Self.FK_tblUsers_luRoles" FromRole="tblUsers" ToRole="luRoles" />
+    <NavigationProperty Name="tblProjectTechnicians" Relationship="Self.FK_tblProjectTechnicians_tblUsers" FromRole="tblUsers" ToRole="tblProjectTechnicians" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList">
+    <End Role="FlowTech_MasterReportList" Type="Self.FlowTech_MasterReportList" Multiplicity="0..1" />
+    <End Role="Rpt_PreCommissioningItemsList" Type="Self.Rpt_PreCommissioningItemsList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlowTech_MasterReportList">
+        <PropertyRef Name="TemplateID" />
+      </Principal>
+      <Dependent Role="Rpt_PreCommissioningItemsList">
+        <PropertyRef Name="TemplateID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemMasterReports_FlowTech_MasterReportList">
+    <End Role="FlowTech_MasterReportList" Type="Self.FlowTech_MasterReportList" Multiplicity="0..1" />
+    <End Role="tblSystemMasterReports" Type="Self.tblSystemMasterReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlowTech_MasterReportList">
+        <PropertyRef Name="TemplateID" />
+      </Principal>
+      <Dependent Role="tblSystemMasterReports">
+        <PropertyRef Name="TemplateID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemReports_FlowTech_MasterReportList">
+    <End Role="FlowTech_MasterReportList" Type="Self.FlowTech_MasterReportList" Multiplicity="0..1" />
+    <End Role="tblSystemReports" Type="Self.tblSystemReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlowTech_MasterReportList">
+        <PropertyRef Name="TemplateID" />
+      </Principal>
+      <Dependent Role="tblSystemReports">
+        <PropertyRef Name="TemplateID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsers_luRoles">
+    <End Role="luRoles" Type="Self.luRole" Multiplicity="1" />
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="luRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="tblUsers">
+        <PropertyRef Name="RoleID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_PreCommissioning_tblSystemReports">
+    <End Role="tblSystemReports" Type="Self.tblSystemReport" Multiplicity="0..1" />
+    <End Role="Rpt_PreCommissioning" Type="Self.Rpt_PreCommissioning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReports">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_PreCommissioning">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_PreCommissioningItems_Rpt_PreCommissioning">
+    <End Role="Rpt_PreCommissioning" Type="Self.Rpt_PreCommissioning" Multiplicity="0..1" />
+    <End Role="Rpt_PreCommissioningItems" Type="Self.Rpt_PreCommissioningItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rpt_PreCommissioning">
+        <PropertyRef Name="ReportID" />
+      </Principal>
+      <Dependent Role="Rpt_PreCommissioningItems">
+        <PropertyRef Name="ReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_PreCommissioningItems_Rpt_PreCommissioningItemsList">
+    <End Role="Rpt_PreCommissioningItemsList" Type="Self.Rpt_PreCommissioningItemsList" Multiplicity="0..1" />
+    <End Role="Rpt_PreCommissioningItems" Type="Self.Rpt_PreCommissioningItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rpt_PreCommissioningItemsList">
+        <PropertyRef Name="ReportItemListID" />
+      </Principal>
+      <Dependent Role="Rpt_PreCommissioningItems">
+        <PropertyRef Name="ReportItemListID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProject_tblCustomers">
+    <End Role="tblCustomers" Type="Self.tblCustomer" Multiplicity="0..1" />
+    <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="tblProject">
+        <PropertyRef Name="CustomerID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroupSystem_tblProjectGroup">
+    <End Role="tblProjectGroup" Type="Self.tblProjectGroup" Multiplicity="0..1" />
+    <End Role="tblGroupSystem" Type="Self.tblGroupSystem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProjectGroup">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="tblGroupSystem">
+        <PropertyRef Name="GroupID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemMasterReports_tblGroupSystem">
+    <End Role="tblGroupSystem" Type="Self.tblGroupSystem" Multiplicity="0..1" />
+    <End Role="tblSystemMasterReports" Type="Self.tblSystemMasterReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroupSystem">
+        <PropertyRef Name="SystemID" />
+      </Principal>
+      <Dependent Role="tblSystemMasterReports">
+        <PropertyRef Name="SystemID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemReports_tblGroupSystem">
+    <End Role="tblGroupSystem" Type="Self.tblGroupSystem" Multiplicity="0..1" />
+    <End Role="tblSystemReports" Type="Self.tblSystemReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroupSystem">
+        <PropertyRef Name="SystemID" />
+      </Principal>
+      <Dependent Role="tblSystemReports">
+        <PropertyRef Name="SystemID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProjectGroup_tblProject">
+    <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+    <End Role="tblProjectGroup" Type="Self.tblProjectGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProject">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="tblProjectGroup">
+        <PropertyRef Name="ProjectID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProjectTechnicians_tblProject">
+    <End Role="tblProject" Type="Self.tblProject" Multiplicity="0..1" />
+    <End Role="tblProjectTechnicians" Type="Self.tblProjectTechnician" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProject">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="tblProjectTechnicians">
+        <PropertyRef Name="ProjectID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProjectTechnicians_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblProjectTechnicians" Type="Self.tblProjectTechnician" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblProjectTechnicians">
+        <PropertyRef Name="UserID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="AirInfoAPIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="FlowTech_MasterReportList" EntityType="Self.FlowTech_MasterReportList" />
+    <EntitySet Name="luRoles" EntityType="Self.luRole" />
+    <EntitySet Name="Rpt_PreCommissioning" EntityType="Self.Rpt_PreCommissioning" />
+    <EntitySet Name="Rpt_PreCommissioningItems" EntityType="Self.Rpt_PreCommissioningItems" />
+    <EntitySet Name="Rpt_PreCommissioningItemsList" EntityType="Self.Rpt_PreCommissioningItemsList" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblCustomers" EntityType="Self.tblCustomer" />
+    <EntitySet Name="tblGroupSystems" EntityType="Self.tblGroupSystem" />
+    <EntitySet Name="tblProjects" EntityType="Self.tblProject" />
+    <EntitySet Name="tblProjectGroups" EntityType="Self.tblProjectGroup" />
+    <EntitySet Name="tblProjectTechnicians" EntityType="Self.tblProjectTechnician" />
+    <EntitySet Name="tblSystemMasterReports" EntityType="Self.tblSystemMasterReport" />
+    <EntitySet Name="tblSystemReports" EntityType="Self.tblSystemReport" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" Association="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList">
+      <End Role="FlowTech_MasterReportList" EntitySet="FlowTech_MasterReportList" />
+      <End Role="Rpt_PreCommissioningItemsList" EntitySet="Rpt_PreCommissioningItemsList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemMasterReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList">
+      <End Role="FlowTech_MasterReportList" EntitySet="FlowTech_MasterReportList" />
+      <End Role="tblSystemMasterReports" EntitySet="tblSystemMasterReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemReports_FlowTech_MasterReportList">
+      <End Role="FlowTech_MasterReportList" EntitySet="FlowTech_MasterReportList" />
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsers_luRoles" Association="Self.FK_tblUsers_luRoles">
+      <End Role="luRoles" EntitySet="luRoles" />
+      <End Role="tblUsers" EntitySet="tblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_PreCommissioning_tblSystemReports" Association="Self.FK_Rpt_PreCommissioning_tblSystemReports">
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+      <End Role="Rpt_PreCommissioning" EntitySet="Rpt_PreCommissioning" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_PreCommissioningItems_Rpt_PreCommissioning" Association="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioning">
+      <End Role="Rpt_PreCommissioning" EntitySet="Rpt_PreCommissioning" />
+      <End Role="Rpt_PreCommissioningItems" EntitySet="Rpt_PreCommissioningItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_PreCommissioningItems_Rpt_PreCommissioningItemsList" Association="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioningItemsList">
+      <End Role="Rpt_PreCommissioningItemsList" EntitySet="Rpt_PreCommissioningItemsList" />
+      <End Role="Rpt_PreCommissioningItems" EntitySet="Rpt_PreCommissioningItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProject_tblCustomers" Association="Self.FK_tblProject_tblCustomers">
+      <End Role="tblCustomers" EntitySet="tblCustomers" />
+      <End Role="tblProject" EntitySet="tblProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroupSystem_tblProjectGroup" Association="Self.FK_tblGroupSystem_tblProjectGroup">
+      <End Role="tblProjectGroup" EntitySet="tblProjectGroups" />
+      <End Role="tblGroupSystem" EntitySet="tblGroupSystems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemMasterReports_tblGroupSystem" Association="Self.FK_tblSystemMasterReports_tblGroupSystem">
+      <End Role="tblGroupSystem" EntitySet="tblGroupSystems" />
+      <End Role="tblSystemMasterReports" EntitySet="tblSystemMasterReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemReports_tblGroupSystem" Association="Self.FK_tblSystemReports_tblGroupSystem">
+      <End Role="tblGroupSystem" EntitySet="tblGroupSystems" />
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProjectGroup_tblProject" Association="Self.FK_tblProjectGroup_tblProject">
+      <End Role="tblProject" EntitySet="tblProjects" />
+      <End Role="tblProjectGroup" EntitySet="tblProjectGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProjectTechnicians_tblProject" Association="Self.FK_tblProjectTechnicians_tblProject">
+      <End Role="tblProject" EntitySet="tblProjects" />
+      <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProjectTechnicians_tblUsers" Association="Self.FK_tblProjectTechnicians_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="Rpt_FcuCommissioning" EntityType="AirInfoAPIModel.Rpt_FcuCommissioning" />
+    <EntitySet Name="Rpt_FcuCommissioningDirectDrive" EntityType="AirInfoAPIModel.Rpt_FcuCommissioningDirectDrive" />
+    <EntitySet Name="tblSystemReportComments" EntityType="AirInfoAPIModel.tblSystemReportComment" />
+    <AssociationSet Name="FK_Rpt_FcuCommissioning_tblSystemReports" Association="AirInfoAPIModel.FK_Rpt_FcuCommissioning_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="Rpt_FcuCommissioning" EntitySet="Rpt_FcuCommissioning" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_FcuCommissioningDirectDrive_tblSystemReports" Association="AirInfoAPIModel.FK_Rpt_FcuCommissioningDirectDrive_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="Rpt_FcuCommissioningDirectDrive" EntitySet="Rpt_FcuCommissioningDirectDrive" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemReportComments_tblSystemReports" Association="AirInfoAPIModel.FK_tblSystemReportComments_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="tblSystemReportComment" EntitySet="tblSystemReportComments" />
+    </AssociationSet>
+    <EntitySet Name="Rpt_VavCommissioning" EntityType="AirInfoAPIModel.Rpt_VavCommissioning" />
+    <EntitySet Name="Rpt_VavCommissioningVavs" EntityType="AirInfoAPIModel.Rpt_VavCommissioningVavs" />
+    <AssociationSet Name="FK_Rpt_VavCommissioning_tblSystemReports" Association="AirInfoAPIModel.FK_Rpt_VavCommissioning_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="Rpt_VavCommissioning" EntitySet="Rpt_VavCommissioning" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_VavCommissioningVavs_Rpt_VavCommissioning" Association="AirInfoAPIModel.FK_Rpt_VavCommissioningVavs_Rpt_VavCommissioning">
+      <End Role="Rpt_VavCommissioning" EntitySet="Rpt_VavCommissioning" />
+      <End Role="Rpt_VavCommissioningVavs" EntitySet="Rpt_VavCommissioningVavs" />
+    </AssociationSet>
+    <EntitySet Name="Rpt_AirBalance" EntityType="AirInfoAPIModel.Rpt_AirBalance" />
+    <EntitySet Name="Rpt_AirbalanceZones" EntityType="AirInfoAPIModel.Rpt_AirbalanceZones" />
+    <EntitySet Name="Rpt_PumpCommissioning" EntityType="AirInfoAPIModel.Rpt_PumpCommissioning" />
+    <EntitySet Name="Rpt_SplitPackage" EntityType="AirInfoAPIModel.Rpt_SplitPackage" />
+    <AssociationSet Name="FK_Rpt_AirBalance_tblSystemReports" Association="AirInfoAPIModel.FK_Rpt_AirBalance_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="Rpt_AirBalance" EntitySet="Rpt_AirBalance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_AirbalanceZones_Rpt_AirBalance" Association="AirInfoAPIModel.FK_Rpt_AirbalanceZones_Rpt_AirBalance">
+      <End Role="Rpt_AirBalance" EntitySet="Rpt_AirBalance" />
+      <End Role="Rpt_AirbalanceZones" EntitySet="Rpt_AirbalanceZones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_PumpCommissioning_tblSystemReports" Association="AirInfoAPIModel.FK_Rpt_PumpCommissioning_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="Rpt_PumpCommissioning" EntitySet="Rpt_PumpCommissioning" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_SplitPackage_tblSystemReports" Association="AirInfoAPIModel.FK_Rpt_SplitPackage_tblSystemReports">
+      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
+      <End Role="Rpt_SplitPackage" EntitySet="Rpt_SplitPackage" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Rpt_FcuCommissioning">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="LocationAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ManufactureAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ModelNoAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SerialNoAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CapacityAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DesignAirAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DesignAirAHUPa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MediaAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DesignWaterAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanTypeAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanArrangementAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MSSBNameAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MSSBLocationAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorMakeMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FrameMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ElectricalMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorPowerMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullLoadMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PoleMD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PoleRPMMD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanPulleyFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FanBushFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FanBoreFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MotorPulleyFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MotorBushFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MotorBoreFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BeltsMakeFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BeltsNoFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BeltsSizeFan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShaftCentreFan" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadMakeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VSDMakeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VSDRangeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ValveACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModelACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SizeACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoilACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ValveBAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModelBAL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SizeBAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoFilters1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoFilters2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplyAirDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAirDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutsideAirDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PchwDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SchwDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalStaticDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SucStaticDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DisStaticDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterDiffDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PchwDiffDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ScheDiffDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VoltageDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AmpsDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplyAirFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAirFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutsideAirFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PchwFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SchwFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalStaticFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SucStaticFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DisStaticFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterDiffFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PchwDiffFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ScheDiffFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VoltageFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AmpsFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Instrument1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Serial1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Instrument2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Serial2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TechnicianComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ICAComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize1B" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize1C" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize2B" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize2C" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsMDPH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShowSucStatic" Type="Boolean" />
+    <Property Name="ShowDisStatic" Type="Boolean" />
+    <Property Name="ShowFilterDiff" Type="Boolean" />
+    <Property Name="CHWStaticFin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadService" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadCustomer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BMSFanSpeed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSVelocity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSPressure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSOther" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplyAirPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAirPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutsideAirPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PchwPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HHWDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HHWFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HHWPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WitnessName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="WitnessDate" Type="DateTime" Precision="3" />
+    <Property Name="WitnessSignature" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CapacityAHUHeat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSFanSpeedType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSVelocityType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_Rpt_FcuCommissioning_tblSystemReports" FromRole="Rpt_FcuCommissioning" ToRole="tblSystemReport" />
+  </EntityType>
+  <EntityType Name="Rpt_FcuCommissioningDirectDrive">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="LocationAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ManufactureAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ModelNoAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SerialNoAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CapacityAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DesignAirAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DesignAirAHUPa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MediaAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanTypeAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanArrangementAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MSSBNameAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MSSBLocationAHU" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorMakeMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FrameMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ElectricalMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorPowerMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullLoadMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PoleMD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PoleRPMMD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadMakeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VSDMakeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VSDRangeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoFilters1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoFilters2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplyAirDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAirDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutsideAirDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VoltageDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AmpsDES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplyAirFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAirFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutsideAirFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalStaticFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SucStaticFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DisStaticFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FilterDiffFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VoltageFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AmpsFIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Instrument1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Serial1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Instrument2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Serial2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize1B" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize1C" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize2B" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize2C" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsMDPH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CHWStaticFin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSFanSpeed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSVelocity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSPressure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSOther" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SupplyAirPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAirPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OutsideAirPER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="WitnessName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="WitnessDate" Type="DateTime" Precision="3" />
+    <Property Name="WitnessSignature" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BMSFanSpeedType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSVelocityType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_Rpt_FcuCommissioningDirectDrive_tblSystemReports" FromRole="Rpt_FcuCommissioningDirectDrive" ToRole="tblSystemReport" />
+  </EntityType>
+  <EntityType Name="tblSystemReportComment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="SysRepID_fk" Type="Guid" />
+    <Property Name="TechnicianID_fk" Type="Guid" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_tblSystemReportComments_tblSystemReports" FromRole="tblSystemReportComment" ToRole="tblSystemReport" />
+  </EntityType>
+  <Association Name="FK_Rpt_FcuCommissioning_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_FcuCommissioning" Role="Rpt_FcuCommissioning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_FcuCommissioning">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_FcuCommissioningDirectDrive_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_FcuCommissioningDirectDrive" Role="Rpt_FcuCommissioningDirectDrive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_FcuCommissioningDirectDrive">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemReportComments_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.tblSystemReportComment" Role="tblSystemReportComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="tblSystemReportComment">
+        <PropertyRef Name="SysRepID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Rpt_VavCommissioning">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="NoVavs" Type="Int32" />
+    <Property Name="SetUpComplete" Type="Boolean" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AHUDesignTotal" Type="Double" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_Rpt_VavCommissioning_tblSystemReports" FromRole="Rpt_VavCommissioning" ToRole="tblSystemReport" />
+    <NavigationProperty Name="Rpt_VavCommissioningVavs" Relationship="AirInfoAPIModel.FK_Rpt_VavCommissioningVavs_Rpt_VavCommissioning" FromRole="Rpt_VavCommissioning" ToRole="Rpt_VavCommissioningVavs" />
+  </EntityType>
+  <EntityType Name="Rpt_VavCommissioningVavs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID_fk" Type="Guid" />
+    <Property Name="VavReference" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NoGrilles" Type="Int32" />
+    <Property Name="VavManufacturer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="VavType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ReheatType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="GrilleType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="GrilleSizeX" Type="Int32" />
+    <Property Name="GrilleSizeY" Type="Int32" />
+    <Property Name="GrilleFactor" Type="Double" />
+    <Property Name="TestApp" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="VMin" Type="Double" />
+    <Property Name="VMax" Type="Double" />
+    <Property Name="ResultsDesVMin" Type="Double" />
+    <Property Name="ResultsDesVMax" Type="Double" />
+    <Property Name="ResultsFinVMin" Type="Double" />
+    <Property Name="ResultsFinVMax" Type="Double" />
+    <Property Name="BmsKFactor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BmsVMin" Type="Double" />
+    <Property Name="BmsVMax" Type="Double" />
+    <Property Name="BMSLsTotal" Type="Double" />
+    <Property Name="BMSDamperPosition" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="InletSize" Type="Double" />
+    <NavigationProperty Name="Rpt_VavCommissioning" Relationship="AirInfoAPIModel.FK_Rpt_VavCommissioningVavs_Rpt_VavCommissioning" FromRole="Rpt_VavCommissioningVavs" ToRole="Rpt_VavCommissioning" />
+  </EntityType>
+  <Association Name="FK_Rpt_VavCommissioning_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_VavCommissioning" Role="Rpt_VavCommissioning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_VavCommissioning">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_VavCommissioningVavs_Rpt_VavCommissioning">
+    <End Type="AirInfoAPIModel.Rpt_VavCommissioning" Role="Rpt_VavCommissioning" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_VavCommissioningVavs" Role="Rpt_VavCommissioningVavs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rpt_VavCommissioning">
+        <PropertyRef Name="ReportID" />
+      </Principal>
+      <Dependent Role="Rpt_VavCommissioningVavs">
+        <PropertyRef Name="ReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Rpt_AirBalance">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="ZoneSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZoneSetUpComplete" Type="Boolean" />
+    <Property Name="ICAComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadService" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadCustomer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_Rpt_AirBalance_tblSystemReports" FromRole="Rpt_AirBalance" ToRole="tblSystemReport" />
+    <NavigationProperty Name="Rpt_AirbalanceZones" Relationship="AirInfoAPIModel.FK_Rpt_AirbalanceZones_Rpt_AirBalance" FromRole="Rpt_AirBalance" ToRole="Rpt_AirbalanceZones" />
+  </EntityType>
+  <EntityType Name="Rpt_AirbalanceZones">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID_fk" Type="Guid" />
+    <Property Name="BranchRef" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AreaZone" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NoGrilles" Type="Int32" />
+    <Property Name="GrilleType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SizeA" Type="Double" />
+    <Property Name="SizeB" Type="Double" />
+    <Property Name="Factor" Type="Double" />
+    <Property Name="CorrectedArea" Type="Double" />
+    <Property Name="TestApparatus" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="ZoneType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GrilleRef" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DesFlow" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Rpt_AirBalance" Relationship="AirInfoAPIModel.FK_Rpt_AirbalanceZones_Rpt_AirBalance" FromRole="Rpt_AirbalanceZones" ToRole="Rpt_AirBalance" />
+  </EntityType>
+  <EntityType Name="Rpt_PumpCommissioning">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="LocationPump" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="WaterTypePump" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SBoardRef" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SBoardLoc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ManufacturePump" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ModelNoPump" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SerialNoPump" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ImpSize" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpLs" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpKPA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CoilVesselLs" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CoilVesselKPA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorMakeMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FrameMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ElectricalMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorPowerMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullLoadMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PoleMD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PoleRPMMD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsMD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadMakeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VSDMakeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VSDRangeMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SystemOpp" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TestPoint" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Aligned" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Strainer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Curve" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Suction1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Discharge1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Delta1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="RPM1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Amps1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Hz1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Suction2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Discharge2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Delta2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="RPM2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Amps2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Hz2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Suction3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Discharge3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Delta3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="RPM3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Amps3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Hz3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ClosedPressure" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OpenPressure" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ClosedHz" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OpenHz" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpFinalLS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpFinalKPA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpFinalHz" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpOp" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PumpStatic" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Instrument1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Serial1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Instrument2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Serial2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TechnicianComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ICAComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsMDPH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OverloadRangeMS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullFlowLS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FinalFlowLS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadService" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadCustomer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BMSPumpSpeed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSVelocity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSPressure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSOther" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PumpFinalFinLs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PumpFinalFinKPa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PumpFinalFinPer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoilLs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoilKPa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoilFinLs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoilFinKPa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoilFinPer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WitnessName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="WitnessDate" Type="DateTime" Precision="3" />
+    <Property Name="WitnessSignature" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BMSPumpSpeedType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BMSVelocityType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_Rpt_PumpCommissioning_tblSystemReports" FromRole="Rpt_PumpCommissioning" ToRole="tblSystemReport" />
+  </EntityType>
+  <EntityType Name="Rpt_SplitPackage">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="Guid" />
+    <Property Name="FanLoc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Manufacturer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ModelNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SerialNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Capacity" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanArrange" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MSSBName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MSSBLoc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TotDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TotAct" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OutDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OutAct" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ReturnAct" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ExtDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ExtAct" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SucDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SucAct" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisAct" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorMake" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FrameClass" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ElectSupply" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorPower" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullLoadAmps" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Pole" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="RPM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanDia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanBush" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FanBore" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorDia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorBush" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorBore" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BeltsMake" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BeltsNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BeltsSize" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ShaftCentre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSize" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NoOfFilters" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondManu" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondMNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondSNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompManu" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompModNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompElec" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompFull" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Ref" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Kg" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeatingType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondFanMake" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondFanNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondFan" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MotorPowerC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FullLoadAmpsC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PoleC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="RPMC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SupS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SupS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SupS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SupS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompVoltS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompVoltS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompVoltS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompVoltS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AmbiS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AmbiS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AmbiS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AmbiS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SucS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SucS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SucS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SucS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DisS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OilS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OilS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OilS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OilS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompSucS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompSucS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompSucS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CompSucS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LiqS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LiqS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LiqS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LiqS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SuperS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SuperS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SuperS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SuperS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SubS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SubS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SubS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SubS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapEntering1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapEntering2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapEntering3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapEntering4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapLeaving1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapLeaving2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapLeaving3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EvapLeaving4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondVoltS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondVoltS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondVoltS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CondVoltS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FCondAmpsS1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FCondAmpsS2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FCondAmpsS3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FCondAmpsS4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ICAComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Capacity2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsMDPH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Kg2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Kg3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Kg4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FuseDetailsCMDPH" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSizeB" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FilterSizeC" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadBuilding" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadService" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HeadCustomer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSystemReport" Relationship="AirInfoAPIModel.FK_Rpt_SplitPackage_tblSystemReports" FromRole="Rpt_SplitPackage" ToRole="tblSystemReport" />
+  </EntityType>
+  <Association Name="FK_Rpt_AirBalance_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_AirBalance" Role="Rpt_AirBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_AirBalance">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_AirbalanceZones_Rpt_AirBalance">
+    <End Type="AirInfoAPIModel.Rpt_AirBalance" Role="Rpt_AirBalance" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_AirbalanceZones" Role="Rpt_AirbalanceZones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rpt_AirBalance">
+        <PropertyRef Name="ReportID" />
+      </Principal>
+      <Dependent Role="Rpt_AirbalanceZones">
+        <PropertyRef Name="ReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_PumpCommissioning_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_PumpCommissioning" Role="Rpt_PumpCommissioning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_PumpCommissioning">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_SplitPackage_tblSystemReports">
+    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="0..1" />
+    <End Type="AirInfoAPIModel.Rpt_SplitPackage" Role="Rpt_SplitPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReport">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_SplitPackage">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

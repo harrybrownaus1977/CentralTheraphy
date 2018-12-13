@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AirInfoAPIModelStoreContainer" CdmEntityContainer="AirInfoAPIEntities">
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlowTech_MasterReportList">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.FlowTech_MasterReportList">
+        <MappingFragment StoreEntitySet="FlowTech_MasterReportList">
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ReportNumber" ColumnName="ReportNumber" />
+          <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+          <ScalarProperty Name="IsDefectReport" ColumnName="IsDefectReport" />
+          <ScalarProperty Name="IsInfoReport" ColumnName="IsInfoReport" />
+          <ScalarProperty Name="IsTechniciansReport" ColumnName="IsTechniciansReport" />
+          <ScalarProperty Name="IsVavSummary" ColumnName="IsVavSummary" />
+          <ScalarProperty Name="Archived" ColumnName="Archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="luRoles">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.luRole">
+        <MappingFragment StoreEntitySet="luRoles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Hidden" ColumnName="Hidden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_PreCommissioning">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_PreCommissioning">
+        <MappingFragment StoreEntitySet="Rpt_PreCommissioning">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="HeadService" ColumnName="HeadService" />
+          <ScalarProperty Name="HeadCustomer" ColumnName="HeadCustomer" />
+          <ScalarProperty Name="NonConformance" ColumnName="NonConformance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_PreCommissioningItems">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_PreCommissioningItems">
+        <MappingFragment StoreEntitySet="Rpt_PreCommissioningItems">
+          <ScalarProperty Name="ReportItemID" ColumnName="ReportItemID" />
+          <ScalarProperty Name="ReportID_fk" ColumnName="ReportID_fk" />
+          <ScalarProperty Name="ReportItemListID_fk" ColumnName="ReportItemListID_fk" />
+          <ScalarProperty Name="IsNotApplicable" ColumnName="IsNotApplicable" />
+          <ScalarProperty Name="IsSatisfactory" ColumnName="IsSatisfactory" />
+          <ScalarProperty Name="IsNonConforming" ColumnName="IsNonConforming" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_PreCommissioningItemsList">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_PreCommissioningItemsList">
+        <MappingFragment StoreEntitySet="Rpt_PreCommissioningItemsList">
+          <ScalarProperty Name="ReportItemListID" ColumnName="ReportItemListID" />
+          <ScalarProperty Name="TemplateID_fk" ColumnName="TemplateID_fk" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="CategoryOrder" ColumnName="CategoryOrder" />
+          <ScalarProperty Name="FranchiseID_fk" ColumnName="FranchiseID_fk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCustomers">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblCustomer">
+        <MappingFragment StoreEntitySet="tblCustomers">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CreatedByUserID_fk" ColumnName="CreatedByUserID_fk" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedByUserID_fk" ColumnName="ModifiedByUserID_fk" />
+          <ScalarProperty Name="Archived" ColumnName="Archived" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+          <ScalarProperty Name="ABN" ColumnName="ABN" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="StreetNo" ColumnName="StreetNo" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGroupSystems">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblGroupSystem">
+        <MappingFragment StoreEntitySet="tblGroupSystem">
+          <ScalarProperty Name="SystemID" ColumnName="SystemID" />
+          <ScalarProperty Name="GroupID_fk" ColumnName="GroupID_fk" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProjects">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblProject">
+        <MappingFragment StoreEntitySet="tblProject">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="CustomerID_fk" ColumnName="CustomerID_fk" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProjectGroups">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblProjectGroup">
+        <MappingFragment StoreEntitySet="tblProjectGroup">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="ProjectID_fk" ColumnName="ProjectID_fk" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProjectTechnicians">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblProjectTechnician">
+        <MappingFragment StoreEntitySet="tblProjectTechnicians">
+          <ScalarProperty Name="ProjectTechnicianID" ColumnName="ProjectTechnicianID" />
+          <ScalarProperty Name="ProjectID_fk" ColumnName="ProjectID_fk" />
+          <ScalarProperty Name="UserID_fk" ColumnName="UserID_fk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSystemMasterReports">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblSystemMasterReport">
+        <MappingFragment StoreEntitySet="tblSystemMasterReports">
+          <ScalarProperty Name="SystemMasterReportID" ColumnName="SystemMasterReportID" />
+          <ScalarProperty Name="SystemID_fk" ColumnName="SystemID_fk" />
+          <ScalarProperty Name="TemplateID_fk" ColumnName="TemplateID_fk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSystemReports">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblSystemReport">
+        <MappingFragment StoreEntitySet="tblSystemReports">
+          <ScalarProperty Name="SystemReportID" ColumnName="SystemReportID" />
+          <ScalarProperty Name="SystemID_fk" ColumnName="SystemID_fk" />
+          <ScalarProperty Name="TemplateID_fk" ColumnName="TemplateID_fk" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TestReference" ColumnName="TestReference" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CreatedByUserID_fk" ColumnName="CreatedByUserID_fk" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedByUserID_fk" ColumnName="ModifiedByUserID_fk" />
+          <ScalarProperty Name="Archived" ColumnName="Archived" />
+          <ScalarProperty Name="RoleID_fk" ColumnName="RoleID_fk" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastPasswordChangeDate" ColumnName="LastPasswordChangeDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ResetCode" ColumnName="ResetCode" />
+          <ScalarProperty Name="ResetCodeExpiry" ColumnName="ResetCodeExpiry" />
+          <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="AirInfoAPIModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Rpt_FcuCommissioning">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_FcuCommissioning">
+        <MappingFragment StoreEntitySet="Rpt_FcuCommissioning">
+          <ScalarProperty Name="BMSVelocityType" ColumnName="BMSVelocityType" />
+          <ScalarProperty Name="BMSFanSpeedType" ColumnName="BMSFanSpeedType" />
+          <ScalarProperty Name="CapacityAHUHeat" ColumnName="CapacityAHUHeat" />
+          <ScalarProperty Name="WitnessSignature" ColumnName="WitnessSignature" />
+          <ScalarProperty Name="WitnessDate" ColumnName="WitnessDate" />
+          <ScalarProperty Name="WitnessName" ColumnName="WitnessName" />
+          <ScalarProperty Name="HHWPER" ColumnName="HHWPER" />
+          <ScalarProperty Name="HHWFIN" ColumnName="HHWFIN" />
+          <ScalarProperty Name="HHWDES" ColumnName="HHWDES" />
+          <ScalarProperty Name="PchwPER" ColumnName="PchwPER" />
+          <ScalarProperty Name="OutsideAirPER" ColumnName="OutsideAirPER" />
+          <ScalarProperty Name="ReturnAirPER" ColumnName="ReturnAirPER" />
+          <ScalarProperty Name="SupplyAirPER" ColumnName="SupplyAirPER" />
+          <ScalarProperty Name="BMSOther" ColumnName="BMSOther" />
+          <ScalarProperty Name="BMSPressure" ColumnName="BMSPressure" />
+          <ScalarProperty Name="BMSVelocity" ColumnName="BMSVelocity" />
+          <ScalarProperty Name="BMSFanSpeed" ColumnName="BMSFanSpeed" />
+          <ScalarProperty Name="HeadCustomer" ColumnName="HeadCustomer" />
+          <ScalarProperty Name="HeadService" ColumnName="HeadService" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="CHWStaticFin" ColumnName="CHWStaticFin" />
+          <ScalarProperty Name="ShowFilterDiff" ColumnName="ShowFilterDiff" />
+          <ScalarProperty Name="ShowDisStatic" ColumnName="ShowDisStatic" />
+          <ScalarProperty Name="ShowSucStatic" ColumnName="ShowSucStatic" />
+          <ScalarProperty Name="FuseDetailsMDPH" ColumnName="FuseDetailsMDPH" />
+          <ScalarProperty Name="FilterSize2C" ColumnName="FilterSize2C" />
+          <ScalarProperty Name="FilterSize2B" ColumnName="FilterSize2B" />
+          <ScalarProperty Name="FilterSize1C" ColumnName="FilterSize1C" />
+          <ScalarProperty Name="FilterSize1B" ColumnName="FilterSize1B" />
+          <ScalarProperty Name="OverloadRangeMS3" ColumnName="OverloadRangeMS3" />
+          <ScalarProperty Name="OverloadRangeMS2" ColumnName="OverloadRangeMS2" />
+          <ScalarProperty Name="ICAComments" ColumnName="ICAComments" />
+          <ScalarProperty Name="TechnicianComments" ColumnName="TechnicianComments" />
+          <ScalarProperty Name="Serial2" ColumnName="Serial2" />
+          <ScalarProperty Name="Model2" ColumnName="Model2" />
+          <ScalarProperty Name="Instrument2" ColumnName="Instrument2" />
+          <ScalarProperty Name="Serial1" ColumnName="Serial1" />
+          <ScalarProperty Name="Model1" ColumnName="Model1" />
+          <ScalarProperty Name="Instrument1" ColumnName="Instrument1" />
+          <ScalarProperty Name="AmpsFIN" ColumnName="AmpsFIN" />
+          <ScalarProperty Name="VoltageFIN" ColumnName="VoltageFIN" />
+          <ScalarProperty Name="ScheDiffFIN" ColumnName="ScheDiffFIN" />
+          <ScalarProperty Name="PchwDiffFIN" ColumnName="PchwDiffFIN" />
+          <ScalarProperty Name="FilterDiffFIN" ColumnName="FilterDiffFIN" />
+          <ScalarProperty Name="DisStaticFIN" ColumnName="DisStaticFIN" />
+          <ScalarProperty Name="SucStaticFIN" ColumnName="SucStaticFIN" />
+          <ScalarProperty Name="TotalStaticFIN" ColumnName="TotalStaticFIN" />
+          <ScalarProperty Name="SchwFIN" ColumnName="SchwFIN" />
+          <ScalarProperty Name="PchwFIN" ColumnName="PchwFIN" />
+          <ScalarProperty Name="OutsideAirFIN" ColumnName="OutsideAirFIN" />
+          <ScalarProperty Name="ReturnAirFIN" ColumnName="ReturnAirFIN" />
+          <ScalarProperty Name="SupplyAirFIN" ColumnName="SupplyAirFIN" />
+          <ScalarProperty Name="AmpsDES" ColumnName="AmpsDES" />
+          <ScalarProperty Name="VoltageDES" ColumnName="VoltageDES" />
+          <ScalarProperty Name="ScheDiffDES" ColumnName="ScheDiffDES" />
+          <ScalarProperty Name="PchwDiffDES" ColumnName="PchwDiffDES" />
+          <ScalarProperty Name="FilterDiffDES" ColumnName="FilterDiffDES" />
+          <ScalarProperty Name="DisStaticDES" ColumnName="DisStaticDES" />
+          <ScalarProperty Name="SucStaticDES" ColumnName="SucStaticDES" />
+          <ScalarProperty Name="TotalStaticDES" ColumnName="TotalStaticDES" />
+          <ScalarProperty Name="SchwDES" ColumnName="SchwDES" />
+          <ScalarProperty Name="PchwDES" ColumnName="PchwDES" />
+          <ScalarProperty Name="OutsideAirDES" ColumnName="OutsideAirDES" />
+          <ScalarProperty Name="ReturnAirDES" ColumnName="ReturnAirDES" />
+          <ScalarProperty Name="SupplyAirDES" ColumnName="SupplyAirDES" />
+          <ScalarProperty Name="NoFilters2" ColumnName="NoFilters2" />
+          <ScalarProperty Name="FilterSize2" ColumnName="FilterSize2" />
+          <ScalarProperty Name="FilterType2" ColumnName="FilterType2" />
+          <ScalarProperty Name="NoFilters1" ColumnName="NoFilters1" />
+          <ScalarProperty Name="FilterSize1" ColumnName="FilterSize1" />
+          <ScalarProperty Name="FilterType1" ColumnName="FilterType1" />
+          <ScalarProperty Name="SizeBAL" ColumnName="SizeBAL" />
+          <ScalarProperty Name="ModelBAL" ColumnName="ModelBAL" />
+          <ScalarProperty Name="ValveBAL" ColumnName="ValveBAL" />
+          <ScalarProperty Name="CoilACT" ColumnName="CoilACT" />
+          <ScalarProperty Name="SizeACT" ColumnName="SizeACT" />
+          <ScalarProperty Name="ModelACT" ColumnName="ModelACT" />
+          <ScalarProperty Name="ValveACT" ColumnName="ValveACT" />
+          <ScalarProperty Name="VSDRangeMS" ColumnName="VSDRangeMS" />
+          <ScalarProperty Name="VSDMakeMS" ColumnName="VSDMakeMS" />
+          <ScalarProperty Name="OverloadRangeMS" ColumnName="OverloadRangeMS" />
+          <ScalarProperty Name="OverloadMakeMS" ColumnName="OverloadMakeMS" />
+          <ScalarProperty Name="ShaftCentreFan" ColumnName="ShaftCentreFan" />
+          <ScalarProperty Name="BeltsSizeFan" ColumnName="BeltsSizeFan" />
+          <ScalarProperty Name="BeltsNoFan" ColumnName="BeltsNoFan" />
+          <ScalarProperty Name="BeltsMakeFan" ColumnName="BeltsMakeFan" />
+          <ScalarProperty Name="MotorBoreFan" ColumnName="MotorBoreFan" />
+          <ScalarProperty Name="MotorBushFan" ColumnName="MotorBushFan" />
+          <ScalarProperty Name="MotorPulleyFan" ColumnName="MotorPulleyFan" />
+          <ScalarProperty Name="FanBoreFan" ColumnName="FanBoreFan" />
+          <ScalarProperty Name="FanBushFan" ColumnName="FanBushFan" />
+          <ScalarProperty Name="FanPulleyFan" ColumnName="FanPulleyFan" />
+          <ScalarProperty Name="FuseDetailsMD" ColumnName="FuseDetailsMD" />
+          <ScalarProperty Name="PoleRPMMD" ColumnName="PoleRPMMD" />
+          <ScalarProperty Name="PoleMD" ColumnName="PoleMD" />
+          <ScalarProperty Name="FullLoadMD" ColumnName="FullLoadMD" />
+          <ScalarProperty Name="MotorPowerMD" ColumnName="MotorPowerMD" />
+          <ScalarProperty Name="ElectricalMD" ColumnName="ElectricalMD" />
+          <ScalarProperty Name="FrameMD" ColumnName="FrameMD" />
+          <ScalarProperty Name="MotorMakeMD" ColumnName="MotorMakeMD" />
+          <ScalarProperty Name="MSSBLocationAHU" ColumnName="MSSBLocationAHU" />
+          <ScalarProperty Name="MSSBNameAHU" ColumnName="MSSBNameAHU" />
+          <ScalarProperty Name="FanArrangementAHU" ColumnName="FanArrangementAHU" />
+          <ScalarProperty Name="FanTypeAHU" ColumnName="FanTypeAHU" />
+          <ScalarProperty Name="DesignWaterAHU" ColumnName="DesignWaterAHU" />
+          <ScalarProperty Name="MediaAHU" ColumnName="MediaAHU" />
+          <ScalarProperty Name="DesignAirAHUPa" ColumnName="DesignAirAHUPa" />
+          <ScalarProperty Name="DesignAirAHU" ColumnName="DesignAirAHU" />
+          <ScalarProperty Name="CapacityAHU" ColumnName="CapacityAHU" />
+          <ScalarProperty Name="SerialNoAHU" ColumnName="SerialNoAHU" />
+          <ScalarProperty Name="ModelNoAHU" ColumnName="ModelNoAHU" />
+          <ScalarProperty Name="ManufactureAHU" ColumnName="ManufactureAHU" />
+          <ScalarProperty Name="LocationAHU" ColumnName="LocationAHU" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_FcuCommissioningDirectDrive">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_FcuCommissioningDirectDrive">
+        <MappingFragment StoreEntitySet="Rpt_FcuCommissioningDirectDrive">
+          <ScalarProperty Name="BMSVelocityType" ColumnName="BMSVelocityType" />
+          <ScalarProperty Name="BMSFanSpeedType" ColumnName="BMSFanSpeedType" />
+          <ScalarProperty Name="WitnessSignature" ColumnName="WitnessSignature" />
+          <ScalarProperty Name="WitnessDate" ColumnName="WitnessDate" />
+          <ScalarProperty Name="WitnessName" ColumnName="WitnessName" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="OutsideAirPER" ColumnName="OutsideAirPER" />
+          <ScalarProperty Name="ReturnAirPER" ColumnName="ReturnAirPER" />
+          <ScalarProperty Name="SupplyAirPER" ColumnName="SupplyAirPER" />
+          <ScalarProperty Name="BMSOther" ColumnName="BMSOther" />
+          <ScalarProperty Name="BMSPressure" ColumnName="BMSPressure" />
+          <ScalarProperty Name="BMSVelocity" ColumnName="BMSVelocity" />
+          <ScalarProperty Name="BMSFanSpeed" ColumnName="BMSFanSpeed" />
+          <ScalarProperty Name="CHWStaticFin" ColumnName="CHWStaticFin" />
+          <ScalarProperty Name="FuseDetailsMDPH" ColumnName="FuseDetailsMDPH" />
+          <ScalarProperty Name="FilterSize2C" ColumnName="FilterSize2C" />
+          <ScalarProperty Name="FilterSize2B" ColumnName="FilterSize2B" />
+          <ScalarProperty Name="FilterSize1C" ColumnName="FilterSize1C" />
+          <ScalarProperty Name="FilterSize1B" ColumnName="FilterSize1B" />
+          <ScalarProperty Name="OverloadRangeMS3" ColumnName="OverloadRangeMS3" />
+          <ScalarProperty Name="OverloadRangeMS2" ColumnName="OverloadRangeMS2" />
+          <ScalarProperty Name="Serial2" ColumnName="Serial2" />
+          <ScalarProperty Name="Model2" ColumnName="Model2" />
+          <ScalarProperty Name="Instrument2" ColumnName="Instrument2" />
+          <ScalarProperty Name="Serial1" ColumnName="Serial1" />
+          <ScalarProperty Name="Model1" ColumnName="Model1" />
+          <ScalarProperty Name="Instrument1" ColumnName="Instrument1" />
+          <ScalarProperty Name="AmpsFIN" ColumnName="AmpsFIN" />
+          <ScalarProperty Name="VoltageFIN" ColumnName="VoltageFIN" />
+          <ScalarProperty Name="FilterDiffFIN" ColumnName="FilterDiffFIN" />
+          <ScalarProperty Name="DisStaticFIN" ColumnName="DisStaticFIN" />
+          <ScalarProperty Name="SucStaticFIN" ColumnName="SucStaticFIN" />
+          <ScalarProperty Name="TotalStaticFIN" ColumnName="TotalStaticFIN" />
+          <ScalarProperty Name="OutsideAirFIN" ColumnName="OutsideAirFIN" />
+          <ScalarProperty Name="ReturnAirFIN" ColumnName="ReturnAirFIN" />
+          <ScalarProperty Name="SupplyAirFIN" ColumnName="SupplyAirFIN" />
+          <ScalarProperty Name="AmpsDES" ColumnName="AmpsDES" />
+          <ScalarProperty Name="VoltageDES" ColumnName="VoltageDES" />
+          <ScalarProperty Name="OutsideAirDES" ColumnName="OutsideAirDES" />
+          <ScalarProperty Name="ReturnAirDES" ColumnName="ReturnAirDES" />
+          <ScalarProperty Name="SupplyAirDES" ColumnName="SupplyAirDES" />
+          <ScalarProperty Name="NoFilters2" ColumnName="NoFilters2" />
+          <ScalarProperty Name="FilterSize2" ColumnName="FilterSize2" />
+          <ScalarProperty Name="FilterType2" ColumnName="FilterType2" />
+          <ScalarProperty Name="NoFilters1" ColumnName="NoFilters1" />
+          <ScalarProperty Name="FilterSize1" ColumnName="FilterSize1" />
+          <ScalarProperty Name="FilterType1" ColumnName="FilterType1" />
+          <ScalarProperty Name="VSDRangeMS" ColumnName="VSDRangeMS" />
+          <ScalarProperty Name="VSDMakeMS" ColumnName="VSDMakeMS" />
+          <ScalarProperty Name="OverloadRangeMS" ColumnName="OverloadRangeMS" />
+          <ScalarProperty Name="OverloadMakeMS" ColumnName="OverloadMakeMS" />
+          <ScalarProperty Name="PoleRPMMD" ColumnName="PoleRPMMD" />
+          <ScalarProperty Name="PoleMD" ColumnName="PoleMD" />
+          <ScalarProperty Name="FullLoadMD" ColumnName="FullLoadMD" />
+          <ScalarProperty Name="MotorPowerMD" ColumnName="MotorPowerMD" />
+          <ScalarProperty Name="ElectricalMD" ColumnName="ElectricalMD" />
+          <ScalarProperty Name="FrameMD" ColumnName="FrameMD" />
+          <ScalarProperty Name="MotorMakeMD" ColumnName="MotorMakeMD" />
+          <ScalarProperty Name="MSSBLocationAHU" ColumnName="MSSBLocationAHU" />
+          <ScalarProperty Name="MSSBNameAHU" ColumnName="MSSBNameAHU" />
+          <ScalarProperty Name="FanArrangementAHU" ColumnName="FanArrangementAHU" />
+          <ScalarProperty Name="FanTypeAHU" ColumnName="FanTypeAHU" />
+          <ScalarProperty Name="MediaAHU" ColumnName="MediaAHU" />
+          <ScalarProperty Name="DesignAirAHUPa" ColumnName="DesignAirAHUPa" />
+          <ScalarProperty Name="DesignAirAHU" ColumnName="DesignAirAHU" />
+          <ScalarProperty Name="CapacityAHU" ColumnName="CapacityAHU" />
+          <ScalarProperty Name="SerialNoAHU" ColumnName="SerialNoAHU" />
+          <ScalarProperty Name="ModelNoAHU" ColumnName="ModelNoAHU" />
+          <ScalarProperty Name="ManufactureAHU" ColumnName="ManufactureAHU" />
+          <ScalarProperty Name="LocationAHU" ColumnName="LocationAHU" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSystemReportComments">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.tblSystemReportComment">
+        <MappingFragment StoreEntitySet="tblSystemReportComments">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="TechnicianID_fk" ColumnName="TechnicianID_fk" />
+          <ScalarProperty Name="SysRepID_fk" ColumnName="SysRepID_fk" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_VavCommissioning">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_VavCommissioning">
+        <MappingFragment StoreEntitySet="Rpt_VavCommissioning">
+          <ScalarProperty Name="AHUDesignTotal" ColumnName="AHUDesignTotal" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="SetUpComplete" ColumnName="SetUpComplete" />
+          <ScalarProperty Name="NoVavs" ColumnName="NoVavs" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_VavCommissioningVavs">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_VavCommissioningVavs">
+        <MappingFragment StoreEntitySet="Rpt_VavCommissioningVavs">
+          <ScalarProperty Name="InletSize" ColumnName="InletSize" />
+          <ScalarProperty Name="BMSDamperPosition" ColumnName="BMSDamperPosition" />
+          <ScalarProperty Name="BMSLsTotal" ColumnName="BMSLsTotal" />
+          <ScalarProperty Name="BmsVMax" ColumnName="BmsVMax" />
+          <ScalarProperty Name="BmsVMin" ColumnName="BmsVMin" />
+          <ScalarProperty Name="BmsKFactor" ColumnName="BmsKFactor" />
+          <ScalarProperty Name="ResultsFinVMax" ColumnName="ResultsFinVMax" />
+          <ScalarProperty Name="ResultsFinVMin" ColumnName="ResultsFinVMin" />
+          <ScalarProperty Name="ResultsDesVMax" ColumnName="ResultsDesVMax" />
+          <ScalarProperty Name="ResultsDesVMin" ColumnName="ResultsDesVMin" />
+          <ScalarProperty Name="VMax" ColumnName="VMax" />
+          <ScalarProperty Name="VMin" ColumnName="VMin" />
+          <ScalarProperty Name="TestApp" ColumnName="TestApp" />
+          <ScalarProperty Name="GrilleFactor" ColumnName="GrilleFactor" />
+          <ScalarProperty Name="GrilleSizeY" ColumnName="GrilleSizeY" />
+          <ScalarProperty Name="GrilleSizeX" ColumnName="GrilleSizeX" />
+          <ScalarProperty Name="GrilleType" ColumnName="GrilleType" />
+          <ScalarProperty Name="ReheatType" ColumnName="ReheatType" />
+          <ScalarProperty Name="VavType" ColumnName="VavType" />
+          <ScalarProperty Name="VavManufacturer" ColumnName="VavManufacturer" />
+          <ScalarProperty Name="NoGrilles" ColumnName="NoGrilles" />
+          <ScalarProperty Name="VavReference" ColumnName="VavReference" />
+          <ScalarProperty Name="ReportID_fk" ColumnName="ReportID_fk" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_AirBalance">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_AirBalance">
+        <MappingFragment StoreEntitySet="Rpt_AirBalance">
+          <ScalarProperty Name="HeadCustomer" ColumnName="HeadCustomer" />
+          <ScalarProperty Name="HeadService" ColumnName="HeadService" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="ICAComments" ColumnName="ICAComments" />
+          <ScalarProperty Name="ZoneSetUpComplete" ColumnName="ZoneSetUpComplete" />
+          <ScalarProperty Name="ZoneSystem" ColumnName="ZoneSystem" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_AirbalanceZones">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_AirbalanceZones">
+        <MappingFragment StoreEntitySet="Rpt_AirbalanceZones">
+          <ScalarProperty Name="DesFlow" ColumnName="DesFlow" />
+          <ScalarProperty Name="GrilleRef" ColumnName="GrilleRef" />
+          <ScalarProperty Name="ZoneType" ColumnName="ZoneType" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="TestApparatus" ColumnName="TestApparatus" />
+          <ScalarProperty Name="CorrectedArea" ColumnName="CorrectedArea" />
+          <ScalarProperty Name="Factor" ColumnName="Factor" />
+          <ScalarProperty Name="SizeB" ColumnName="SizeB" />
+          <ScalarProperty Name="SizeA" ColumnName="SizeA" />
+          <ScalarProperty Name="GrilleType" ColumnName="GrilleType" />
+          <ScalarProperty Name="NoGrilles" ColumnName="NoGrilles" />
+          <ScalarProperty Name="AreaZone" ColumnName="AreaZone" />
+          <ScalarProperty Name="BranchRef" ColumnName="BranchRef" />
+          <ScalarProperty Name="ReportID_fk" ColumnName="ReportID_fk" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_PumpCommissioning">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_PumpCommissioning">
+        <MappingFragment StoreEntitySet="Rpt_PumpCommissioning">
+          <ScalarProperty Name="BMSVelocityType" ColumnName="BMSVelocityType" />
+          <ScalarProperty Name="BMSPumpSpeedType" ColumnName="BMSPumpSpeedType" />
+          <ScalarProperty Name="WitnessSignature" ColumnName="WitnessSignature" />
+          <ScalarProperty Name="WitnessDate" ColumnName="WitnessDate" />
+          <ScalarProperty Name="WitnessName" ColumnName="WitnessName" />
+          <ScalarProperty Name="CoilFinPer" ColumnName="CoilFinPer" />
+          <ScalarProperty Name="CoilFinKPa" ColumnName="CoilFinKPa" />
+          <ScalarProperty Name="CoilFinLs" ColumnName="CoilFinLs" />
+          <ScalarProperty Name="CoilKPa" ColumnName="CoilKPa" />
+          <ScalarProperty Name="CoilLs" ColumnName="CoilLs" />
+          <ScalarProperty Name="PumpFinalFinPer" ColumnName="PumpFinalFinPer" />
+          <ScalarProperty Name="PumpFinalFinKPa" ColumnName="PumpFinalFinKPa" />
+          <ScalarProperty Name="PumpFinalFinLs" ColumnName="PumpFinalFinLs" />
+          <ScalarProperty Name="BMSOther" ColumnName="BMSOther" />
+          <ScalarProperty Name="BMSPressure" ColumnName="BMSPressure" />
+          <ScalarProperty Name="BMSVelocity" ColumnName="BMSVelocity" />
+          <ScalarProperty Name="BMSPumpSpeed" ColumnName="BMSPumpSpeed" />
+          <ScalarProperty Name="HeadCustomer" ColumnName="HeadCustomer" />
+          <ScalarProperty Name="HeadService" ColumnName="HeadService" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="FinalFlowLS" ColumnName="FinalFlowLS" />
+          <ScalarProperty Name="FullFlowLS" ColumnName="FullFlowLS" />
+          <ScalarProperty Name="OverloadRangeMS3" ColumnName="OverloadRangeMS3" />
+          <ScalarProperty Name="OverloadRangeMS2" ColumnName="OverloadRangeMS2" />
+          <ScalarProperty Name="FuseDetailsMDPH" ColumnName="FuseDetailsMDPH" />
+          <ScalarProperty Name="ICAComments" ColumnName="ICAComments" />
+          <ScalarProperty Name="TechnicianComments" ColumnName="TechnicianComments" />
+          <ScalarProperty Name="Serial2" ColumnName="Serial2" />
+          <ScalarProperty Name="Model2" ColumnName="Model2" />
+          <ScalarProperty Name="Instrument2" ColumnName="Instrument2" />
+          <ScalarProperty Name="Serial1" ColumnName="Serial1" />
+          <ScalarProperty Name="Model1" ColumnName="Model1" />
+          <ScalarProperty Name="Instrument1" ColumnName="Instrument1" />
+          <ScalarProperty Name="PumpStatic" ColumnName="PumpStatic" />
+          <ScalarProperty Name="PumpOp" ColumnName="PumpOp" />
+          <ScalarProperty Name="PumpFinalHz" ColumnName="PumpFinalHz" />
+          <ScalarProperty Name="PumpFinalKPA" ColumnName="PumpFinalKPA" />
+          <ScalarProperty Name="PumpFinalLS" ColumnName="PumpFinalLS" />
+          <ScalarProperty Name="OpenHz" ColumnName="OpenHz" />
+          <ScalarProperty Name="ClosedHz" ColumnName="ClosedHz" />
+          <ScalarProperty Name="OpenPressure" ColumnName="OpenPressure" />
+          <ScalarProperty Name="ClosedPressure" ColumnName="ClosedPressure" />
+          <ScalarProperty Name="Hz3" ColumnName="Hz3" />
+          <ScalarProperty Name="Amps3" ColumnName="Amps3" />
+          <ScalarProperty Name="RPM3" ColumnName="RPM3" />
+          <ScalarProperty Name="Delta3" ColumnName="Delta3" />
+          <ScalarProperty Name="Discharge3" ColumnName="Discharge3" />
+          <ScalarProperty Name="Suction3" ColumnName="Suction3" />
+          <ScalarProperty Name="Hz2" ColumnName="Hz2" />
+          <ScalarProperty Name="Amps2" ColumnName="Amps2" />
+          <ScalarProperty Name="RPM2" ColumnName="RPM2" />
+          <ScalarProperty Name="Delta2" ColumnName="Delta2" />
+          <ScalarProperty Name="Discharge2" ColumnName="Discharge2" />
+          <ScalarProperty Name="Suction2" ColumnName="Suction2" />
+          <ScalarProperty Name="Hz1" ColumnName="Hz1" />
+          <ScalarProperty Name="Amps1" ColumnName="Amps1" />
+          <ScalarProperty Name="RPM1" ColumnName="RPM1" />
+          <ScalarProperty Name="Delta1" ColumnName="Delta1" />
+          <ScalarProperty Name="Discharge1" ColumnName="Discharge1" />
+          <ScalarProperty Name="Suction1" ColumnName="Suction1" />
+          <ScalarProperty Name="Curve" ColumnName="Curve" />
+          <ScalarProperty Name="Strainer" ColumnName="Strainer" />
+          <ScalarProperty Name="Aligned" ColumnName="Aligned" />
+          <ScalarProperty Name="TestPoint" ColumnName="TestPoint" />
+          <ScalarProperty Name="SystemOpp" ColumnName="SystemOpp" />
+          <ScalarProperty Name="VSDRangeMS" ColumnName="VSDRangeMS" />
+          <ScalarProperty Name="VSDMakeMS" ColumnName="VSDMakeMS" />
+          <ScalarProperty Name="OverloadRangeMS" ColumnName="OverloadRangeMS" />
+          <ScalarProperty Name="OverloadMakeMS" ColumnName="OverloadMakeMS" />
+          <ScalarProperty Name="FuseDetailsMD" ColumnName="FuseDetailsMD" />
+          <ScalarProperty Name="PoleRPMMD" ColumnName="PoleRPMMD" />
+          <ScalarProperty Name="PoleMD" ColumnName="PoleMD" />
+          <ScalarProperty Name="FullLoadMD" ColumnName="FullLoadMD" />
+          <ScalarProperty Name="MotorPowerMD" ColumnName="MotorPowerMD" />
+          <ScalarProperty Name="ElectricalMD" ColumnName="ElectricalMD" />
+          <ScalarProperty Name="FrameMD" ColumnName="FrameMD" />
+          <ScalarProperty Name="MotorMakeMD" ColumnName="MotorMakeMD" />
+          <ScalarProperty Name="CoilVesselKPA" ColumnName="CoilVesselKPA" />
+          <ScalarProperty Name="CoilVesselLs" ColumnName="CoilVesselLs" />
+          <ScalarProperty Name="PumpKPA" ColumnName="PumpKPA" />
+          <ScalarProperty Name="PumpLs" ColumnName="PumpLs" />
+          <ScalarProperty Name="ImpSize" ColumnName="ImpSize" />
+          <ScalarProperty Name="PumpType" ColumnName="PumpType" />
+          <ScalarProperty Name="SerialNoPump" ColumnName="SerialNoPump" />
+          <ScalarProperty Name="ModelNoPump" ColumnName="ModelNoPump" />
+          <ScalarProperty Name="ManufacturePump" ColumnName="ManufacturePump" />
+          <ScalarProperty Name="SBoardLoc" ColumnName="SBoardLoc" />
+          <ScalarProperty Name="SBoardRef" ColumnName="SBoardRef" />
+          <ScalarProperty Name="WaterTypePump" ColumnName="WaterTypePump" />
+          <ScalarProperty Name="LocationPump" ColumnName="LocationPump" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rpt_SplitPackage">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.Rpt_SplitPackage">
+        <MappingFragment StoreEntitySet="Rpt_SplitPackage">
+          <ScalarProperty Name="HeadCustomer" ColumnName="HeadCustomer" />
+          <ScalarProperty Name="HeadService" ColumnName="HeadService" />
+          <ScalarProperty Name="HeadBuilding" ColumnName="HeadBuilding" />
+          <ScalarProperty Name="FilterSizeC" ColumnName="FilterSizeC" />
+          <ScalarProperty Name="FilterSizeB" ColumnName="FilterSizeB" />
+          <ScalarProperty Name="FuseDetailsCMDPH" ColumnName="FuseDetailsCMDPH" />
+          <ScalarProperty Name="Kg4" ColumnName="Kg4" />
+          <ScalarProperty Name="Kg3" ColumnName="Kg3" />
+          <ScalarProperty Name="Kg2" ColumnName="Kg2" />
+          <ScalarProperty Name="FuseDetailsMDPH" ColumnName="FuseDetailsMDPH" />
+          <ScalarProperty Name="Capacity2" ColumnName="Capacity2" />
+          <ScalarProperty Name="ICAComments" ColumnName="ICAComments" />
+          <ScalarProperty Name="FCondAmpsS4" ColumnName="FCondAmpsS4" />
+          <ScalarProperty Name="FCondAmpsS3" ColumnName="FCondAmpsS3" />
+          <ScalarProperty Name="FCondAmpsS2" ColumnName="FCondAmpsS2" />
+          <ScalarProperty Name="FCondAmpsS1" ColumnName="FCondAmpsS1" />
+          <ScalarProperty Name="CondVoltS4" ColumnName="CondVoltS4" />
+          <ScalarProperty Name="CondVoltS3" ColumnName="CondVoltS3" />
+          <ScalarProperty Name="CondVoltS2" ColumnName="CondVoltS2" />
+          <ScalarProperty Name="CondVoltS1" ColumnName="CondVoltS1" />
+          <ScalarProperty Name="EvapLeaving4" ColumnName="EvapLeaving4" />
+          <ScalarProperty Name="EvapLeaving3" ColumnName="EvapLeaving3" />
+          <ScalarProperty Name="EvapLeaving2" ColumnName="EvapLeaving2" />
+          <ScalarProperty Name="EvapLeaving1" ColumnName="EvapLeaving1" />
+          <ScalarProperty Name="EvapEntering4" ColumnName="EvapEntering4" />
+          <ScalarProperty Name="EvapEntering3" ColumnName="EvapEntering3" />
+          <ScalarProperty Name="EvapEntering2" ColumnName="EvapEntering2" />
+          <ScalarProperty Name="EvapEntering1" ColumnName="EvapEntering1" />
+          <ScalarProperty Name="SubS4" ColumnName="SubS4" />
+          <ScalarProperty Name="SubS3" ColumnName="SubS3" />
+          <ScalarProperty Name="SubS2" ColumnName="SubS2" />
+          <ScalarProperty Name="SubS1" ColumnName="SubS1" />
+          <ScalarProperty Name="SuperS4" ColumnName="SuperS4" />
+          <ScalarProperty Name="SuperS3" ColumnName="SuperS3" />
+          <ScalarProperty Name="SuperS2" ColumnName="SuperS2" />
+          <ScalarProperty Name="SuperS1" ColumnName="SuperS1" />
+          <ScalarProperty Name="LiqS4" ColumnName="LiqS4" />
+          <ScalarProperty Name="LiqS3" ColumnName="LiqS3" />
+          <ScalarProperty Name="LiqS2" ColumnName="LiqS2" />
+          <ScalarProperty Name="LiqS1" ColumnName="LiqS1" />
+          <ScalarProperty Name="CompSucS4" ColumnName="CompSucS4" />
+          <ScalarProperty Name="CompSucS3" ColumnName="CompSucS3" />
+          <ScalarProperty Name="CompSucS2" ColumnName="CompSucS2" />
+          <ScalarProperty Name="CompSucS1" ColumnName="CompSucS1" />
+          <ScalarProperty Name="OilS4" ColumnName="OilS4" />
+          <ScalarProperty Name="OilS3" ColumnName="OilS3" />
+          <ScalarProperty Name="OilS2" ColumnName="OilS2" />
+          <ScalarProperty Name="OilS1" ColumnName="OilS1" />
+          <ScalarProperty Name="DisS4" ColumnName="DisS4" />
+          <ScalarProperty Name="DisS3" ColumnName="DisS3" />
+          <ScalarProperty Name="DisS2" ColumnName="DisS2" />
+          <ScalarProperty Name="DisS1" ColumnName="DisS1" />
+          <ScalarProperty Name="SucS4" ColumnName="SucS4" />
+          <ScalarProperty Name="SucS3" ColumnName="SucS3" />
+          <ScalarProperty Name="SucS2" ColumnName="SucS2" />
+          <ScalarProperty Name="SucS1" ColumnName="SucS1" />
+          <ScalarProperty Name="AmbiS4" ColumnName="AmbiS4" />
+          <ScalarProperty Name="AmbiS3" ColumnName="AmbiS3" />
+          <ScalarProperty Name="AmbiS2" ColumnName="AmbiS2" />
+          <ScalarProperty Name="AmbiS1" ColumnName="AmbiS1" />
+          <ScalarProperty Name="CompVoltS4" ColumnName="CompVoltS4" />
+          <ScalarProperty Name="CompVoltS3" ColumnName="CompVoltS3" />
+          <ScalarProperty Name="CompVoltS2" ColumnName="CompVoltS2" />
+          <ScalarProperty Name="CompVoltS1" ColumnName="CompVoltS1" />
+          <ScalarProperty Name="CompS4" ColumnName="CompS4" />
+          <ScalarProperty Name="CompS3" ColumnName="CompS3" />
+          <ScalarProperty Name="CompS2" ColumnName="CompS2" />
+          <ScalarProperty Name="CompS1" ColumnName="CompS1" />
+          <ScalarProperty Name="SupS4" ColumnName="SupS4" />
+          <ScalarProperty Name="SupS3" ColumnName="SupS3" />
+          <ScalarProperty Name="SupS2" ColumnName="SupS2" />
+          <ScalarProperty Name="SupS1" ColumnName="SupS1" />
+          <ScalarProperty Name="FuseDetailsC" ColumnName="FuseDetailsC" />
+          <ScalarProperty Name="RPMC" ColumnName="RPMC" />
+          <ScalarProperty Name="PoleC" ColumnName="PoleC" />
+          <ScalarProperty Name="FullLoadAmpsC" ColumnName="FullLoadAmpsC" />
+          <ScalarProperty Name="MotorPowerC" ColumnName="MotorPowerC" />
+          <ScalarProperty Name="CondFan" ColumnName="CondFan" />
+          <ScalarProperty Name="CondFanNo" ColumnName="CondFanNo" />
+          <ScalarProperty Name="CondFanMake" ColumnName="CondFanMake" />
+          <ScalarProperty Name="HeatingType" ColumnName="HeatingType" />
+          <ScalarProperty Name="Kg" ColumnName="Kg" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="CompFull" ColumnName="CompFull" />
+          <ScalarProperty Name="CompElec" ColumnName="CompElec" />
+          <ScalarProperty Name="CompModNo" ColumnName="CompModNo" />
+          <ScalarProperty Name="CompManu" ColumnName="CompManu" />
+          <ScalarProperty Name="CondSNo" ColumnName="CondSNo" />
+          <ScalarProperty Name="CondMNo" ColumnName="CondMNo" />
+          <ScalarProperty Name="CondManu" ColumnName="CondManu" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="NoOfFilters" ColumnName="NoOfFilters" />
+          <ScalarProperty Name="FilterSize" ColumnName="FilterSize" />
+          <ScalarProperty Name="FilterType" ColumnName="FilterType" />
+          <ScalarProperty Name="ShaftCentre" ColumnName="ShaftCentre" />
+          <ScalarProperty Name="BeltsSize" ColumnName="BeltsSize" />
+          <ScalarProperty Name="BeltsNo" ColumnName="BeltsNo" />
+          <ScalarProperty Name="BeltsMake" ColumnName="BeltsMake" />
+          <ScalarProperty Name="MotorBore" ColumnName="MotorBore" />
+          <ScalarProperty Name="MotorBush" ColumnName="MotorBush" />
+          <ScalarProperty Name="MotorDia" ColumnName="MotorDia" />
+          <ScalarProperty Name="FanBore" ColumnName="FanBore" />
+          <ScalarProperty Name="FanBush" ColumnName="FanBush" />
+          <ScalarProperty Name="FanDia" ColumnName="FanDia" />
+          <ScalarProperty Name="FuseDetails" ColumnName="FuseDetails" />
+          <ScalarProperty Name="RPM" ColumnName="RPM" />
+          <ScalarProperty Name="Pole" ColumnName="Pole" />
+          <ScalarProperty Name="FullLoadAmps" ColumnName="FullLoadAmps" />
+          <ScalarProperty Name="MotorPower" ColumnName="MotorPower" />
+          <ScalarProperty Name="ElectSupply" ColumnName="ElectSupply" />
+          <ScalarProperty Name="FrameClass" ColumnName="FrameClass" />
+          <ScalarProperty Name="MotorMake" ColumnName="MotorMake" />
+          <ScalarProperty Name="DisAct" ColumnName="DisAct" />
+          <ScalarProperty Name="DisDes" ColumnName="DisDes" />
+          <ScalarProperty Name="SucAct" ColumnName="SucAct" />
+          <ScalarProperty Name="SucDes" ColumnName="SucDes" />
+          <ScalarProperty Name="ExtAct" ColumnName="ExtAct" />
+          <ScalarProperty Name="ExtDes" ColumnName="ExtDes" />
+          <ScalarProperty Name="ReturnAct" ColumnName="ReturnAct" />
+          <ScalarProperty Name="ReturnDes" ColumnName="ReturnDes" />
+          <ScalarProperty Name="OutAct" ColumnName="OutAct" />
+          <ScalarProperty Name="OutDes" ColumnName="OutDes" />
+          <ScalarProperty Name="TotAct" ColumnName="TotAct" />
+          <ScalarProperty Name="TotDes" ColumnName="TotDes" />
+          <ScalarProperty Name="MSSBLoc" ColumnName="MSSBLoc" />
+          <ScalarProperty Name="MSSBName" ColumnName="MSSBName" />
+          <ScalarProperty Name="FanArrange" ColumnName="FanArrange" />
+          <ScalarProperty Name="FanType" ColumnName="FanType" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="FanLoc" ColumnName="FanLoc" />
+          <ScalarProperty Name="SystemReportID_fk" ColumnName="SystemReportID_fk" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
