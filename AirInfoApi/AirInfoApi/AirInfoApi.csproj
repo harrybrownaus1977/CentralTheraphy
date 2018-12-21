@@ -239,11 +239,11 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="FlowTech_MasterReportList.cs">
-      <DependentUpon>AirInfoAPI.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="luMasterReportList.cs">
+      <DependentUpon>AirInfoAPI.tt</DependentUpon>
     </Compile>
     <Compile Include="luRole.cs">
       <DependentUpon>AirInfoAPI.tt</DependentUpon>

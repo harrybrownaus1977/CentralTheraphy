@@ -51,7 +51,7 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
-  <EntityType Name="FlowTech_MasterReportList">
+  <EntityType Name="luMasterReportList">
     <Key>
       <PropertyRef Name="TemplateID" />
     </Key>
@@ -686,7 +686,7 @@
     </Key>
     <Property Name="ProjectTechnicianID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProjectID_fk" Type="uniqueidentifier" />
-    <Property Name="UserID_fk" Type="uniqueidentifier" />
+    <Property Name="UserID_fk" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="tblSystemMasterReports">
     <Key>
@@ -883,10 +883,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList">
-    <End Role="FlowTech_MasterReportList" Type="Self.FlowTech_MasterReportList" Multiplicity="0..1" />
+    <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
     <End Role="Rpt_PreCommissioningItemsList" Type="Self.Rpt_PreCommissioningItemsList" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="FlowTech_MasterReportList">
+      <Principal Role="luMasterReportList">
         <PropertyRef Name="TemplateID" />
       </Principal>
       <Dependent Role="Rpt_PreCommissioningItemsList">
@@ -990,23 +990,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblProjectTechnicians_tblUsers">
-    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
-    <End Role="tblProjectTechnicians" Type="Self.tblProjectTechnicians" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUsers">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="tblProjectTechnicians">
-        <PropertyRef Name="UserID_fk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tblSystemMasterReports_FlowTech_MasterReportList">
-    <End Role="FlowTech_MasterReportList" Type="Self.FlowTech_MasterReportList" Multiplicity="0..1" />
+    <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
     <End Role="tblSystemMasterReports" Type="Self.tblSystemMasterReports" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="FlowTech_MasterReportList">
+      <Principal Role="luMasterReportList">
         <PropertyRef Name="TemplateID" />
       </Principal>
       <Dependent Role="tblSystemMasterReports">
@@ -1039,10 +1027,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_tblSystemReports_FlowTech_MasterReportList">
-    <End Role="FlowTech_MasterReportList" Type="Self.FlowTech_MasterReportList" Multiplicity="0..1" />
+    <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
     <End Role="tblSystemReports" Type="Self.tblSystemReports" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="FlowTech_MasterReportList">
+      <Principal Role="luMasterReportList">
         <PropertyRef Name="TemplateID" />
       </Principal>
       <Dependent Role="tblSystemReports">
@@ -1080,7 +1068,7 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="FlowTech_MasterReportList" EntityType="Self.FlowTech_MasterReportList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="luMasterReportList" EntityType="Self.luMasterReportList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="luRoles" EntityType="Self.luRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_AirBalance" EntityType="Self.Rpt_AirBalance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_AirbalanceZones" EntityType="Self.Rpt_AirbalanceZones" Schema="dbo" store:Type="Tables" />
@@ -1148,7 +1136,7 @@
       <End Role="Rpt_PreCommissioningItems" EntitySet="Rpt_PreCommissioningItems" />
     </AssociationSet>
     <AssociationSet Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" Association="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList">
-      <End Role="FlowTech_MasterReportList" EntitySet="FlowTech_MasterReportList" />
+      <End Role="luMasterReportList" EntitySet="luMasterReportList" />
       <End Role="Rpt_PreCommissioningItemsList" EntitySet="Rpt_PreCommissioningItemsList" />
     </AssociationSet>
     <AssociationSet Name="FK_Rpt_PumpCommissioning_tblSystemReports" Association="Self.FK_Rpt_PumpCommissioning_tblSystemReports">
@@ -1183,12 +1171,8 @@
       <End Role="tblProject" EntitySet="tblProject" />
       <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblProjectTechnicians_tblUsers" Association="Self.FK_tblProjectTechnicians_tblUsers">
-      <End Role="tblUsers" EntitySet="tblUsers" />
-      <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
-    </AssociationSet>
     <AssociationSet Name="FK_tblSystemMasterReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList">
-      <End Role="FlowTech_MasterReportList" EntitySet="FlowTech_MasterReportList" />
+      <End Role="luMasterReportList" EntitySet="luMasterReportList" />
       <End Role="tblSystemMasterReports" EntitySet="tblSystemMasterReports" />
     </AssociationSet>
     <AssociationSet Name="FK_tblSystemMasterReports_tblGroupSystem" Association="Self.FK_tblSystemMasterReports_tblGroupSystem">
@@ -1200,7 +1184,7 @@
       <End Role="tblSystemReportComments" EntitySet="tblSystemReportComments" />
     </AssociationSet>
     <AssociationSet Name="FK_tblSystemReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemReports_FlowTech_MasterReportList">
-      <End Role="FlowTech_MasterReportList" EntitySet="FlowTech_MasterReportList" />
+      <End Role="luMasterReportList" EntitySet="luMasterReportList" />
       <End Role="tblSystemReports" EntitySet="tblSystemReports" />
     </AssociationSet>
     <AssociationSet Name="FK_tblSystemReports_tblGroupSystem" Association="Self.FK_tblSystemReports_tblGroupSystem">

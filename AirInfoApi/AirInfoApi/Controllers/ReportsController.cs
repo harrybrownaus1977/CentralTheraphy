@@ -25,17 +25,10 @@ namespace AirInfoApi.Controllers
         [HttpPost]
         //username = Megabits
         public HttpResponseMessage login([FromBody] UserViewModel oUser)
-        {
-            //var username = System.Web.HttpContext.Current.Request.Form["username"];
-            //var password = System.Web.HttpContext.Current.Request.Form["password"];
-
-            //Here need to check the password Decrypt methods to check
-            //var user = context.tblUsers.Where(x => x.Username == username && x.PasswordHash == password).FirstOrDefault();
-            var user = context.tblUsers.Where(x => x.Username == oUser.Username).FirstOrDefault();
-
-            //If user is valid, then create a new authentication token and send back to the caller.
-            if (user != null)
-            {        
+        {            
+            try
+            {
+                //generate Bearer token based on the user.
                 BearerToken token;
                 using (var httpClient = new HttpClient())
                 {
@@ -43,24 +36,41 @@ namespace AirInfoApi.Controllers
                         new List<KeyValuePair<string, string>>
                             {
                         new KeyValuePair<string, string>("grant_type", "password"),
-                        new KeyValuePair<string, string>("username", "harry.brown@kingit.com.au"),
-                        new KeyValuePair<string, string>("password", "Harry@123")
+                        new KeyValuePair<string, string>("username", oUser.Username),
+                        new KeyValuePair<string, string>("password", oUser.Password)
                             };
                     HttpContent encodedRequest = new FormUrlEncodedContent(tokenRequest);
                     HttpResponseMessage response = httpClient.PostAsync("http://203.143.85.102/plesk-site-preview/api.airinfo.com.au/Token", encodedRequest).Result;
-                    token = response.Content.ReadAsAsync<BearerToken>().Result;
-                    oUser.Token = token.AccessToken;
-                    oUser.UserId = user.UserID.ToString();
-                    oUser.Password = "";
-                    oUser.Message = "";
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        token = response.Content.ReadAsAsync<BearerToken>().Result;
+                        oUser.Token = token.AccessToken;
+
+                        var user = context.AspNetUsers.Where(x => x.Email == oUser.Username).FirstOrDefault();
+                        oUser.UserId = user.Id.ToString();
+
+                        //Above two lines should uncomment after changed user logins to AspNetxxx tables
+                        //Below two lines should comment after changed user logins to AspNetxxx tables
+                        //var user = context.tblUsers.Where(x => x.Username == "Megabits").FirstOrDefault();
+                        //oUser.UserId = user.UserID.ToString();
+                        oUser.Password = "";
+                        oUser.Username = "";
+                    }
+                    else
+                    {
+                        oUser.Message = "Invalid Username or password.";
+                        oUser.Password = "";
+                        oUser.Username = "";
+                        return Request.CreateResponse(oUser);
+                    }
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, oUser);
             }
-            else
+            catch (Exception Ex)
             {
-                oUser.Message = "Invalid Username or password.";
-                return Request.CreateResponse(oUser);
-            }            
+                return Request.CreateResponse(Ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -76,9 +86,8 @@ namespace AirInfoApi.Controllers
         {
             try
             {
-                var val = Guid.Parse(userid);
                 List<ProjectViewModel> projectList = new List<ProjectViewModel>();
-                var projectids = context.tblProjectTechnicians.Where(x => x.UserID_fk == val).ToList();
+                var projectids = context.tblProjectTechnicians.Where(x => x.UserID_fk == userid).ToList();
                 foreach (var projid in projectids)
                 {
                     var proj = context.tblProjects.Where(y => y.ProjectID == projid.ProjectID_fk).Select(y => new ProjectViewModel
@@ -177,7 +186,7 @@ namespace AirInfoApi.Controllers
                 var assignedmasterids = context.tblSystemMasterReports.Where(x => x.SystemID_fk == val).ToList();
                 foreach (var assignedmasterid in assignedmasterids)
                 {
-                    var masterRep = context.FlowTech_MasterReportList.Where(y => y.TemplateID == assignedmasterid.TemplateID_fk).Select(y => new MasterReportsViewModel
+                    var masterRep = context.luMasterReportLists.Where(y => y.TemplateID == assignedmasterid.TemplateID_fk).Select(y => new MasterReportsViewModel
                     {
                         TemplateID = y.TemplateID,
                         Name = y.DisplayName,

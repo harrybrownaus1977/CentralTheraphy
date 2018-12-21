@@ -29,8 +29,8 @@ namespace AirInfoApi
         public Nullable<int> CategoryOrder { get; set; }
         public int FranchiseID_fk { get; set; }
     
-        public virtual FlowTech_MasterReportList FlowTech_MasterReportList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_PreCommissioningItems> Rpt_PreCommissioningItems { get; set; }
+        public virtual luMasterReportList luMasterReportList { get; set; }
     }
 }

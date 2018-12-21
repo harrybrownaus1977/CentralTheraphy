@@ -35,7 +35,6 @@ namespace AirInfoApi
         public Nullable<int> Status { get; set; }
         public Nullable<System.DateTime> DateTime { get; set; }
     
-        public virtual FlowTech_MasterReportList FlowTech_MasterReportList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_PreCommissioning> Rpt_PreCommissioning { get; set; }
         public virtual tblGroupSystem tblGroupSystem { get; set; }
@@ -53,5 +52,6 @@ namespace AirInfoApi
         public virtual ICollection<Rpt_PumpCommissioning> Rpt_PumpCommissioning { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_SplitPackage> Rpt_SplitPackage { get; set; }
+        public virtual luMasterReportList luMasterReportList { get; set; }
     }
 }

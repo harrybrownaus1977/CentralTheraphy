@@ -29,7 +29,6 @@ namespace AirInfoApi
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<FlowTech_MasterReportList> FlowTech_MasterReportList { get; set; }
         public virtual DbSet<luRole> luRoles { get; set; }
         public virtual DbSet<Rpt_PreCommissioning> Rpt_PreCommissioning { get; set; }
         public virtual DbSet<Rpt_PreCommissioningItems> Rpt_PreCommissioningItems { get; set; }
@@ -39,7 +38,6 @@ namespace AirInfoApi
         public virtual DbSet<tblGroupSystem> tblGroupSystems { get; set; }
         public virtual DbSet<tblProject> tblProjects { get; set; }
         public virtual DbSet<tblProjectGroup> tblProjectGroups { get; set; }
-        public virtual DbSet<tblProjectTechnician> tblProjectTechnicians { get; set; }
         public virtual DbSet<tblSystemMasterReport> tblSystemMasterReports { get; set; }
         public virtual DbSet<tblSystemReport> tblSystemReports { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
@@ -52,5 +50,7 @@ namespace AirInfoApi
         public virtual DbSet<Rpt_AirbalanceZones> Rpt_AirbalanceZones { get; set; }
         public virtual DbSet<Rpt_PumpCommissioning> Rpt_PumpCommissioning { get; set; }
         public virtual DbSet<Rpt_SplitPackage> Rpt_SplitPackage { get; set; }
+        public virtual DbSet<luMasterReportList> luMasterReportLists { get; set; }
+        public virtual DbSet<tblProjectTechnician> tblProjectTechnicians { get; set; }
     }
 }

@@ -12,10 +12,10 @@ namespace AirInfoApi
     using System;
     using System.Collections.Generic;
     
-    public partial class FlowTech_MasterReportList
+    public partial class luMasterReportList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FlowTech_MasterReportList()
+        public luMasterReportList()
         {
             this.Rpt_PreCommissioningItemsList = new HashSet<Rpt_PreCommissioningItemsList>();
             this.tblSystemMasterReports = new HashSet<tblSystemMasterReport>();
