@@ -41,6 +41,8 @@ namespace AirInfoApi.Models
     {
         public Guid ID { set; get; }
         public string Name { set; get; }
+
+        public List<SystemViewModel> Systems { set; get; }
     }
 
     public class SystemViewModel

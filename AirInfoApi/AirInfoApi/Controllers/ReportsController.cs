@@ -126,11 +126,18 @@ namespace AirInfoApi.Controllers
             try
             {
                 var val = Guid.Parse(projectid);
+                List<SystemViewModel> lstSystems = new List<SystemViewModel>();
                 var groupList = context.tblProjectGroups.Where(x => x.ProjectID_fk == val).Select(x => new GroupViewModel
                 {
                     ID = x.GroupID,
                     Name = x.Name,
+                    Systems = context.tblGroupSystems.Where(y => y.GroupID_fk == x.GroupID).Select(z => new SystemViewModel
+                                {
+                                    ID = z.SystemID,
+                                    Name = z.Reference
+                                }).ToList()
                 }).ToList();
+
                 return Request.CreateResponse(HttpStatusCode.OK, groupList);
             }
             catch(Exception Ex)
