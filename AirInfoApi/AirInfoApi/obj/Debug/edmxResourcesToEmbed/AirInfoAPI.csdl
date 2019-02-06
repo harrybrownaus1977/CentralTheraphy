@@ -49,6 +49,26 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
+  <EntityType Name="luMasterReportList">
+    <Key>
+      <PropertyRef Name="TemplateID" />
+    </Key>
+    <Property Name="TemplateID" Type="Guid" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PageName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="TableName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RevisionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsDefectReport" Type="Boolean" Nullable="false" />
+    <Property Name="IsInfoReport" Type="Boolean" Nullable="false" />
+    <Property Name="IsTechniciansReport" Type="Boolean" Nullable="false" />
+    <Property Name="IsVavSummary" Type="Boolean" Nullable="false" />
+    <Property Name="Archived" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rpt_PreCommissioningItemsList" Relationship="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" FromRole="luMasterReportList" ToRole="Rpt_PreCommissioningItemsList" />
+    <NavigationProperty Name="tblSystemMasterReports" Relationship="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList" FromRole="luMasterReportList" ToRole="tblSystemMasterReports" />
+    <NavigationProperty Name="tblSystemReports" Relationship="Self.FK_tblSystemReports_FlowTech_MasterReportList" FromRole="luMasterReportList" ToRole="tblSystemReports" />
+  </EntityType>
   <EntityType Name="luRole">
     <Key>
       <PropertyRef Name="RoleID" />
@@ -721,8 +741,8 @@
     <Property Name="DisplayOrder" Type="Int32" />
     <Property Name="CategoryOrder" Type="Int32" />
     <Property Name="FranchiseID_fk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="luMasterReportList" Relationship="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" FromRole="Rpt_PreCommissioningItemsList" ToRole="luMasterReportList" />
     <NavigationProperty Name="Rpt_PreCommissioningItems" Relationship="Self.FK_Rpt_PreCommissioningItems_Rpt_PreCommissioningItemsList" FromRole="Rpt_PreCommissioningItemsList" ToRole="Rpt_PreCommissioningItems" />
-    <NavigationProperty Name="luMasterReportList" Relationship="AirInfoAPIModel.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList1" FromRole="Rpt_PreCommissioningItemsList" ToRole="luMasterReportList" />
   </EntityType>
   <EntityType Name="Rpt_PumpCommissioning">
     <Key>
@@ -1083,9 +1103,8 @@
     </Key>
     <Property Name="ProjectTechnicianID" Type="Guid" Nullable="false" />
     <Property Name="ProjectID_fk" Type="Guid" />
-    <Property Name="UserID_fk" Type="Guid" />
+    <Property Name="UserID_fk" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tblProject" Relationship="Self.FK_tblProjectTechnicians_tblProject" FromRole="tblProjectTechnicians" ToRole="tblProject" />
-    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblProjectTechnicians_tblUsers" FromRole="tblProjectTechnicians" ToRole="tblUsers" />
   </EntityType>
   <EntityType Name="tblSystemMasterReport">
     <Key>
@@ -1094,8 +1113,8 @@
     <Property Name="SystemMasterReportID" Type="Guid" Nullable="false" />
     <Property Name="SystemID_fk" Type="Guid" />
     <Property Name="TemplateID_fk" Type="Guid" />
+    <NavigationProperty Name="luMasterReportList" Relationship="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList" FromRole="tblSystemMasterReports" ToRole="luMasterReportList" />
     <NavigationProperty Name="tblGroupSystem" Relationship="Self.FK_tblSystemMasterReports_tblGroupSystem" FromRole="tblSystemMasterReports" ToRole="tblGroupSystem" />
-    <NavigationProperty Name="luMasterReportList" Relationship="AirInfoAPIModel.FK_tblSystemMasterReports_FlowTech_MasterReportList1" FromRole="tblSystemMasterReport" ToRole="luMasterReportList" />
   </EntityType>
   <EntityType Name="tblSystemReportComment">
     <Key>
@@ -1119,6 +1138,7 @@
     <Property Name="TestReference" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Int32" />
     <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="luMasterReportList" Relationship="Self.FK_tblSystemReports_FlowTech_MasterReportList" FromRole="tblSystemReports" ToRole="luMasterReportList" />
     <NavigationProperty Name="Rpt_AhuTest" Relationship="Self.FK_Rpt_AhuTest_tblSystemReports" FromRole="tblSystemReports" ToRole="Rpt_AhuTest" />
     <NavigationProperty Name="Rpt_AhuTestDirectDrive" Relationship="Self.FK_Rpt_AhuTestDirectDrive_tblSystemReports" FromRole="tblSystemReports" ToRole="Rpt_AhuTestDirectDrive" />
     <NavigationProperty Name="Rpt_AirBalance" Relationship="Self.FK_Rpt_AirBalance_tblSystemReports" FromRole="tblSystemReports" ToRole="Rpt_AirBalance" />
@@ -1132,7 +1152,6 @@
     <NavigationProperty Name="Rpt_VavCommissioning" Relationship="Self.FK_Rpt_VavCommissioning_tblSystemReports" FromRole="tblSystemReports" ToRole="Rpt_VavCommissioning" />
     <NavigationProperty Name="tblGroupSystem" Relationship="Self.FK_tblSystemReports_tblGroupSystem" FromRole="tblSystemReports" ToRole="tblGroupSystem" />
     <NavigationProperty Name="tblSystemReportComments" Relationship="Self.FK_tblSystemReportComments_tblSystemReports" FromRole="tblSystemReports" ToRole="tblSystemReportComments" />
-    <NavigationProperty Name="luMasterReportList" Relationship="AirInfoAPIModel.FK_tblSystemReports_FlowTech_MasterReportList1" FromRole="tblSystemReport" ToRole="luMasterReportList" />
   </EntityType>
   <EntityType Name="tblUser">
     <Key>
@@ -1158,7 +1177,6 @@
     <Property Name="ResetCodeExpiry" Type="DateTime" Precision="3" />
     <Property Name="CanDelete" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="luRole" Relationship="Self.FK_tblUsers_luRoles" FromRole="tblUsers" ToRole="luRoles" />
-    <NavigationProperty Name="tblProjectTechnicians" Relationship="Self.FK_tblProjectTechnicians_tblUsers" FromRole="tblUsers" ToRole="tblProjectTechnicians" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -1185,6 +1203,42 @@
       </Principal>
       <Dependent Role="AspNetUserLogins">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList">
+    <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
+    <End Role="Rpt_PreCommissioningItemsList" Type="Self.Rpt_PreCommissioningItemsList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="luMasterReportList">
+        <PropertyRef Name="TemplateID" />
+      </Principal>
+      <Dependent Role="Rpt_PreCommissioningItemsList">
+        <PropertyRef Name="TemplateID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemMasterReports_FlowTech_MasterReportList">
+    <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
+    <End Role="tblSystemMasterReports" Type="Self.tblSystemMasterReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="luMasterReportList">
+        <PropertyRef Name="TemplateID" />
+      </Principal>
+      <Dependent Role="tblSystemMasterReports">
+        <PropertyRef Name="TemplateID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSystemReports_FlowTech_MasterReportList">
+    <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
+    <End Role="tblSystemReports" Type="Self.tblSystemReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="luMasterReportList">
+        <PropertyRef Name="TemplateID" />
+      </Principal>
+      <Dependent Role="tblSystemReports">
+        <PropertyRef Name="TemplateID_fk" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1452,18 +1506,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblProjectTechnicians_tblUsers">
-    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
-    <End Role="tblProjectTechnicians" Type="Self.tblProjectTechnician" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUsers">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="tblProjectTechnicians">
-        <PropertyRef Name="UserID_fk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tblSystemReportComments_tblSystemReports">
     <End Role="tblSystemReports" Type="Self.tblSystemReport" Multiplicity="0..1" />
     <End Role="tblSystemReportComments" Type="Self.tblSystemReportComment" Multiplicity="*" />
@@ -1485,6 +1527,7 @@
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="luMasterReportLists" EntityType="Self.luMasterReportList" />
     <EntitySet Name="luRoles" EntityType="Self.luRole" />
     <EntitySet Name="Rpt_AhuTest" EntityType="Self.Rpt_AhuTest" />
     <EntitySet Name="Rpt_AhuTestDirectDrive" EntityType="Self.Rpt_AhuTestDirectDrive" />
@@ -1518,6 +1561,18 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" Association="Self.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList">
+      <End Role="luMasterReportList" EntitySet="luMasterReportLists" />
+      <End Role="Rpt_PreCommissioningItemsList" EntitySet="Rpt_PreCommissioningItemsList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemMasterReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList">
+      <End Role="luMasterReportList" EntitySet="luMasterReportLists" />
+      <End Role="tblSystemMasterReports" EntitySet="tblSystemMasterReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSystemReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemReports_FlowTech_MasterReportList">
+      <End Role="luMasterReportList" EntitySet="luMasterReportLists" />
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
     </AssociationSet>
     <AssociationSet Name="FK_tblUsers_luRoles" Association="Self.FK_tblUsers_luRoles">
       <End Role="luRoles" EntitySet="luRoles" />
@@ -1607,10 +1662,6 @@
       <End Role="tblProject" EntitySet="tblProjects" />
       <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblProjectTechnicians_tblUsers" Association="Self.FK_tblProjectTechnicians_tblUsers">
-      <End Role="tblUsers" EntitySet="tblUsers" />
-      <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
-    </AssociationSet>
     <AssociationSet Name="FK_tblSystemReportComments_tblSystemReports" Association="Self.FK_tblSystemReportComments_tblSystemReports">
       <End Role="tblSystemReports" EntitySet="tblSystemReports" />
       <End Role="tblSystemReportComments" EntitySet="tblSystemReportComments" />
@@ -1619,74 +1670,5 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <EntitySet Name="luMasterReportLists" EntityType="AirInfoAPIModel.luMasterReportList" />
-    <AssociationSet Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList1" Association="AirInfoAPIModel.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList1">
-      <End Role="luMasterReportList" EntitySet="luMasterReportLists" />
-      <End Role="Rpt_PreCommissioningItemsList" EntitySet="Rpt_PreCommissioningItemsList" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblSystemMasterReports_FlowTech_MasterReportList1" Association="AirInfoAPIModel.FK_tblSystemMasterReports_FlowTech_MasterReportList1">
-      <End Role="luMasterReportList" EntitySet="luMasterReportLists" />
-      <End Role="tblSystemMasterReport" EntitySet="tblSystemMasterReports" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblSystemReports_FlowTech_MasterReportList1" Association="AirInfoAPIModel.FK_tblSystemReports_FlowTech_MasterReportList1">
-      <End Role="luMasterReportList" EntitySet="luMasterReportLists" />
-      <End Role="tblSystemReport" EntitySet="tblSystemReports" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="luMasterReportList">
-    <Key>
-      <PropertyRef Name="TemplateID" />
-    </Key>
-    <Property Name="TemplateID" Type="Guid" Nullable="false" />
-    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="PageName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="IsActive" Type="Boolean" Nullable="false" />
-    <Property Name="TableName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="ReportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="RevisionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="IsDefectReport" Type="Boolean" Nullable="false" />
-    <Property Name="IsInfoReport" Type="Boolean" Nullable="false" />
-    <Property Name="IsTechniciansReport" Type="Boolean" Nullable="false" />
-    <Property Name="IsVavSummary" Type="Boolean" Nullable="false" />
-    <Property Name="Archived" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Rpt_PreCommissioningItemsList" Relationship="AirInfoAPIModel.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList1" FromRole="luMasterReportList" ToRole="Rpt_PreCommissioningItemsList" />
-    <NavigationProperty Name="tblSystemMasterReports" Relationship="AirInfoAPIModel.FK_tblSystemMasterReports_FlowTech_MasterReportList1" FromRole="luMasterReportList" ToRole="tblSystemMasterReport" />
-    <NavigationProperty Name="tblSystemReports" Relationship="AirInfoAPIModel.FK_tblSystemReports_FlowTech_MasterReportList1" FromRole="luMasterReportList" ToRole="tblSystemReport" />
-  </EntityType>
-  <Association Name="FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList1">
-    <End Type="AirInfoAPIModel.luMasterReportList" Role="luMasterReportList" Multiplicity="0..1" />
-    <End Type="AirInfoAPIModel.Rpt_PreCommissioningItemsList" Role="Rpt_PreCommissioningItemsList" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="luMasterReportList">
-        <PropertyRef Name="TemplateID" />
-      </Principal>
-      <Dependent Role="Rpt_PreCommissioningItemsList">
-        <PropertyRef Name="TemplateID_fk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblSystemMasterReports_FlowTech_MasterReportList1">
-    <End Type="AirInfoAPIModel.luMasterReportList" Role="luMasterReportList" Multiplicity="0..1" />
-    <End Type="AirInfoAPIModel.tblSystemMasterReport" Role="tblSystemMasterReport" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="luMasterReportList">
-        <PropertyRef Name="TemplateID" />
-      </Principal>
-      <Dependent Role="tblSystemMasterReport">
-        <PropertyRef Name="TemplateID_fk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblSystemReports_FlowTech_MasterReportList1">
-    <End Type="AirInfoAPIModel.luMasterReportList" Role="luMasterReportList" Multiplicity="0..1" />
-    <End Type="AirInfoAPIModel.tblSystemReport" Role="tblSystemReport" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="luMasterReportList">
-        <PropertyRef Name="TemplateID" />
-      </Principal>
-      <Dependent Role="tblSystemReport">
-        <PropertyRef Name="TemplateID_fk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

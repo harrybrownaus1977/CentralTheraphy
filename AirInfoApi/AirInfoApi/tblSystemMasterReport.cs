@@ -18,7 +18,7 @@ namespace AirInfoApi
         public Nullable<System.Guid> SystemID_fk { get; set; }
         public Nullable<System.Guid> TemplateID_fk { get; set; }
     
-        public virtual tblGroupSystem tblGroupSystem { get; set; }
         public virtual luMasterReportList luMasterReportList { get; set; }
+        public virtual tblGroupSystem tblGroupSystem { get; set; }
     }
 }

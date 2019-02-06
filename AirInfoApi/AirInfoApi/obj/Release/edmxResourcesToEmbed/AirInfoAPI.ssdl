@@ -1072,7 +1072,7 @@
     </Key>
     <Property Name="ProjectTechnicianID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProjectID_fk" Type="uniqueidentifier" />
-    <Property Name="UserID_fk" Type="uniqueidentifier" />
+    <Property Name="UserID_fk" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="tblSystemMasterReports">
     <Key>
@@ -1424,18 +1424,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblProjectTechnicians_tblUsers">
-    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
-    <End Role="tblProjectTechnicians" Type="Self.tblProjectTechnicians" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUsers">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="tblProjectTechnicians">
-        <PropertyRef Name="UserID_fk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tblSystemMasterReports_FlowTech_MasterReportList">
     <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
     <End Role="tblSystemMasterReports" Type="Self.tblSystemMasterReports" Multiplicity="*" />
@@ -1635,10 +1623,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_tblProjectTechnicians_tblProject" Association="Self.FK_tblProjectTechnicians_tblProject">
       <End Role="tblProject" EntitySet="tblProject" />
-      <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblProjectTechnicians_tblUsers" Association="Self.FK_tblProjectTechnicians_tblUsers">
-      <End Role="tblUsers" EntitySet="tblUsers" />
       <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
     </AssociationSet>
     <AssociationSet Name="FK_tblSystemMasterReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList">

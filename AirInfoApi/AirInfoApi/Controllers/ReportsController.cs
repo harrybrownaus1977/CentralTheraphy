@@ -80,16 +80,16 @@ namespace AirInfoApi.Controllers
         /// <returns>
         /// The list of projects assigned for specific user.
         /// </returns>        
-        [Authorize]
+        //[Authorize]
         [Route("reports/GetProjectsByUserID")]
         [HttpPost]
         public HttpResponseMessage GetProjectsByUserID([FromBody] string userid)
         {
             try
             {
-                var val = Guid.Parse(userid);
+                //var val = Guid.Parse(userid);
                 List<ProjectViewModel> projectList = new List<ProjectViewModel>();
-                var projectids = context.tblProjectTechnicians.Where(x => x.UserID_fk == val).ToList();
+                var projectids = context.tblProjectTechnicians.Where(x => x.UserID_fk == userid).ToList();
                 foreach (var projid in projectids)
                 {
                     var proj = context.tblProjects.Where(y => y.ProjectID == projid.ProjectID_fk).Select(y => new ProjectViewModel

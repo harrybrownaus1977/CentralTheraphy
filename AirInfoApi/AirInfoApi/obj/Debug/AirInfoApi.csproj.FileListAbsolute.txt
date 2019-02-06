@@ -74,3 +74,4 @@ C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.dll
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.pdb
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.csproj.CoreCompileInputs.cache
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.csproj.CopyComplete
+C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.csprojAssemblyReference.cache

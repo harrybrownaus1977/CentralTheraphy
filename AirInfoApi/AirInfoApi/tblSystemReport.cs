@@ -39,6 +39,7 @@ namespace AirInfoApi
         public Nullable<int> Status { get; set; }
         public Nullable<System.DateTime> DateTime { get; set; }
     
+        public virtual luMasterReportList luMasterReportList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_AhuTest> Rpt_AhuTest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -64,6 +65,5 @@ namespace AirInfoApi
         public virtual tblGroupSystem tblGroupSystem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSystemReportComment> tblSystemReportComments { get; set; }
-        public virtual luMasterReportList luMasterReportList { get; set; }
     }
 }

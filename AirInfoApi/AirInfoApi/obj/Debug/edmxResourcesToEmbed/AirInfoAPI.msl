@@ -46,6 +46,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="luMasterReportLists">
+      <EntityTypeMapping TypeName="AirInfoAPIModel.luMasterReportList">
+        <MappingFragment StoreEntitySet="luMasterReportList">
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ReportNumber" ColumnName="ReportNumber" />
+          <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+          <ScalarProperty Name="IsDefectReport" ColumnName="IsDefectReport" />
+          <ScalarProperty Name="IsInfoReport" ColumnName="IsInfoReport" />
+          <ScalarProperty Name="IsTechniciansReport" ColumnName="IsTechniciansReport" />
+          <ScalarProperty Name="IsVavSummary" ColumnName="IsVavSummary" />
+          <ScalarProperty Name="Archived" ColumnName="Archived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="luRoles">
       <EntityTypeMapping TypeName="AirInfoAPIModel.luRole">
         <MappingFragment StoreEntitySet="luRoles">
@@ -1140,23 +1158,5 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="luMasterReportLists">
-      <EntityTypeMapping TypeName="AirInfoAPIModel.luMasterReportList">
-        <MappingFragment StoreEntitySet="luMasterReportList">
-          <ScalarProperty Name="Archived" ColumnName="Archived" />
-          <ScalarProperty Name="IsVavSummary" ColumnName="IsVavSummary" />
-          <ScalarProperty Name="IsTechniciansReport" ColumnName="IsTechniciansReport" />
-          <ScalarProperty Name="IsInfoReport" ColumnName="IsInfoReport" />
-          <ScalarProperty Name="IsDefectReport" ColumnName="IsDefectReport" />
-          <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
-          <ScalarProperty Name="ReportNumber" ColumnName="ReportNumber" />
-          <ScalarProperty Name="TableName" ColumnName="TableName" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="PageName" ColumnName="PageName" />
-          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

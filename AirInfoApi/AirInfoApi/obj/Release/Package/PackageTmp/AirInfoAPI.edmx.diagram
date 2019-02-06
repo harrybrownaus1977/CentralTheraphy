@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="876941d69603470397f0fc05dea83111" Name="Diagram1" ZoomLevel="83">
+      <Diagram DiagramId="3ada7c3c865f43bab652b3f9c1e03e79" Name="Diagram1">
         <EntityTypeShape EntityType="AirInfoAPIModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirInfoAPIModel.luRole" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirInfoAPIModel.luMasterReportList" Width="1.5" PointX="0.75" PointY="102.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirInfoAPIModel.luRole" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.Rpt_AhuTest" Width="1.5" PointX="5.25" PointY="31.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.Rpt_AhuTestDirectDrive" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.Rpt_AirBalance" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
@@ -30,13 +31,16 @@
         <EntityTypeShape EntityType="AirInfoAPIModel.tblGroupSystem" Width="1.5" PointX="0.75" PointY="98.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.tblProject" Width="1.5" PointX="1.5" PointY="88.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.tblProjectGroup" Width="1.5" PointX="1.5" PointY="92.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirInfoAPIModel.tblProjectTechnician" Width="1.5" PointX="12.25" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirInfoAPIModel.tblProjectTechnician" Width="1.5" PointX="3.75" PointY="202.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.tblSystemMasterReport" Width="1.5" PointX="6" PointY="100.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.tblSystemReportComment" Width="1.5" PointX="5.25" PointY="199.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.tblSystemReport" Width="1.5" PointX="3" PointY="97.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AirInfoAPIModel.tblUser" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="AirInfoAPIModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AirInfoAPIModel.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList" ManuallyRouted="false" />
+        <AssociationConnector Association="AirInfoAPIModel.FK_tblSystemMasterReports_FlowTech_MasterReportList" ManuallyRouted="false" />
+        <AssociationConnector Association="AirInfoAPIModel.FK_tblSystemReports_FlowTech_MasterReportList" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_tblUsers_luRoles" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_Rpt_AhuTest_tblSystemReports" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_Rpt_AhuTestDirectDrive_tblSystemReports" ManuallyRouted="false" />
@@ -59,13 +63,8 @@
         <AssociationConnector Association="AirInfoAPIModel.FK_tblSystemReports_tblGroupSystem" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_tblProjectGroup_tblProject" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_tblProjectTechnicians_tblProject" ManuallyRouted="false" />
-        <AssociationConnector Association="AirInfoAPIModel.FK_tblProjectTechnicians_tblUsers" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.FK_tblSystemReportComments_tblSystemReports" ManuallyRouted="false" />
         <AssociationConnector Association="AirInfoAPIModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="AirInfoAPIModel.luMasterReportList" Width="1.5" PointX="0.75" PointY="99.875" />
-        <AssociationConnector Association="AirInfoAPIModel.FK_Rpt_PreCommissioningItemsList_FlowTech_MasterReportList1" />
-        <AssociationConnector Association="AirInfoAPIModel.FK_tblSystemMasterReports_FlowTech_MasterReportList1" />
-        <AssociationConnector Association="AirInfoAPIModel.FK_tblSystemReports_FlowTech_MasterReportList1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

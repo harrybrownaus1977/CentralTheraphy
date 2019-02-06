@@ -14,12 +14,6 @@ namespace AirInfoApi
     
     public partial class tblUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblUser()
-        {
-            this.tblProjectTechnicians = new HashSet<tblProjectTechnician>();
-        }
-    
         public System.Guid UserID { get; set; }
         public System.DateTime CreationDate { get; set; }
         public System.Guid CreatedByUserID_fk { get; set; }
@@ -41,7 +35,5 @@ namespace AirInfoApi
         public bool CanDelete { get; set; }
     
         public virtual luRole luRole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblProjectTechnician> tblProjectTechnicians { get; set; }
     }
 }

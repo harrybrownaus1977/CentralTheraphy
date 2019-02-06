@@ -29,6 +29,7 @@ namespace AirInfoApi
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<luMasterReportList> luMasterReportLists { get; set; }
         public virtual DbSet<luRole> luRoles { get; set; }
         public virtual DbSet<Rpt_AhuTest> Rpt_AhuTest { get; set; }
         public virtual DbSet<Rpt_AhuTestDirectDrive> Rpt_AhuTestDirectDrive { get; set; }
@@ -55,6 +56,5 @@ namespace AirInfoApi
         public virtual DbSet<tblSystemReportComment> tblSystemReportComments { get; set; }
         public virtual DbSet<tblSystemReport> tblSystemReports { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
-        public virtual DbSet<luMasterReportList> luMasterReportLists { get; set; }
     }
 }
