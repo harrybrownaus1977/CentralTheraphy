@@ -70,6 +70,8 @@ C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\bin\Microsoft.Owin.Secur
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\bin\Microsoft.Owin.Security.Twitter.xml
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\bin\System.Web.Http.Owin.xml
-C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Release\AirInfoApi.csprojResolveAssemblyReference.cache
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Release\AirInfoApi.dll
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Release\AirInfoApi.pdb
+C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Release\AirInfoApi.csprojAssemblyReference.cache
+C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Release\AirInfoApi.csproj.CoreCompileInputs.cache
+C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Release\AirInfoApi.csproj.CopyComplete

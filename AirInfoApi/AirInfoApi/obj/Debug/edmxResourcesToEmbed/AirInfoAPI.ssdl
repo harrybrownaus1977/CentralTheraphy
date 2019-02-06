@@ -76,6 +76,228 @@
     <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Hidden" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Rpt_AhuTest">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="uniqueidentifier" />
+    <Property Name="LocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ManufactureAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ModelNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="SerialNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="CapacityAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirLsAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirPaAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MediaAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignWaterAHU" Type="varchar" MaxLength="250" />
+    <Property Name="FanTypeAHU" Type="varchar" MaxLength="250" />
+    <Property Name="FanArrangementAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBNameAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBLocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MotorMakeMD" Type="varchar" MaxLength="250" />
+    <Property Name="FrameMD" Type="varchar" MaxLength="250" />
+    <Property Name="ElectricalMD" Type="varchar" MaxLength="250" />
+    <Property Name="MotorPowerMD" Type="varchar" MaxLength="250" />
+    <Property Name="FullLoadMD" Type="varchar" MaxLength="250" />
+    <Property Name="PoleMD" Type="varchar" MaxLength="50" />
+    <Property Name="PoleRPMMD" Type="varchar" MaxLength="50" />
+    <Property Name="FuseDetailsMD" Type="varchar" MaxLength="250" />
+    <Property Name="FanPulleyFan" Type="varchar" MaxLength="50" />
+    <Property Name="FanBushFan" Type="varchar" MaxLength="50" />
+    <Property Name="FanBoreFan" Type="varchar" MaxLength="50" />
+    <Property Name="MotorPulleyFan" Type="varchar" MaxLength="50" />
+    <Property Name="MotorBushFan" Type="varchar" MaxLength="50" />
+    <Property Name="MotorBoreFan" Type="varchar" MaxLength="50" />
+    <Property Name="BeltsMakeFan" Type="varchar" MaxLength="50" />
+    <Property Name="BeltsNoFan" Type="varchar" MaxLength="50" />
+    <Property Name="BeltsSizeFan" Type="varchar" MaxLength="50" />
+    <Property Name="ShaftCentreFan" Type="varchar" MaxLength="250" />
+    <Property Name="OverloadMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="ValveACT" Type="varchar" MaxLength="50" />
+    <Property Name="ModelACT" Type="varchar" MaxLength="50" />
+    <Property Name="SizeACT" Type="varchar" MaxLength="50" />
+    <Property Name="CoilACT" Type="varchar" MaxLength="50" />
+    <Property Name="ValveBAL" Type="varchar" MaxLength="50" />
+    <Property Name="ModelBAL" Type="varchar" MaxLength="250" />
+    <Property Name="SizeBAL" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType2" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters2" Type="varchar" MaxLength="50" />
+    <Property Name="SupplyAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="ReturnAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="OutsideAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="PchwDES" Type="varchar" MaxLength="50" />
+    <Property Name="SchwDES" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="DisStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="FilterDiffDES" Type="varchar" MaxLength="50" />
+    <Property Name="PchwDiffDES" Type="varchar" MaxLength="50" />
+    <Property Name="ScheDiffDES" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageDES" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsDES" Type="varchar" MaxLength="50" />
+    <Property Name="SupplyAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="ReturnAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="OutsideAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="PchwFIN" Type="varchar" MaxLength="50" />
+    <Property Name="SchwFIN" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="DisStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="FilterDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="PchwDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="ScheDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageFIN" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsFIN" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument1" Type="varchar" MaxLength="50" />
+    <Property Name="Model1" Type="varchar" MaxLength="50" />
+    <Property Name="Serial1" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument2" Type="varchar" MaxLength="50" />
+    <Property Name="Model2" Type="varchar" MaxLength="50" />
+    <Property Name="Serial2" Type="varchar" MaxLength="50" />
+    <Property Name="TechnicianComments" Type="varchar(max)" />
+    <Property Name="ICAComments" Type="varchar(max)" />
+    <Property Name="FuseDetailsMDPH" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS2" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS3" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1C" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2C" Type="varchar" MaxLength="50" />
+    <Property Name="KvACT" Type="varchar" MaxLength="50" />
+    <Property Name="ShowSucStatic" Type="bit" />
+    <Property Name="ShowDisStatic" Type="bit" />
+    <Property Name="ShowFilterDiff" Type="bit" />
+    <Property Name="ShowPchwDiff" Type="bit" />
+    <Property Name="ScheDiff" Type="bit" />
+    <Property Name="HHWCoilDes" Type="varchar" MaxLength="50" />
+    <Property Name="HHWCoilFin" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsHzDes" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsHzFin" Type="varchar" MaxLength="50" />
+    <Property Name="HeadBuilding" Type="varchar" MaxLength="250" />
+    <Property Name="HeadService" Type="varchar" MaxLength="250" />
+    <Property Name="HeadCustomer" Type="varchar" MaxLength="250" />
+    <Property Name="BMSFanSpeed" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocity" Type="varchar" MaxLength="50" />
+    <Property Name="BMSPressure" Type="varchar" MaxLength="50" />
+    <Property Name="BMSOther" Type="varchar" MaxLength="50" />
+    <Property Name="SupplyAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="ReturnAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="OutsideAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="PchwPER" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticPER" Type="varchar" MaxLength="50" />
+    <Property Name="WitnessName" Type="varchar" MaxLength="250" />
+    <Property Name="WitnessDate" Type="datetime" />
+    <Property Name="WitnessSignature" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize3" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize3B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize3C" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize4" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize4B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize4C" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters3" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters4" Type="varchar" MaxLength="50" />
+    <Property Name="CapacityAHUHeat" Type="varchar" MaxLength="50" />
+    <Property Name="CapacityAHUReclaim" Type="varchar" MaxLength="50" />
+    <Property Name="BMSFanSpeedType" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocityType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rpt_AhuTestDirectDrive">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="uniqueidentifier" />
+    <Property Name="LocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ManufactureAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ModelNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="SerialNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="CapacityAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirLsAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirPaAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MediaAHU" Type="varchar" MaxLength="250" />
+    <Property Name="FanTypeAHU" Type="varchar" MaxLength="250" />
+    <Property Name="FanArrangementAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBNameAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBLocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MotorMakeMD" Type="varchar" MaxLength="250" />
+    <Property Name="FrameMD" Type="varchar" MaxLength="250" />
+    <Property Name="ElectricalMD" Type="varchar" MaxLength="250" />
+    <Property Name="MotorPowerMD" Type="varchar" MaxLength="250" />
+    <Property Name="FullLoadMD" Type="varchar" MaxLength="250" />
+    <Property Name="PoleMD" Type="varchar" MaxLength="50" />
+    <Property Name="PoleRPMMD" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType2" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters2" Type="varchar" MaxLength="50" />
+    <Property Name="SupplyAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="SupplyAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="ReturnAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="ReturnAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="OutsideAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="OutsideAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="DisStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="FilterDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="PchwDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="ScheDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageDES" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageFIN" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsDES" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsFIN" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument1" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument2" Type="varchar" MaxLength="50" />
+    <Property Name="Model1" Type="varchar" MaxLength="50" />
+    <Property Name="Model2" Type="varchar" MaxLength="50" />
+    <Property Name="Serial1" Type="varchar" MaxLength="50" />
+    <Property Name="Serial2" Type="varchar" MaxLength="50" />
+    <Property Name="FuseDetailsMDPH" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS2" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS3" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1C" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2C" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsHzDes" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsHzFin" Type="varchar" MaxLength="50" />
+    <Property Name="BMSFanSpeed" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocity" Type="varchar" MaxLength="50" />
+    <Property Name="BMSPressure" Type="varchar" MaxLength="50" />
+    <Property Name="BMSOther" Type="varchar" MaxLength="50" />
+    <Property Name="SupplyAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="ReturnAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="OutsideAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="HeadBuilding" Type="varchar" MaxLength="250" />
+    <Property Name="WitnessName" Type="varchar" MaxLength="250" />
+    <Property Name="WitnessDate" Type="datetime" />
+    <Property Name="WitnessSignature" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize3" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize3B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize3C" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize4" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize4B" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize4C" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters3" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters4" Type="varchar" MaxLength="50" />
+    <Property Name="BMSFanSpeedType" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocityType" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Rpt_AirBalance">
     <Key>
       <PropertyRef Name="ReportID" />
@@ -108,6 +330,170 @@
     <Property Name="ZoneType" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="GrilleRef" Type="varchar" MaxLength="250" />
     <Property Name="DesFlow" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rpt_FanTest">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="uniqueidentifier" />
+    <Property Name="LocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ManufactureAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ModelNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="SerialNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirLsAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirPaAHU" Type="varchar" MaxLength="250" />
+    <Property Name="FanControl" Type="varchar" MaxLength="250" />
+    <Property Name="SupplyExhaust" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBNameAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBLocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MotorMakeMD" Type="varchar" MaxLength="250" />
+    <Property Name="FrameMD" Type="varchar" MaxLength="250" />
+    <Property Name="ElectricalMD" Type="varchar" MaxLength="250" />
+    <Property Name="MotorPowerMD" Type="varchar" MaxLength="250" />
+    <Property Name="FullLoadMD" Type="varchar" MaxLength="250" />
+    <Property Name="PoleMD" Type="varchar" MaxLength="50" />
+    <Property Name="PoleRPMMD" Type="varchar" MaxLength="50" />
+    <Property Name="FuseDetailsMD" Type="varchar" MaxLength="250" />
+    <Property Name="FanPulleyFan" Type="varchar" MaxLength="50" />
+    <Property Name="FanBushFan" Type="varchar" MaxLength="50" />
+    <Property Name="FanBoreFan" Type="varchar" MaxLength="50" />
+    <Property Name="MotorPulleyFan" Type="varchar" MaxLength="50" />
+    <Property Name="MotorBushFan" Type="varchar" MaxLength="50" />
+    <Property Name="MotorBoreFan" Type="varchar" MaxLength="50" />
+    <Property Name="BeltsMakeFan" Type="varchar" MaxLength="50" />
+    <Property Name="BeltsNoFan" Type="varchar" MaxLength="50" />
+    <Property Name="BeltsSizeFan" Type="varchar" MaxLength="50" />
+    <Property Name="ShaftCentreFan" Type="varchar" MaxLength="250" />
+    <Property Name="OverloadMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType2" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters2" Type="varchar" MaxLength="50" />
+    <Property Name="TotalAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="DisStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="FilterDiffDES" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageDES" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsDES" Type="varchar" MaxLength="50" />
+    <Property Name="TotalAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="DisStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="FilterDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageFIN" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsFIN" Type="varchar" MaxLength="50" />
+    <Property Name="VSDFinalHz" Type="varchar" MaxLength="250" />
+    <Property Name="StaticPressureRef" Type="varchar" MaxLength="250" />
+    <Property Name="Instrument1" Type="varchar" MaxLength="50" />
+    <Property Name="Make1" Type="varchar" MaxLength="50" />
+    <Property Name="Serial1" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument2" Type="varchar" MaxLength="50" />
+    <Property Name="Make2" Type="varchar" MaxLength="50" />
+    <Property Name="Serial2" Type="varchar" MaxLength="50" />
+    <Property Name="TechnicianComments" Type="varchar(max)" />
+    <Property Name="ICAComments" Type="varchar(max)" />
+    <Property Name="FilterSize1B" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize1C" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize2B" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize2C" Type="varchar" MaxLength="250" />
+    <Property Name="FuseDetailsMDPH" Type="varchar" MaxLength="250" />
+    <Property Name="OverloadRangeMS2" Type="varchar" MaxLength="250" />
+    <Property Name="OverloadRangeMS3" Type="varchar" MaxLength="250" />
+    <Property Name="ShowSucStatic" Type="bit" />
+    <Property Name="ShowDisStatic" Type="bit" />
+    <Property Name="ShowFilterDiff" Type="bit" />
+    <Property Name="HeadBuilding" Type="varchar" MaxLength="250" />
+    <Property Name="HeadService" Type="varchar" MaxLength="250" />
+    <Property Name="HeadCustomer" Type="varchar" MaxLength="250" />
+    <Property Name="BMSFanSpeed" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocity" Type="varchar" MaxLength="50" />
+    <Property Name="BMSPressure" Type="varchar" MaxLength="50" />
+    <Property Name="BMSOther" Type="varchar" MaxLength="50" />
+    <Property Name="TotalAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="WitnessName" Type="varchar" MaxLength="250" />
+    <Property Name="WitnessDate" Type="datetime" />
+    <Property Name="WitnessSignature" Type="varchar" MaxLength="250" />
+    <Property Name="BMSFanSpeedType" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocityType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rpt_FanTestDirectDrive">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SystemReportID_fk" Type="uniqueidentifier" />
+    <Property Name="LocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ManufactureAHU" Type="varchar" MaxLength="250" />
+    <Property Name="ModelNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="SerialNoAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirLsAHU" Type="varchar" MaxLength="250" />
+    <Property Name="DesignAirPaAHU" Type="varchar" MaxLength="250" />
+    <Property Name="FanControl" Type="varchar" MaxLength="250" />
+    <Property Name="SupplyExhaust" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBNameAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MSSBLocationAHU" Type="varchar" MaxLength="250" />
+    <Property Name="MotorMakeMD" Type="varchar" MaxLength="250" />
+    <Property Name="FrameMD" Type="varchar" MaxLength="250" />
+    <Property Name="ElectricalMD" Type="varchar" MaxLength="250" />
+    <Property Name="MotorPowerMD" Type="varchar" MaxLength="250" />
+    <Property Name="FullLoadMD" Type="varchar" MaxLength="250" />
+    <Property Name="PoleMD" Type="varchar" MaxLength="50" />
+    <Property Name="PoleRPMMD" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="OverloadRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDMakeMS" Type="varchar" MaxLength="50" />
+    <Property Name="VSDRangeMS" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters1" Type="varchar" MaxLength="50" />
+    <Property Name="FilterType2" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize2" Type="varchar" MaxLength="50" />
+    <Property Name="NoFilters2" Type="varchar" MaxLength="50" />
+    <Property Name="TotalAirDES" Type="varchar" MaxLength="50" />
+    <Property Name="TotalAirFIN" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="TotalStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticDES" Type="varchar" MaxLength="50" />
+    <Property Name="SucStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="DisStaticFIN" Type="varchar" MaxLength="50" />
+    <Property Name="FilterDiffFIN" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageDES" Type="varchar" MaxLength="50" />
+    <Property Name="VoltageFIN" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsDES" Type="varchar" MaxLength="50" />
+    <Property Name="AmpsFIN" Type="varchar" MaxLength="50" />
+    <Property Name="VSDFinalHz" Type="varchar" MaxLength="250" />
+    <Property Name="StaticPressureRef" Type="varchar" MaxLength="250" />
+    <Property Name="Instrument1" Type="varchar" MaxLength="50" />
+    <Property Name="Make1" Type="varchar" MaxLength="50" />
+    <Property Name="Serial1" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument2" Type="varchar" MaxLength="50" />
+    <Property Name="Make2" Type="varchar" MaxLength="50" />
+    <Property Name="Serial2" Type="varchar" MaxLength="50" />
+    <Property Name="FilterSize1B" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize1C" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize2B" Type="varchar" MaxLength="250" />
+    <Property Name="FilterSize2C" Type="varchar" MaxLength="250" />
+    <Property Name="FuseDetailsMDPH" Type="varchar" MaxLength="250" />
+    <Property Name="OverloadRangeMS2" Type="varchar" MaxLength="250" />
+    <Property Name="OverloadRangeMS3" Type="varchar" MaxLength="250" />
+    <Property Name="BMSFanSpeed" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocity" Type="varchar" MaxLength="50" />
+    <Property Name="BMSPressure" Type="varchar" MaxLength="50" />
+    <Property Name="BMSOther" Type="varchar" MaxLength="50" />
+    <Property Name="TotalAirPER" Type="varchar" MaxLength="50" />
+    <Property Name="HeadBuilding" Type="varchar" MaxLength="250" />
+    <Property Name="WitnessName" Type="varchar" MaxLength="250" />
+    <Property Name="WitnessDate" Type="datetime" />
+    <Property Name="WitnessSignature" Type="varchar" MaxLength="250" />
+    <Property Name="BMSFanSpeedType" Type="varchar" MaxLength="50" />
+    <Property Name="BMSVelocityType" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Rpt_FcuCommissioning">
     <Key>
@@ -686,7 +1072,7 @@
     </Key>
     <Property Name="ProjectTechnicianID" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProjectID_fk" Type="uniqueidentifier" />
-    <Property Name="UserID_fk" Type="nvarchar" MaxLength="128" />
+    <Property Name="UserID_fk" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="tblSystemMasterReports">
     <Key>
@@ -798,6 +1184,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Rpt_AhuTest_tblSystemReports">
+    <End Role="tblSystemReports" Type="Self.tblSystemReports" Multiplicity="0..1" />
+    <End Role="Rpt_AhuTest" Type="Self.Rpt_AhuTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReports">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_AhuTest">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_AhuTestDirectDrive_tblSystemReports">
+    <End Role="tblSystemReports" Type="Self.tblSystemReports" Multiplicity="0..1" />
+    <End Role="Rpt_AhuTestDirectDrive" Type="Self.Rpt_AhuTestDirectDrive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReports">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_AhuTestDirectDrive">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Rpt_AirBalance_tblSystemReports">
     <End Role="tblSystemReports" Type="Self.tblSystemReports" Multiplicity="0..1" />
     <End Role="Rpt_AirBalance" Type="Self.Rpt_AirBalance" Multiplicity="*" />
@@ -819,6 +1229,30 @@
       </Principal>
       <Dependent Role="Rpt_AirbalanceZones">
         <PropertyRef Name="ReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_FanTest_tblSystemReports">
+    <End Role="tblSystemReports" Type="Self.tblSystemReports" Multiplicity="0..1" />
+    <End Role="Rpt_FanTest" Type="Self.Rpt_FanTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReports">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_FanTest">
+        <PropertyRef Name="SystemReportID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rpt_FanTestDirectDrive_tblSystemReports">
+    <End Role="tblSystemReports" Type="Self.tblSystemReports" Multiplicity="0..1" />
+    <End Role="Rpt_FanTestDirectDrive" Type="Self.Rpt_FanTestDirectDrive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSystemReports">
+        <PropertyRef Name="SystemReportID" />
+      </Principal>
+      <Dependent Role="Rpt_FanTestDirectDrive">
+        <PropertyRef Name="SystemReportID_fk" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -990,6 +1424,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tblProjectTechnicians_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblProjectTechnicians" Type="Self.tblProjectTechnicians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblProjectTechnicians">
+        <PropertyRef Name="UserID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tblSystemMasterReports_FlowTech_MasterReportList">
     <End Role="luMasterReportList" Type="Self.luMasterReportList" Multiplicity="0..1" />
     <End Role="tblSystemMasterReports" Type="Self.tblSystemMasterReports" Multiplicity="*" />
@@ -1070,8 +1516,12 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="luMasterReportList" EntityType="Self.luMasterReportList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="luRoles" EntityType="Self.luRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rpt_AhuTest" EntityType="Self.Rpt_AhuTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rpt_AhuTestDirectDrive" EntityType="Self.Rpt_AhuTestDirectDrive" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_AirBalance" EntityType="Self.Rpt_AirBalance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_AirbalanceZones" EntityType="Self.Rpt_AirbalanceZones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rpt_FanTest" EntityType="Self.Rpt_FanTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rpt_FanTestDirectDrive" EntityType="Self.Rpt_FanTestDirectDrive" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_FcuCommissioning" EntityType="Self.Rpt_FcuCommissioning" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_FcuCommissioningDirectDrive" EntityType="Self.Rpt_FcuCommissioningDirectDrive" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rpt_PreCommissioning" EntityType="Self.Rpt_PreCommissioning" Schema="dbo" store:Type="Tables" />
@@ -1107,6 +1557,14 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Rpt_AhuTest_tblSystemReports" Association="Self.FK_Rpt_AhuTest_tblSystemReports">
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+      <End Role="Rpt_AhuTest" EntitySet="Rpt_AhuTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_AhuTestDirectDrive_tblSystemReports" Association="Self.FK_Rpt_AhuTestDirectDrive_tblSystemReports">
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+      <End Role="Rpt_AhuTestDirectDrive" EntitySet="Rpt_AhuTestDirectDrive" />
+    </AssociationSet>
     <AssociationSet Name="FK_Rpt_AirBalance_tblSystemReports" Association="Self.FK_Rpt_AirBalance_tblSystemReports">
       <End Role="tblSystemReports" EntitySet="tblSystemReports" />
       <End Role="Rpt_AirBalance" EntitySet="Rpt_AirBalance" />
@@ -1114,6 +1572,14 @@
     <AssociationSet Name="FK_Rpt_AirbalanceZones_Rpt_AirBalance" Association="Self.FK_Rpt_AirbalanceZones_Rpt_AirBalance">
       <End Role="Rpt_AirBalance" EntitySet="Rpt_AirBalance" />
       <End Role="Rpt_AirbalanceZones" EntitySet="Rpt_AirbalanceZones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_FanTest_tblSystemReports" Association="Self.FK_Rpt_FanTest_tblSystemReports">
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+      <End Role="Rpt_FanTest" EntitySet="Rpt_FanTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rpt_FanTestDirectDrive_tblSystemReports" Association="Self.FK_Rpt_FanTestDirectDrive_tblSystemReports">
+      <End Role="tblSystemReports" EntitySet="tblSystemReports" />
+      <End Role="Rpt_FanTestDirectDrive" EntitySet="Rpt_FanTestDirectDrive" />
     </AssociationSet>
     <AssociationSet Name="FK_Rpt_FcuCommissioning_tblSystemReports" Association="Self.FK_Rpt_FcuCommissioning_tblSystemReports">
       <End Role="tblSystemReports" EntitySet="tblSystemReports" />
@@ -1169,6 +1635,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_tblProjectTechnicians_tblProject" Association="Self.FK_tblProjectTechnicians_tblProject">
       <End Role="tblProject" EntitySet="tblProject" />
+      <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProjectTechnicians_tblUsers" Association="Self.FK_tblProjectTechnicians_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
       <End Role="tblProjectTechnicians" EntitySet="tblProjectTechnicians" />
     </AssociationSet>
     <AssociationSet Name="FK_tblSystemMasterReports_FlowTech_MasterReportList" Association="Self.FK_tblSystemMasterReports_FlowTech_MasterReportList">

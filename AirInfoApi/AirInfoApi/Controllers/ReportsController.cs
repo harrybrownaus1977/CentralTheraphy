@@ -41,6 +41,7 @@ namespace AirInfoApi.Controllers
                             };
                     HttpContent encodedRequest = new FormUrlEncodedContent(tokenRequest);
                     HttpResponseMessage response = httpClient.PostAsync("http://203.143.85.102/plesk-site-preview/api.airinfo.com.au/Token", encodedRequest).Result;
+                    //HttpResponseMessage response = httpClient.PostAsync("http://localhost:6719/Token", encodedRequest).Result;
                     if (response.IsSuccessStatusCode == true)
                     {
                         token = response.Content.ReadAsAsync<BearerToken>().Result;
@@ -86,8 +87,9 @@ namespace AirInfoApi.Controllers
         {
             try
             {
+                var val = Guid.Parse(userid);
                 List<ProjectViewModel> projectList = new List<ProjectViewModel>();
-                var projectids = context.tblProjectTechnicians.Where(x => x.UserID_fk == userid).ToList();
+                var projectids = context.tblProjectTechnicians.Where(x => x.UserID_fk == val).ToList();
                 foreach (var projid in projectids)
                 {
                     var proj = context.tblProjects.Where(y => y.ProjectID == projid.ProjectID_fk).Select(y => new ProjectViewModel
@@ -1978,6 +1980,1176 @@ namespace AirInfoApi.Controllers
                     context.SaveChanges();
                 }
 
+                return Request.CreateResponse(HttpStatusCode.OK, 1);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// Get Ahu Test report details for given system report id.
+        /// </summary>
+        /// <returns>
+        /// The oAhuTestReport object which contains all the information.
+        /// </returns>        
+        [Authorize]
+        [Route("reports/GetAhuTestReportBySystemReportID")]
+        [HttpPost]
+        public HttpResponseMessage GetAhuTestReportBySystemReportID([FromBody] string systemreportid)
+        {
+            try
+            {
+                //Get report details from the report table by providing systemreportid.
+                var val = Guid.Parse(systemreportid);
+                var oAhuTestReport = context.Rpt_AhuTest.Where(x => x.SystemReportID_fk == val).Select(x => new AhuTestReportViewModel
+                {
+                    ReportID = x.ReportID,
+                    SystemReportID_fk = x.SystemReportID_fk.Value,
+                    LocationAHU = x.LocationAHU,
+                    ManufactureAHU = x.ManufactureAHU,
+                    ModelNoAHU = x.ModelNoAHU,
+                    SerialNoAHU = x.SerialNoAHU,
+                    CapacityAHU = x.CapacityAHU,
+                    DesignAirLsAHU = x.DesignAirLsAHU,
+                    DesignAirPaAHU = x.DesignAirPaAHU,
+                    MediaAHU = x.MediaAHU,
+                    DesignWaterAHU = x.DesignWaterAHU,
+                    FanTypeAHU = x.FanTypeAHU,
+                    FanArrangementAHU = x.FanArrangementAHU,
+                    MSSBNameAHU = x.MSSBNameAHU,
+                    MSSBLocationAHU = x.MSSBLocationAHU,
+                    MotorMakeMD = x.MotorMakeMD,
+                    FrameMD = x.FrameMD,
+                    ElectricalMD = x.ElectricalMD,
+                    MotorPowerMD = x.MotorPowerMD,
+                    FullLoadMD = x.FullLoadMD,
+                    PoleMD = x.PoleMD,
+                    PoleRPMMD = x.PoleRPMMD,
+                    FuseDetailsMD = x.FuseDetailsMD,
+                    FanPulleyFan = x.FanPulleyFan,
+                    FanBushFan = x.FanBushFan,
+                    FanBoreFan = x.FanBoreFan,
+                    MotorPulleyFan = x.MotorPulleyFan,
+                    MotorBushFan = x.MotorBushFan,
+                    MotorBoreFan = x.MotorBoreFan,
+                    BeltsMakeFan = x.BeltsMakeFan,
+                    BeltsNoFan = x.BeltsNoFan,
+                    BeltsSizeFan = x.BeltsSizeFan,
+                    ShaftCentreFan = x.ShaftCentreFan,
+                    OverloadMakeMS = x.OverloadMakeMS,
+                    OverloadRangeMS = x.OverloadRangeMS,
+                    VSDMakeMS = x.VSDMakeMS,
+                    VSDRangeMS = x.VSDRangeMS,
+                    ValveACT = x.ValveACT,
+                    ModelACT = x.ModelACT,
+                    SizeACT = x.SizeACT,
+                    CoilACT = x.CoilACT,
+                    ValveBAL = x.ValveBAL,
+                    ModelBAL = x.ModelBAL,
+                    SizeBAL = x.SizeBAL,
+                    FilterType1 = x.FilterType1,
+                    FilterSize1 = x.FilterSize1,
+                    NoFilters1 = x.NoFilters1,
+                    FilterType2 = x.FilterType2,
+                    FilterSize2 = x.FilterSize2,
+                    NoFilters2 = x.NoFilters2,
+                    SupplyAirDES = x.SupplyAirDES,
+                    ReturnAirDES = x.ReturnAirDES,
+                    OutsideAirDES = x.OutsideAirDES,
+                    PchwDES = x.PchwDES,
+                    SchwDES = x.SchwDES,
+                    TotalStaticDES = x.TotalStaticDES,
+                    SucStaticDES = x.SucStaticDES,
+                    DisStaticDES = x.DisStaticDES,
+                    FilterDiffDES = x.FilterDiffDES,
+                    PchwDiffDES = x.PchwDiffDES,
+                    ScheDiffDES = x.ScheDiffDES,
+                    VoltageDES = x.VoltageDES,
+                    AmpsDES = x.AmpsDES,
+                    SupplyAirFIN = x.SupplyAirFIN,
+                    ReturnAirFIN = x.ReturnAirFIN,
+                    OutsideAirFIN = x.OutsideAirFIN,
+                    PchwFIN = x.PchwFIN,
+                    SchwFIN = x.SchwFIN,
+                    TotalStaticFIN = x.TotalStaticFIN,
+                    SucStaticFIN = x.SucStaticFIN,
+                    DisStaticFIN = x.DisStaticFIN,
+                    FilterDiffFIN = x.FilterDiffFIN,
+                    PchwDiffFIN = x.PchwDiffFIN,
+                    ScheDiffFIN = x.ScheDiffFIN,
+                    VoltageFIN = x.VoltageFIN,
+                    AmpsFIN = x.AmpsFIN,
+                    Instrument1 = x.Instrument1,
+                    Model1 = x.Model1,
+                    Serial1 = x.Serial1,
+                    Instrument2 = x.Instrument2,
+                    Model2 = x.Model2,
+                    Serial2 = x.Serial2,
+                    TechnicianComments = x.TechnicianComments,
+                    ICAComments = x.ICAComments,
+                    FuseDetailsMDPH = x.FuseDetailsMDPH,
+                    OverloadRangeMS2 = x.OverloadRangeMS2,
+                    OverloadRangeMS3 = x.OverloadRangeMS3,
+                    FilterSize1B = x.FilterSize1B,
+                    FilterSize1C = x.FilterSize1C,
+                    FilterSize2B = x.FilterSize2B,
+                    FilterSize2C = x.FilterSize2C,
+                    KvACT = x.KvACT,
+                    ShowSucStatic = x.ShowSucStatic,
+                    ShowDisStatic = x.ShowDisStatic,
+                    ShowFilterDiff = x.ShowFilterDiff,
+                    ShowPchwDiff = x.ShowPchwDiff,
+                    ScheDiff = x.ScheDiff,
+                    HHWCoilDes = x.HHWCoilDes,
+                    HHWCoilFin = x.HHWCoilFin,
+                    AmpsHzDes = x.AmpsHzDes,
+                    AmpsHzFin = x.AmpsHzFin,
+                    HeadBuilding = x.HeadBuilding,
+                    HeadService = x.HeadService,
+                    HeadCustomer = x.HeadCustomer,
+                    BMSFanSpeed = x.BMSFanSpeed,
+                    BMSVelocity = x.BMSVelocity,
+                    BMSPressure = x.BMSPressure,
+                    BMSOther = x.BMSOther,
+                    SupplyAirPER = x.SupplyAirPER,
+                    ReturnAirPER = x.ReturnAirPER,
+                    OutsideAirPER = x.OutsideAirPER,
+                    PchwPER = x.PchwPER,
+                    TotalStaticPER = x.TotalStaticPER,
+                    WitnessName = x.WitnessName,
+                    WitnessDate = x.WitnessDate,
+                    WitnessSignature = x.WitnessSignature,
+                    FilterSize3 = x.FilterSize3,
+                    FilterSize3B = x.FilterSize3B,
+                    FilterSize3C = x.FilterSize3C,
+                    FilterSize4 = x.FilterSize4,
+                    FilterSize4B = x.FilterSize4B,
+                    FilterSize4C = x.FilterSize4C,
+                    NoFilters3 = x.NoFilters3,
+                    NoFilters4 = x.NoFilters4,
+                    CapacityAHUHeat = x.CapacityAHUHeat,
+                    CapacityAHUReclaim = x.CapacityAHUReclaim,
+                    BMSFanSpeedType = x.BMSFanSpeedType,
+                    BMSVelocityType = x.BMSVelocityType,
+                }
+                ).FirstOrDefault();
+
+                //Get report header information and assign them to oAhuTestReport object.
+                var oReportHeader = context.tblSystemReports.Where(x => x.SystemReportID == val).Select(x => new CommSystemReportViewModel
+                {
+                    SystemReportID = x.SystemReportID,
+                    SystemID = x.SystemID_fk.Value,
+                    TemplateID = x.TemplateID_fk.Value,
+                    Name = x.Name,
+                    TestReference = x.TestReference,
+                    Status = x.Status.Value,
+                    Date = x.DateTime.Value,
+                }
+                ).FirstOrDefault();
+                oAhuTestReport.Header = oReportHeader;
+
+                //Get report comments and assign them to the oAhuTestReport object.
+                var oReportComments = context.tblSystemReportComments.Where(x => x.SysRepID_fk == val).Select(x => new CommCommentViewModel
+                {
+                    ID = x.ID,
+                    SysRepID_fk = x.SysRepID_fk,
+                    TechnicianID_fk = x.TechnicianID_fk,
+                    DateCreated = x.DateCreated,
+                    Comments = x.Comments,
+                }
+                ).ToList();
+                oAhuTestReport.Comments = oReportComments;
+
+                return Request.CreateResponse(HttpStatusCode.OK, oAhuTestReport);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Save Ahu Test report data into the relavant tables.
+        /// It should provide systemid and templateid along with the report related data. 
+        /// </summary>
+        /// <returns>
+        /// The Satatus based on the success or failed.
+        /// </returns>
+        [Authorize]
+        [Route("reports/SaveAhuTestReport")]
+        [HttpPost]
+        public HttpResponseMessage SaveAhuTestReport([FromBody] AhuTestReportViewModel oAhuTestReport)
+        {
+            try
+            {
+                //Save report header information.
+                tblSystemReport oSystemReport = new tblSystemReport();
+                oSystemReport.SystemReportID = Guid.NewGuid();
+                oSystemReport.SystemID_fk = oAhuTestReport.Header.SystemID;
+                oSystemReport.TemplateID_fk = oAhuTestReport.Header.TemplateID;
+                oSystemReport.Name = oAhuTestReport.Header.Name;
+                oSystemReport.TestReference = oAhuTestReport.Header.TestReference;
+                oSystemReport.Status = oAhuTestReport.Header.Status;
+                oSystemReport.DateTime = oAhuTestReport.Header.Date;
+                context.tblSystemReports.Add(oSystemReport);
+                context.SaveChanges();
+                var SysReportId = oSystemReport.SystemReportID;
+
+                //Save report details information.
+                Rpt_AhuTest oRptAhuTest = new Rpt_AhuTest();
+                oRptAhuTest.ReportID = Guid.NewGuid();
+                oRptAhuTest.SystemReportID_fk = SysReportId;
+                oRptAhuTest.LocationAHU = oAhuTestReport.LocationAHU;
+                oRptAhuTest.ManufactureAHU = oAhuTestReport.ManufactureAHU;
+                oRptAhuTest.ModelNoAHU = oAhuTestReport.ModelNoAHU;
+                oRptAhuTest.SerialNoAHU = oAhuTestReport.SerialNoAHU;
+                oRptAhuTest.CapacityAHU = oAhuTestReport.CapacityAHU;
+                oRptAhuTest.DesignAirLsAHU = oAhuTestReport.DesignAirLsAHU;
+                oRptAhuTest.DesignAirPaAHU = oAhuTestReport.DesignAirPaAHU;
+                oRptAhuTest.MediaAHU = oAhuTestReport.MediaAHU;
+                oRptAhuTest.DesignWaterAHU = oAhuTestReport.DesignWaterAHU;
+                oRptAhuTest.FanTypeAHU = oAhuTestReport.FanTypeAHU;
+                oRptAhuTest.FanArrangementAHU = oAhuTestReport.FanArrangementAHU;
+                oRptAhuTest.MSSBNameAHU = oAhuTestReport.MSSBNameAHU;
+                oRptAhuTest.MSSBLocationAHU = oAhuTestReport.MSSBLocationAHU;
+                oRptAhuTest.MotorMakeMD = oAhuTestReport.MotorMakeMD;
+                oRptAhuTest.FrameMD = oAhuTestReport.FrameMD;
+                oRptAhuTest.ElectricalMD = oAhuTestReport.ElectricalMD;
+                oRptAhuTest.MotorPowerMD = oAhuTestReport.MotorPowerMD;
+                oRptAhuTest.FullLoadMD = oAhuTestReport.FullLoadMD;
+                oRptAhuTest.PoleMD = oAhuTestReport.PoleMD;
+                oRptAhuTest.PoleRPMMD = oAhuTestReport.PoleRPMMD;
+                oRptAhuTest.FuseDetailsMD = oAhuTestReport.FuseDetailsMD;
+                oRptAhuTest.FanPulleyFan = oAhuTestReport.FanPulleyFan;
+                oRptAhuTest.FanBushFan = oAhuTestReport.FanBushFan;
+                oRptAhuTest.FanBoreFan = oAhuTestReport.FanBoreFan;
+                oRptAhuTest.MotorPulleyFan = oAhuTestReport.MotorPulleyFan;
+                oRptAhuTest.MotorBushFan = oAhuTestReport.MotorBushFan;
+                oRptAhuTest.MotorBoreFan = oAhuTestReport.MotorBoreFan;
+                oRptAhuTest.BeltsMakeFan = oAhuTestReport.BeltsMakeFan;
+                oRptAhuTest.BeltsNoFan = oAhuTestReport.BeltsNoFan;
+                oRptAhuTest.BeltsSizeFan = oAhuTestReport.BeltsSizeFan;
+                oRptAhuTest.ShaftCentreFan = oAhuTestReport.ShaftCentreFan;
+                oRptAhuTest.OverloadMakeMS = oAhuTestReport.OverloadMakeMS;
+                oRptAhuTest.OverloadRangeMS = oAhuTestReport.OverloadRangeMS;
+                oRptAhuTest.VSDMakeMS = oAhuTestReport.VSDMakeMS;
+                oRptAhuTest.VSDRangeMS = oAhuTestReport.VSDRangeMS;
+                oRptAhuTest.ValveACT = oAhuTestReport.ValveACT;
+                oRptAhuTest.ModelACT = oAhuTestReport.ModelACT;
+                oRptAhuTest.SizeACT = oAhuTestReport.SizeACT;
+                oRptAhuTest.CoilACT = oAhuTestReport.CoilACT;
+                oRptAhuTest.ValveBAL = oAhuTestReport.ValveBAL;
+                oRptAhuTest.ModelBAL = oAhuTestReport.ModelBAL;
+                oRptAhuTest.SizeBAL = oAhuTestReport.SizeBAL;
+                oRptAhuTest.FilterType1 = oAhuTestReport.FilterType1;
+                oRptAhuTest.FilterSize1 = oAhuTestReport.FilterSize1;
+                oRptAhuTest.NoFilters1 = oAhuTestReport.NoFilters1;
+                oRptAhuTest.FilterType2 = oAhuTestReport.FilterType2;
+                oRptAhuTest.FilterSize2 = oAhuTestReport.FilterSize2;
+                oRptAhuTest.NoFilters2 = oAhuTestReport.NoFilters2;
+                oRptAhuTest.SupplyAirDES = oAhuTestReport.SupplyAirDES;
+                oRptAhuTest.ReturnAirDES = oAhuTestReport.ReturnAirDES;
+                oRptAhuTest.OutsideAirDES = oAhuTestReport.OutsideAirDES;
+                oRptAhuTest.PchwDES = oAhuTestReport.PchwDES;
+                oRptAhuTest.SchwDES = oAhuTestReport.SchwDES;
+                oRptAhuTest.TotalStaticDES = oAhuTestReport.TotalStaticDES;
+                oRptAhuTest.SucStaticDES = oAhuTestReport.SucStaticDES;
+                oRptAhuTest.DisStaticDES = oAhuTestReport.DisStaticDES;
+                oRptAhuTest.FilterDiffDES = oAhuTestReport.FilterDiffDES;
+                oRptAhuTest.PchwDiffDES = oAhuTestReport.PchwDiffDES;
+                oRptAhuTest.ScheDiffDES = oAhuTestReport.ScheDiffDES;
+                oRptAhuTest.VoltageDES = oAhuTestReport.VoltageDES;
+                oRptAhuTest.AmpsDES = oAhuTestReport.AmpsDES;
+                oRptAhuTest.SupplyAirFIN = oAhuTestReport.SupplyAirFIN;
+                oRptAhuTest.ReturnAirFIN = oAhuTestReport.ReturnAirFIN;
+                oRptAhuTest.OutsideAirFIN = oAhuTestReport.OutsideAirFIN;
+                oRptAhuTest.PchwFIN = oAhuTestReport.PchwFIN;
+                oRptAhuTest.SchwFIN = oAhuTestReport.SchwFIN;
+                oRptAhuTest.TotalStaticFIN = oAhuTestReport.TotalStaticFIN;
+                oRptAhuTest.SucStaticFIN = oAhuTestReport.SucStaticFIN;
+                oRptAhuTest.DisStaticFIN = oAhuTestReport.DisStaticFIN;
+                oRptAhuTest.FilterDiffFIN = oAhuTestReport.FilterDiffFIN;
+                oRptAhuTest.PchwDiffFIN = oAhuTestReport.PchwDiffFIN;
+                oRptAhuTest.ScheDiffFIN = oAhuTestReport.ScheDiffFIN;
+                oRptAhuTest.VoltageFIN = oAhuTestReport.VoltageFIN;
+                oRptAhuTest.AmpsFIN = oAhuTestReport.AmpsFIN;
+                oRptAhuTest.Instrument1 = oAhuTestReport.Instrument1;
+                oRptAhuTest.Model1 = oAhuTestReport.Model1;
+                oRptAhuTest.Serial1 = oAhuTestReport.Serial1;
+                oRptAhuTest.Instrument2 = oAhuTestReport.Instrument2;
+                oRptAhuTest.Model2 = oAhuTestReport.Model2;
+                oRptAhuTest.Serial2 = oAhuTestReport.Serial2;
+                oRptAhuTest.TechnicianComments = oAhuTestReport.TechnicianComments;
+                oRptAhuTest.ICAComments = oAhuTestReport.ICAComments;
+                oRptAhuTest.FuseDetailsMDPH = oAhuTestReport.FuseDetailsMDPH;
+                oRptAhuTest.OverloadRangeMS2 = oAhuTestReport.OverloadRangeMS2;
+                oRptAhuTest.OverloadRangeMS3 = oAhuTestReport.OverloadRangeMS3;
+                oRptAhuTest.FilterSize1B = oAhuTestReport.FilterSize1B;
+                oRptAhuTest.FilterSize1C = oAhuTestReport.FilterSize1C;
+                oRptAhuTest.FilterSize2B = oAhuTestReport.FilterSize2B;
+                oRptAhuTest.FilterSize2C = oAhuTestReport.FilterSize2C;
+                oRptAhuTest.KvACT = oAhuTestReport.KvACT;
+                oRptAhuTest.ShowSucStatic = oAhuTestReport.ShowSucStatic;
+                oRptAhuTest.ShowDisStatic = oAhuTestReport.ShowDisStatic;
+                oRptAhuTest.ShowFilterDiff = oAhuTestReport.ShowFilterDiff;
+                oRptAhuTest.ShowPchwDiff = oAhuTestReport.ShowPchwDiff;
+                oRptAhuTest.ScheDiff = oAhuTestReport.ScheDiff;
+                oRptAhuTest.HHWCoilDes = oAhuTestReport.HHWCoilDes;
+                oRptAhuTest.HHWCoilFin = oAhuTestReport.HHWCoilFin;
+                oRptAhuTest.AmpsHzDes = oAhuTestReport.AmpsHzDes;
+                oRptAhuTest.AmpsHzFin = oAhuTestReport.AmpsHzFin;
+                oRptAhuTest.HeadBuilding = oAhuTestReport.HeadBuilding;
+                oRptAhuTest.HeadService = oAhuTestReport.HeadService;
+                oRptAhuTest.HeadCustomer = oAhuTestReport.HeadCustomer;
+                oRptAhuTest.BMSFanSpeed = oAhuTestReport.BMSFanSpeed;
+                oRptAhuTest.BMSVelocity = oAhuTestReport.BMSVelocity;
+                oRptAhuTest.BMSPressure = oAhuTestReport.BMSPressure;
+                oRptAhuTest.BMSOther = oAhuTestReport.BMSOther;
+                oRptAhuTest.SupplyAirPER = oAhuTestReport.SupplyAirPER;
+                oRptAhuTest.ReturnAirPER = oAhuTestReport.ReturnAirPER;
+                oRptAhuTest.OutsideAirPER = oAhuTestReport.OutsideAirPER;
+                oRptAhuTest.PchwPER = oAhuTestReport.PchwPER;
+                oRptAhuTest.TotalStaticPER = oAhuTestReport.TotalStaticPER;
+                oRptAhuTest.WitnessName = oAhuTestReport.WitnessName;
+                oRptAhuTest.WitnessDate = oAhuTestReport.WitnessDate;
+                oRptAhuTest.WitnessSignature = oAhuTestReport.WitnessSignature;
+                oRptAhuTest.FilterSize3 = oAhuTestReport.FilterSize3;
+                oRptAhuTest.FilterSize3B = oAhuTestReport.FilterSize3B;
+                oRptAhuTest.FilterSize3C = oAhuTestReport.FilterSize3C;
+                oRptAhuTest.FilterSize4 = oAhuTestReport.FilterSize4;
+                oRptAhuTest.FilterSize4B = oAhuTestReport.FilterSize4B;
+                oRptAhuTest.FilterSize4C = oAhuTestReport.FilterSize4C;
+                oRptAhuTest.NoFilters3 = oAhuTestReport.NoFilters3;
+                oRptAhuTest.NoFilters4 = oAhuTestReport.NoFilters4;
+                oRptAhuTest.CapacityAHUHeat = oAhuTestReport.CapacityAHUHeat;
+                oRptAhuTest.CapacityAHUReclaim = oAhuTestReport.CapacityAHUReclaim;
+                oRptAhuTest.BMSFanSpeedType = oAhuTestReport.BMSFanSpeedType;
+                oRptAhuTest.BMSVelocityType = oAhuTestReport.BMSVelocityType;
+                context.Rpt_AhuTest.Add(oRptAhuTest);
+                context.SaveChanges();
+
+                //Save report comments information.
+                List<CommCommentViewModel> lstComments = new List<CommCommentViewModel>();
+                lstComments = oAhuTestReport.Comments;
+                foreach (var item in lstComments)
+                {
+                    tblSystemReportComment oAhuTestComment = new tblSystemReportComment();
+                    oAhuTestComment.ID = Guid.NewGuid();
+                    oAhuTestComment.SysRepID_fk = SysReportId;
+                    oAhuTestComment.TechnicianID_fk = item.TechnicianID_fk;
+                    oAhuTestComment.DateCreated = item.DateCreated;
+                    oAhuTestComment.Comments = item.Comments;
+                    context.tblSystemReportComments.Add(oAhuTestComment);
+                    context.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, 1);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get Ahu Test Direct Drive report details for given system report id.
+        /// </summary>
+        /// <returns>
+        /// The oAhuTestDirectDriveReport object which contains all the information.
+        /// </returns>
+        [Authorize]
+        [Route("reports/GetAhuTestDirectDriveReportBySystemReportID")]
+        [HttpPost]
+        public HttpResponseMessage GetAhuTestDirectDriveReportBySystemReportID([FromBody] string systemreportid)
+        {
+            try
+            {
+                //Get report details information by providing systemreportid
+                var val = Guid.Parse(systemreportid);
+                var oAhuTestDirectDriveReport = context.Rpt_AhuTestDirectDrive.Where(x => x.SystemReportID_fk == val).Select(x => new AhuTestDirectDriveReportViewModel
+                {
+                    ReportID = x.ReportID,
+                    SystemReportID_fk = x.SystemReportID_fk.Value,
+                    LocationAHU = x.LocationAHU,
+                    ManufactureAHU = x.ManufactureAHU,
+                    ModelNoAHU = x.ModelNoAHU,
+                    SerialNoAHU = x.SerialNoAHU,
+                    CapacityAHU = x.CapacityAHU,
+                    DesignAirLsAHU = x.DesignAirLsAHU,
+                    DesignAirPaAHU = x.DesignAirPaAHU,
+                    MediaAHU = x.MediaAHU,
+                    FanTypeAHU = x.FanTypeAHU,
+                    FanArrangementAHU = x.FanArrangementAHU,
+                    MSSBNameAHU = x.MSSBNameAHU,
+                    MSSBLocationAHU = x.MSSBLocationAHU,
+                    MotorMakeMD = x.MotorMakeMD,
+                    FrameMD = x.FrameMD,
+                    ElectricalMD = x.ElectricalMD,
+                    MotorPowerMD = x.MotorPowerMD,
+                    FullLoadMD = x.FullLoadMD,
+                    PoleMD = x.PoleMD,
+                    PoleRPMMD = x.PoleRPMMD,
+                    OverloadMakeMS = x.OverloadMakeMS,
+                    OverloadRangeMS = x.OverloadRangeMS,
+                    VSDMakeMS = x.VSDMakeMS,
+                    VSDRangeMS = x.VSDRangeMS,
+                    FilterType1 = x.FilterType1,
+                    FilterSize1 = x.FilterSize1,
+                    NoFilters1 = x.NoFilters1,
+                    FilterType2 = x.FilterType2,
+                    FilterSize2 = x.FilterSize2,
+                    NoFilters2 = x.NoFilters2,
+                    SupplyAirDES = x.SupplyAirDES,
+                    ReturnAirDES = x.ReturnAirDES,
+                    OutsideAirDES = x.OutsideAirDES,
+                    SupplyAirFIN = x.SupplyAirFIN,
+                    ReturnAirFIN = x.ReturnAirFIN,
+                    OutsideAirFIN = x.OutsideAirFIN,
+                    TotalStaticDES = x.TotalStaticDES,
+                    TotalStaticFIN = x.TotalStaticFIN,
+                    SucStaticFIN = x.SucStaticFIN,
+                    DisStaticFIN = x.DisStaticFIN,
+                    FilterDiffFIN = x.FilterDiffFIN,
+                    PchwDiffFIN = x.PchwDiffFIN,
+                    ScheDiffFIN = x.ScheDiffFIN,
+                    VoltageDES = x.VoltageDES,
+                    VoltageFIN = x.VoltageFIN,
+                    AmpsDES = x.AmpsDES,                   
+                    AmpsFIN = x.AmpsFIN,
+                    Instrument1 = x.Instrument1,
+                    Instrument2 = x.Instrument2,
+                    Model1 = x.Model1,
+                    Model2 = x.Model2,
+                    Serial1 = x.Serial1,                    
+                    Serial2 = x.Serial2,
+                    FuseDetailsMDPH = x.FuseDetailsMDPH,
+                    OverloadRangeMS2 = x.OverloadRangeMS2,
+                    OverloadRangeMS3 = x.OverloadRangeMS3,
+                    FilterSize1B = x.FilterSize1B,
+                    FilterSize1C = x.FilterSize1C,
+                    FilterSize2B = x.FilterSize2B,
+                    FilterSize2C = x.FilterSize2C,
+                    AmpsHzDes = x.AmpsHzDes,
+                    AmpsHzFin = x.AmpsHzFin,
+                    BMSFanSpeed = x.BMSFanSpeed,
+                    BMSVelocity = x.BMSVelocity,
+                    BMSPressure = x.BMSPressure,
+                    BMSOther = x.BMSOther,
+                    SupplyAirPER = x.SupplyAirPER,
+                    ReturnAirPER = x.ReturnAirPER,
+                    OutsideAirPER = x.OutsideAirPER,
+                    HeadBuilding = x.HeadBuilding,
+                    WitnessName = x.WitnessName,
+                    WitnessDate = x.WitnessDate,
+                    WitnessSignature = x.WitnessSignature,
+                    FilterSize3 = x.FilterSize3,
+                    FilterSize3B = x.FilterSize3B,
+                    FilterSize3C = x.FilterSize3C,
+                    FilterSize4 = x.FilterSize4,
+                    FilterSize4B = x.FilterSize4B,
+                    FilterSize4C = x.FilterSize4C,
+                    NoFilters3 = x.NoFilters3,
+                    NoFilters4 = x.NoFilters4,
+                    BMSFanSpeedType = x.BMSFanSpeedType,
+                    BMSVelocityType = x.BMSVelocityType,
+                }
+                ).FirstOrDefault();
+
+                //Get report header information and add them to the oAhuTestDirectDriveReport object.
+                var oReportHeader = context.tblSystemReports.Where(x => x.SystemReportID == val).Select(x => new CommSystemReportViewModel
+                {
+                    SystemReportID = x.SystemReportID,
+                    SystemID = x.SystemID_fk.Value,
+                    TemplateID = x.TemplateID_fk.Value,
+                    Name = x.Name,
+                    TestReference = x.TestReference,
+                    Status = x.Status.Value,
+                    Date = x.DateTime.Value,
+                }
+                ).FirstOrDefault();
+                oAhuTestDirectDriveReport.Header = oReportHeader;
+
+                //Get report comments information and add them to the oAhuTestDirectDriveReport object.
+                var oReportComments = context.tblSystemReportComments.Where(x => x.SysRepID_fk == val).Select(x => new CommCommentViewModel
+                {
+                    ID = x.ID,
+                    SysRepID_fk = x.SysRepID_fk,
+                    TechnicianID_fk = x.TechnicianID_fk,
+                    DateCreated = x.DateCreated,
+                    Comments = x.Comments,
+                }
+                ).ToList();
+                oAhuTestDirectDriveReport.Comments = oReportComments;
+
+                return Request.CreateResponse(HttpStatusCode.OK, oAhuTestDirectDriveReport);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Save Ahu Test Direct Drive report data into the relavant tables. 
+        /// It should provide systemid and templateid along with the report related data.
+        /// </summary>
+        /// <returns>
+        /// The Satatus based on the success or failed.
+        /// </returns>
+        [Authorize]
+        [Route("reports/SaveAhuTestDirectDriveReport")]
+        [HttpPost]
+        public HttpResponseMessage SaveAhuTestDirectDriveReport([FromBody] AhuTestDirectDriveReportViewModel oAhuTestDirectDriveReport)
+        {
+            try
+            {
+                //Save report header data and create systemreportid.
+                tblSystemReport oSystemReport = new tblSystemReport();
+                oSystemReport.SystemReportID = Guid.NewGuid();
+                oSystemReport.SystemID_fk = oAhuTestDirectDriveReport.Header.SystemID;
+                oSystemReport.TemplateID_fk = oAhuTestDirectDriveReport.Header.TemplateID;
+                oSystemReport.Name = oAhuTestDirectDriveReport.Header.Name;
+                oSystemReport.TestReference = oAhuTestDirectDriveReport.Header.TestReference;
+                oSystemReport.Status = oAhuTestDirectDriveReport.Header.Status;
+                oSystemReport.DateTime = oAhuTestDirectDriveReport.Header.Date;
+                context.tblSystemReports.Add(oSystemReport);
+                context.SaveChanges();
+                var SysReportId = oSystemReport.SystemReportID;
+
+                //Save report detail data along with the created systemreportid.
+                Rpt_AhuTestDirectDrive oRptAhuTestDirectDrive = new Rpt_AhuTestDirectDrive();
+                oRptAhuTestDirectDrive.ReportID = Guid.NewGuid();
+                oRptAhuTestDirectDrive.SystemReportID_fk = SysReportId;
+                oRptAhuTestDirectDrive.LocationAHU = oAhuTestDirectDriveReport.LocationAHU;
+                oRptAhuTestDirectDrive.ManufactureAHU = oAhuTestDirectDriveReport.ManufactureAHU;
+                oRptAhuTestDirectDrive.ModelNoAHU = oAhuTestDirectDriveReport.ModelNoAHU;
+                oRptAhuTestDirectDrive.SerialNoAHU = oAhuTestDirectDriveReport.SerialNoAHU;
+                oRptAhuTestDirectDrive.CapacityAHU = oAhuTestDirectDriveReport.CapacityAHU;
+                oRptAhuTestDirectDrive.DesignAirLsAHU = oAhuTestDirectDriveReport.DesignAirLsAHU;
+                oRptAhuTestDirectDrive.DesignAirPaAHU = oAhuTestDirectDriveReport.DesignAirPaAHU;
+                oRptAhuTestDirectDrive.MediaAHU = oAhuTestDirectDriveReport.MediaAHU;
+                oRptAhuTestDirectDrive.FanTypeAHU = oAhuTestDirectDriveReport.FanTypeAHU;
+                oRptAhuTestDirectDrive.FanArrangementAHU = oAhuTestDirectDriveReport.FanArrangementAHU;
+                oRptAhuTestDirectDrive.MSSBNameAHU = oAhuTestDirectDriveReport.MSSBNameAHU;
+                oRptAhuTestDirectDrive.MSSBLocationAHU = oAhuTestDirectDriveReport.MSSBLocationAHU;
+                oRptAhuTestDirectDrive.MotorMakeMD = oAhuTestDirectDriveReport.MotorMakeMD;
+                oRptAhuTestDirectDrive.FrameMD = oAhuTestDirectDriveReport.FrameMD;
+                oRptAhuTestDirectDrive.ElectricalMD = oAhuTestDirectDriveReport.ElectricalMD;
+                oRptAhuTestDirectDrive.MotorPowerMD = oAhuTestDirectDriveReport.MotorPowerMD;
+                oRptAhuTestDirectDrive.FullLoadMD = oAhuTestDirectDriveReport.FullLoadMD;
+                oRptAhuTestDirectDrive.PoleMD = oAhuTestDirectDriveReport.PoleMD;
+                oRptAhuTestDirectDrive.PoleRPMMD = oAhuTestDirectDriveReport.PoleRPMMD;
+                oRptAhuTestDirectDrive.OverloadMakeMS = oAhuTestDirectDriveReport.OverloadMakeMS;
+                oRptAhuTestDirectDrive.OverloadRangeMS = oAhuTestDirectDriveReport.OverloadRangeMS;
+                oRptAhuTestDirectDrive.VSDMakeMS = oAhuTestDirectDriveReport.VSDMakeMS;
+                oRptAhuTestDirectDrive.VSDRangeMS = oAhuTestDirectDriveReport.VSDRangeMS;
+                oRptAhuTestDirectDrive.FilterType1 = oAhuTestDirectDriveReport.FilterType1;
+                oRptAhuTestDirectDrive.FilterSize1 = oAhuTestDirectDriveReport.FilterSize1;
+                oRptAhuTestDirectDrive.NoFilters1 = oAhuTestDirectDriveReport.NoFilters1;
+                oRptAhuTestDirectDrive.FilterType2 = oAhuTestDirectDriveReport.FilterType2;
+                oRptAhuTestDirectDrive.FilterSize2 = oAhuTestDirectDriveReport.FilterSize2;
+                oRptAhuTestDirectDrive.NoFilters2 = oAhuTestDirectDriveReport.NoFilters2;
+                oRptAhuTestDirectDrive.SupplyAirDES = oAhuTestDirectDriveReport.SupplyAirDES;
+                oRptAhuTestDirectDrive.ReturnAirDES = oAhuTestDirectDriveReport.ReturnAirDES;
+                oRptAhuTestDirectDrive.OutsideAirDES = oAhuTestDirectDriveReport.OutsideAirDES;
+                oRptAhuTestDirectDrive.SupplyAirFIN = oAhuTestDirectDriveReport.SupplyAirFIN;
+                oRptAhuTestDirectDrive.ReturnAirFIN = oAhuTestDirectDriveReport.ReturnAirFIN;
+                oRptAhuTestDirectDrive.OutsideAirFIN = oAhuTestDirectDriveReport.OutsideAirFIN;
+                oRptAhuTestDirectDrive.TotalStaticDES = oAhuTestDirectDriveReport.TotalStaticDES;
+                oRptAhuTestDirectDrive.TotalStaticFIN = oAhuTestDirectDriveReport.TotalStaticFIN;
+                oRptAhuTestDirectDrive.SucStaticFIN = oAhuTestDirectDriveReport.SucStaticFIN;
+                oRptAhuTestDirectDrive.DisStaticFIN = oAhuTestDirectDriveReport.DisStaticFIN;
+                oRptAhuTestDirectDrive.FilterDiffFIN = oAhuTestDirectDriveReport.FilterDiffFIN;
+                oRptAhuTestDirectDrive.PchwDiffFIN = oAhuTestDirectDriveReport.PchwDiffFIN;
+                oRptAhuTestDirectDrive.ScheDiffFIN = oAhuTestDirectDriveReport.ScheDiffFIN;
+                oRptAhuTestDirectDrive.VoltageDES = oAhuTestDirectDriveReport.VoltageDES;
+                oRptAhuTestDirectDrive.VoltageFIN = oAhuTestDirectDriveReport.VoltageFIN;
+                oRptAhuTestDirectDrive.AmpsDES = oAhuTestDirectDriveReport.AmpsDES;
+                oRptAhuTestDirectDrive.AmpsFIN = oAhuTestDirectDriveReport.AmpsFIN;
+                oRptAhuTestDirectDrive.Instrument1 = oAhuTestDirectDriveReport.Instrument1;
+                oRptAhuTestDirectDrive.Instrument2 = oAhuTestDirectDriveReport.Instrument2;
+                oRptAhuTestDirectDrive.Model1 = oAhuTestDirectDriveReport.Model1;
+                oRptAhuTestDirectDrive.Model2 = oAhuTestDirectDriveReport.Model2;
+                oRptAhuTestDirectDrive.Serial1 = oAhuTestDirectDriveReport.Serial1;
+                oRptAhuTestDirectDrive.Serial2 = oAhuTestDirectDriveReport.Serial2;
+                oRptAhuTestDirectDrive.FuseDetailsMDPH = oAhuTestDirectDriveReport.FuseDetailsMDPH;
+                oRptAhuTestDirectDrive.OverloadRangeMS2 = oAhuTestDirectDriveReport.OverloadRangeMS2;
+                oRptAhuTestDirectDrive.OverloadRangeMS3 = oAhuTestDirectDriveReport.OverloadRangeMS3;
+                oRptAhuTestDirectDrive.FilterSize1B = oAhuTestDirectDriveReport.FilterSize1B;
+                oRptAhuTestDirectDrive.FilterSize1C = oAhuTestDirectDriveReport.FilterSize1C;
+                oRptAhuTestDirectDrive.FilterSize2B = oAhuTestDirectDriveReport.FilterSize2B;
+                oRptAhuTestDirectDrive.FilterSize2C = oAhuTestDirectDriveReport.FilterSize2C;
+                oRptAhuTestDirectDrive.AmpsHzDes = oAhuTestDirectDriveReport.AmpsHzDes;
+                oRptAhuTestDirectDrive.AmpsHzFin = oAhuTestDirectDriveReport.AmpsHzFin;
+                oRptAhuTestDirectDrive.BMSFanSpeed = oAhuTestDirectDriveReport.BMSFanSpeed;
+                oRptAhuTestDirectDrive.BMSVelocity = oAhuTestDirectDriveReport.BMSVelocity;
+                oRptAhuTestDirectDrive.BMSPressure = oAhuTestDirectDriveReport.BMSPressure;
+                oRptAhuTestDirectDrive.BMSOther = oAhuTestDirectDriveReport.BMSOther;
+                oRptAhuTestDirectDrive.SupplyAirPER = oAhuTestDirectDriveReport.SupplyAirPER;
+                oRptAhuTestDirectDrive.ReturnAirPER = oAhuTestDirectDriveReport.ReturnAirPER;
+                oRptAhuTestDirectDrive.OutsideAirPER = oAhuTestDirectDriveReport.OutsideAirPER;
+                oRptAhuTestDirectDrive.HeadBuilding = oAhuTestDirectDriveReport.HeadBuilding;
+                oRptAhuTestDirectDrive.WitnessName = oAhuTestDirectDriveReport.WitnessName;
+                oRptAhuTestDirectDrive.WitnessDate = oAhuTestDirectDriveReport.WitnessDate;
+                oRptAhuTestDirectDrive.WitnessSignature = oAhuTestDirectDriveReport.WitnessSignature;
+                oRptAhuTestDirectDrive.FilterSize3 = oAhuTestDirectDriveReport.FilterSize3;
+                oRptAhuTestDirectDrive.FilterSize3B = oAhuTestDirectDriveReport.FilterSize3B;
+                oRptAhuTestDirectDrive.FilterSize3C = oAhuTestDirectDriveReport.FilterSize3C;
+                oRptAhuTestDirectDrive.FilterSize4 = oAhuTestDirectDriveReport.FilterSize4;
+                oRptAhuTestDirectDrive.FilterSize4B = oAhuTestDirectDriveReport.FilterSize4B;
+                oRptAhuTestDirectDrive.FilterSize4C = oAhuTestDirectDriveReport.FilterSize4C;
+                oRptAhuTestDirectDrive.NoFilters3 = oAhuTestDirectDriveReport.NoFilters3;
+                oRptAhuTestDirectDrive.NoFilters4 = oAhuTestDirectDriveReport.NoFilters4;
+                oRptAhuTestDirectDrive.BMSFanSpeedType = oAhuTestDirectDriveReport.BMSFanSpeedType;
+                oRptAhuTestDirectDrive.BMSVelocityType = oAhuTestDirectDriveReport.BMSVelocityType;
+                context.Rpt_AhuTestDirectDrive.Add(oRptAhuTestDirectDrive);
+                context.SaveChanges();
+
+                //Save report comments informationn.
+                List<CommCommentViewModel> lstComments = new List<CommCommentViewModel>();
+                lstComments = oAhuTestDirectDriveReport.Comments;
+                foreach (var item in lstComments)
+                {
+                    tblSystemReportComment oAhuTestDirectDriveComment = new tblSystemReportComment();
+                    oAhuTestDirectDriveComment.ID = Guid.NewGuid();
+                    oAhuTestDirectDriveComment.SysRepID_fk = SysReportId;
+                    oAhuTestDirectDriveComment.TechnicianID_fk = item.TechnicianID_fk;
+                    oAhuTestDirectDriveComment.DateCreated = item.DateCreated;
+                    oAhuTestDirectDriveComment.Comments = item.Comments;
+                    context.tblSystemReportComments.Add(oAhuTestDirectDriveComment);
+                    context.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, 1);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// Get Fan Test report details for given system report id.
+        /// </summary>
+        /// <returns>
+        /// The oFanTestReport object which contains all the information.
+        /// </returns>        
+        [Authorize]
+        [Route("reports/GetFanTestReportBySystemReportID")]
+        [HttpPost]
+        public HttpResponseMessage GetFanTestReportBySystemReportID([FromBody] string systemreportid)
+        {
+            try
+            {
+                //Get report details from the report table by providing systemreportid.
+                var val = Guid.Parse(systemreportid);
+                var oFanTestReport = context.Rpt_FanTest.Where(x => x.SystemReportID_fk == val).Select(x => new FanTestReportViewModel
+                {
+                    ReportID = x.ReportID,
+                    SystemReportID_fk = x.SystemReportID_fk.Value,
+                    LocationAHU = x.LocationAHU,
+                    ManufactureAHU = x.ManufactureAHU,
+                    ModelNoAHU = x.ModelNoAHU,
+                    SerialNoAHU = x.SerialNoAHU,
+                    DesignAirLsAHU = x.DesignAirLsAHU,
+                    DesignAirPaAHU = x.DesignAirPaAHU,
+                    FanControl = x.FanControl,
+                    SupplyExhaust = x.SupplyExhaust,
+                    MSSBNameAHU = x.MSSBNameAHU,
+                    MSSBLocationAHU = x.MSSBLocationAHU,
+                    MotorMakeMD = x.MotorMakeMD,
+                    FrameMD = x.FrameMD,
+                    ElectricalMD = x.ElectricalMD,
+                    MotorPowerMD = x.MotorPowerMD,
+                    FullLoadMD = x.FullLoadMD,
+                    PoleMD = x.PoleMD,
+                    PoleRPMMD = x.PoleRPMMD,
+                    FuseDetailsMD = x.FuseDetailsMD,
+                    FanPulleyFan = x.FanPulleyFan,
+                    FanBushFan = x.FanBushFan,
+                    FanBoreFan = x.FanBoreFan,
+                    MotorPulleyFan = x.MotorPulleyFan,
+                    MotorBushFan = x.MotorBushFan,
+                    MotorBoreFan = x.MotorBoreFan,
+                    BeltsMakeFan = x.BeltsMakeFan,
+                    BeltsNoFan = x.BeltsNoFan,
+                    BeltsSizeFan = x.BeltsSizeFan,
+                    ShaftCentreFan = x.ShaftCentreFan,
+                    OverloadMakeMS = x.OverloadMakeMS,
+                    OverloadRangeMS = x.OverloadRangeMS,
+                    VSDMakeMS = x.VSDMakeMS,
+                    VSDRangeMS = x.VSDRangeMS,
+                    FilterType1 = x.FilterType1,
+                    FilterSize1 = x.FilterSize1,
+                    NoFilters1 = x.NoFilters1,
+                    FilterType2 = x.FilterType2,
+                    FilterSize2 = x.FilterSize2,
+                    NoFilters2 = x.NoFilters2,
+                    TotalAirDES = x.TotalAirDES,
+                    TotalStaticDES = x.TotalStaticDES,
+                    SucStaticDES = x.SucStaticDES,
+                    DisStaticDES = x.DisStaticDES,
+                    FilterDiffDES = x.FilterDiffDES,
+                    VoltageDES = x.VoltageDES,
+                    AmpsDES = x.AmpsDES,
+                    TotalAirFIN = x.TotalAirFIN,
+                    TotalStaticFIN = x.TotalStaticFIN,
+                    SucStaticFIN = x.SucStaticFIN,
+                    DisStaticFIN = x.DisStaticFIN,
+                    FilterDiffFIN = x.FilterDiffFIN,
+                    VoltageFIN = x.VoltageFIN,
+                    AmpsFIN = x.AmpsFIN,
+                    VSDFinalHz = x.VSDFinalHz,
+                    StaticPressureRef = x.StaticPressureRef,
+                    Instrument1 = x.Instrument1,
+                    Make1 = x.Make1,
+                    Serial1 = x.Serial1,
+                    Instrument2 = x.Instrument2,
+                    Make2 = x.Make2,
+                    Serial2 = x.Serial2,
+                    TechnicianComments = x.TechnicianComments,
+                    ICAComments = x.ICAComments,
+                    FilterSize1B = x.FilterSize1B,
+                    FilterSize1C = x.FilterSize1C,
+                    FilterSize2B = x.FilterSize2B,
+                    FilterSize2C = x.FilterSize2C,
+                    FuseDetailsMDPH = x.FuseDetailsMDPH,
+                    OverloadRangeMS2 = x.OverloadRangeMS2,
+                    OverloadRangeMS3 = x.OverloadRangeMS3,
+                    ShowSucStatic = x.ShowSucStatic,
+                    ShowDisStatic = x.ShowDisStatic,
+                    ShowFilterDiff = x.ShowFilterDiff,
+                    HeadBuilding = x.HeadBuilding,
+                    HeadService = x.HeadService,
+                    HeadCustomer = x.HeadCustomer,
+                    BMSFanSpeed = x.BMSFanSpeed,
+                    BMSVelocity = x.BMSVelocity,
+                    BMSPressure = x.BMSPressure,
+                    BMSOther = x.BMSOther,
+                    TotalAirPER = x.TotalAirPER,
+                    WitnessName = x.WitnessName,
+                    WitnessDate = x.WitnessDate,
+                    WitnessSignature = x.WitnessSignature,
+                    BMSFanSpeedType = x.BMSFanSpeedType,
+                    BMSVelocityType = x.BMSVelocityType,
+                }
+                ).FirstOrDefault();
+
+                //Get report header information and assign them to oAhuTestReport object.
+                var oReportHeader = context.tblSystemReports.Where(x => x.SystemReportID == val).Select(x => new CommSystemReportViewModel
+                {
+                    SystemReportID = x.SystemReportID,
+                    SystemID = x.SystemID_fk.Value,
+                    TemplateID = x.TemplateID_fk.Value,
+                    Name = x.Name,
+                    TestReference = x.TestReference,
+                    Status = x.Status.Value,
+                    Date = x.DateTime.Value,
+                }
+                ).FirstOrDefault();
+                oFanTestReport.Header = oReportHeader;
+
+                //Get report comments and assign them to the oAhuTestReport object.
+                var oReportComments = context.tblSystemReportComments.Where(x => x.SysRepID_fk == val).Select(x => new CommCommentViewModel
+                {
+                    ID = x.ID,
+                    SysRepID_fk = x.SysRepID_fk,
+                    TechnicianID_fk = x.TechnicianID_fk,
+                    DateCreated = x.DateCreated,
+                    Comments = x.Comments,
+                }
+                ).ToList();
+                oFanTestReport.Comments = oReportComments;
+
+                return Request.CreateResponse(HttpStatusCode.OK, oFanTestReport);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Save Fan Test report data into the relavant tables.
+        /// It should provide systemid and templateid along with the report related data. 
+        /// </summary>
+        /// <returns>
+        /// The Satatus based on the success or failed.
+        /// </returns>
+        [Authorize]
+        [Route("reports/SaveFanTestReport")]
+        [HttpPost]
+        public HttpResponseMessage SaveFanTestReport([FromBody] FanTestReportViewModel oFanTestReport)
+        {
+            try
+            {
+                //Save report header information.
+                tblSystemReport oSystemReport = new tblSystemReport();
+                oSystemReport.SystemReportID = Guid.NewGuid();
+                oSystemReport.SystemID_fk = oFanTestReport.Header.SystemID;
+                oSystemReport.TemplateID_fk = oFanTestReport.Header.TemplateID;
+                oSystemReport.Name = oFanTestReport.Header.Name;
+                oSystemReport.TestReference = oFanTestReport.Header.TestReference;
+                oSystemReport.Status = oFanTestReport.Header.Status;
+                oSystemReport.DateTime = oFanTestReport.Header.Date;
+                context.tblSystemReports.Add(oSystemReport);
+                context.SaveChanges();
+                var SysReportId = oSystemReport.SystemReportID;
+
+                //Save report details information.
+                Rpt_FanTest oRptFanTest = new Rpt_FanTest();
+                oRptFanTest.ReportID = Guid.NewGuid();
+                oRptFanTest.SystemReportID_fk = SysReportId;
+                oRptFanTest.LocationAHU = oFanTestReport.LocationAHU;
+                oRptFanTest.ManufactureAHU = oFanTestReport.ManufactureAHU;
+                oRptFanTest.ModelNoAHU = oFanTestReport.ModelNoAHU;
+                oRptFanTest.SerialNoAHU = oFanTestReport.SerialNoAHU;
+                oRptFanTest.DesignAirLsAHU = oFanTestReport.DesignAirLsAHU;
+                oRptFanTest.DesignAirPaAHU = oFanTestReport.DesignAirPaAHU;
+                oRptFanTest.FanControl = oFanTestReport.FanControl;
+                oRptFanTest.SupplyExhaust = oFanTestReport.SupplyExhaust;
+                oRptFanTest.MSSBNameAHU = oFanTestReport.MSSBNameAHU;
+                oRptFanTest.MSSBLocationAHU = oFanTestReport.MSSBLocationAHU;
+                oRptFanTest.MotorMakeMD = oFanTestReport.MotorMakeMD;
+                oRptFanTest.FrameMD = oFanTestReport.FrameMD;
+                oRptFanTest.ElectricalMD = oFanTestReport.ElectricalMD;
+                oRptFanTest.MotorPowerMD = oFanTestReport.MotorPowerMD;
+                oRptFanTest.FullLoadMD = oFanTestReport.FullLoadMD;
+                oRptFanTest.PoleMD = oFanTestReport.PoleMD;
+                oRptFanTest.PoleRPMMD = oFanTestReport.PoleRPMMD;
+                oRptFanTest.FuseDetailsMD = oFanTestReport.FuseDetailsMD;
+                oRptFanTest.FanPulleyFan = oFanTestReport.FanPulleyFan;
+                oRptFanTest.FanBushFan = oFanTestReport.FanBushFan;
+                oRptFanTest.FanBoreFan = oFanTestReport.FanBoreFan;
+                oRptFanTest.MotorPulleyFan = oFanTestReport.MotorPulleyFan;
+                oRptFanTest.MotorBushFan = oFanTestReport.MotorBushFan;
+                oRptFanTest.MotorBoreFan = oFanTestReport.MotorBoreFan;
+                oRptFanTest.BeltsMakeFan = oFanTestReport.BeltsMakeFan;
+                oRptFanTest.BeltsNoFan = oFanTestReport.BeltsNoFan;
+                oRptFanTest.BeltsSizeFan = oFanTestReport.BeltsSizeFan;
+                oRptFanTest.ShaftCentreFan = oFanTestReport.ShaftCentreFan;
+                oRptFanTest.OverloadMakeMS = oFanTestReport.OverloadMakeMS;
+                oRptFanTest.OverloadRangeMS = oFanTestReport.OverloadRangeMS;
+                oRptFanTest.VSDMakeMS = oFanTestReport.VSDMakeMS;
+                oRptFanTest.VSDRangeMS = oFanTestReport.VSDRangeMS;
+                oRptFanTest.FilterType1 = oFanTestReport.FilterType1;
+                oRptFanTest.FilterSize1 = oFanTestReport.FilterSize1;
+                oRptFanTest.NoFilters1 = oFanTestReport.NoFilters1;
+                oRptFanTest.FilterType2 = oFanTestReport.FilterType2;
+                oRptFanTest.FilterSize2 = oFanTestReport.FilterSize2;
+                oRptFanTest.NoFilters2 = oFanTestReport.NoFilters2;
+                oRptFanTest.TotalAirDES = oFanTestReport.TotalAirDES;
+                oRptFanTest.TotalStaticDES = oFanTestReport.TotalStaticDES;
+                oRptFanTest.SucStaticDES = oFanTestReport.SucStaticDES;
+                oRptFanTest.DisStaticDES = oFanTestReport.DisStaticDES;
+                oRptFanTest.FilterDiffDES = oFanTestReport.FilterDiffDES;
+                oRptFanTest.VoltageDES = oFanTestReport.VoltageDES;
+                oRptFanTest.AmpsDES = oFanTestReport.AmpsDES;
+                oRptFanTest.TotalAirFIN = oFanTestReport.TotalAirFIN;
+                oRptFanTest.TotalStaticFIN = oFanTestReport.TotalStaticFIN;
+                oRptFanTest.SucStaticFIN = oFanTestReport.SucStaticFIN;
+                oRptFanTest.DisStaticFIN = oFanTestReport.DisStaticFIN;
+                oRptFanTest.FilterDiffFIN = oFanTestReport.FilterDiffFIN;
+                oRptFanTest.VoltageFIN = oFanTestReport.VoltageFIN;
+                oRptFanTest.AmpsFIN = oFanTestReport.AmpsFIN;
+                oRptFanTest.VSDFinalHz = oFanTestReport.VSDFinalHz;
+                oRptFanTest.StaticPressureRef = oFanTestReport.StaticPressureRef;
+                oRptFanTest.Instrument1 = oFanTestReport.Instrument1;
+                oRptFanTest.Make1 = oFanTestReport.Make1;
+                oRptFanTest.Serial1 = oFanTestReport.Serial1;
+                oRptFanTest.Instrument2 = oFanTestReport.Instrument2;
+                oRptFanTest.Make2 = oFanTestReport.Make2;
+                oRptFanTest.Serial2 = oFanTestReport.Serial2;
+                oRptFanTest.TechnicianComments = oFanTestReport.TechnicianComments;
+                oRptFanTest.ICAComments = oFanTestReport.ICAComments;
+                oRptFanTest.FilterSize1B = oFanTestReport.FilterSize1B;
+                oRptFanTest.FilterSize1C = oFanTestReport.FilterSize1C;
+                oRptFanTest.FilterSize2B = oFanTestReport.FilterSize2B;
+                oRptFanTest.FilterSize2C = oFanTestReport.FilterSize2C;
+                oRptFanTest.FuseDetailsMDPH = oFanTestReport.FuseDetailsMDPH;
+                oRptFanTest.OverloadRangeMS2 = oFanTestReport.OverloadRangeMS2;
+                oRptFanTest.OverloadRangeMS3 = oFanTestReport.OverloadRangeMS3;
+                oRptFanTest.ShowSucStatic = oFanTestReport.ShowSucStatic;
+                oRptFanTest.ShowDisStatic = oFanTestReport.ShowDisStatic;
+                oRptFanTest.ShowFilterDiff = oFanTestReport.ShowFilterDiff;
+                oRptFanTest.HeadBuilding = oFanTestReport.HeadBuilding;
+                oRptFanTest.HeadService = oFanTestReport.HeadService;
+                oRptFanTest.HeadCustomer = oFanTestReport.HeadCustomer;
+                oRptFanTest.BMSFanSpeed = oFanTestReport.BMSFanSpeed;
+                oRptFanTest.BMSVelocity = oFanTestReport.BMSVelocity;
+                oRptFanTest.BMSPressure = oFanTestReport.BMSPressure;
+                oRptFanTest.BMSOther = oFanTestReport.BMSOther;
+                oRptFanTest.TotalAirPER = oFanTestReport.TotalAirPER;
+                oRptFanTest.WitnessName = oFanTestReport.WitnessName;
+                oRptFanTest.WitnessDate = oFanTestReport.WitnessDate;
+                oRptFanTest.WitnessSignature = oFanTestReport.WitnessSignature;
+                oRptFanTest.BMSFanSpeedType = oFanTestReport.BMSFanSpeedType;
+                oRptFanTest.BMSVelocityType = oFanTestReport.BMSVelocityType;                
+                context.Rpt_FanTest.Add(oRptFanTest);
+                context.SaveChanges();
+
+                //Save report comments information.
+                List<CommCommentViewModel> lstComments = new List<CommCommentViewModel>();
+                lstComments = oFanTestReport.Comments;
+                foreach (var item in lstComments)
+                {
+                    tblSystemReportComment oAhuTestComment = new tblSystemReportComment();
+                    oAhuTestComment.ID = Guid.NewGuid();
+                    oAhuTestComment.SysRepID_fk = SysReportId;
+                    oAhuTestComment.TechnicianID_fk = item.TechnicianID_fk;
+                    oAhuTestComment.DateCreated = item.DateCreated;
+                    oAhuTestComment.Comments = item.Comments;
+                    context.tblSystemReportComments.Add(oAhuTestComment);
+                    context.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, 1);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get Fan Test Direct Drive report details for given system report id.
+        /// </summary>
+        /// <returns>
+        /// The oFanTestDirectDriveReport object which contains all the information.
+        /// </returns>
+        [Authorize]
+        [Route("reports/GetFanTestDirectDriveReportBySystemReportID")]
+        [HttpPost]
+        public HttpResponseMessage GetFanTestDirectDriveReportBySystemReportID([FromBody] string systemreportid)
+        {
+            try
+            {
+                //Get report details information by providing systemreportid
+                var val = Guid.Parse(systemreportid);
+                var oFanTestDirectDriveReport = context.Rpt_FanTestDirectDrive.Where(x => x.SystemReportID_fk == val).Select(x => new FanTestDirectDriveReportViewModel
+                {
+                    ReportID = x.ReportID,
+                    SystemReportID_fk = x.SystemReportID_fk.Value,
+                    LocationAHU = x.LocationAHU,
+                    ManufactureAHU = x.ManufactureAHU,
+                    ModelNoAHU = x.ModelNoAHU,
+                    SerialNoAHU = x.SerialNoAHU,
+                    DesignAirLsAHU = x.DesignAirLsAHU,
+                    DesignAirPaAHU = x.DesignAirPaAHU,
+                    FanControl = x.FanControl,
+                    SupplyExhaust = x.SupplyExhaust,
+                    MSSBNameAHU = x.MSSBNameAHU,
+                    MSSBLocationAHU = x.MSSBLocationAHU,
+                    MotorMakeMD = x.MotorMakeMD,
+                    FrameMD = x.FrameMD,
+                    ElectricalMD = x.ElectricalMD,
+                    MotorPowerMD = x.MotorPowerMD,
+                    FullLoadMD = x.FullLoadMD,
+                    PoleMD = x.PoleMD,
+                    PoleRPMMD = x.PoleRPMMD,
+                    OverloadMakeMS = x.OverloadMakeMS,
+                    OverloadRangeMS = x.OverloadRangeMS,
+                    VSDMakeMS = x.VSDMakeMS,
+                    VSDRangeMS = x.VSDRangeMS,
+                    FilterType1 = x.FilterType1,
+                    FilterSize1 = x.FilterSize1,
+                    NoFilters1 = x.NoFilters1,
+                    FilterType2 = x.FilterType2,
+                    FilterSize2 = x.FilterSize2,
+                    NoFilters2 = x.NoFilters2,
+                    TotalAirDES = x.TotalAirDES,
+                    TotalAirFIN = x.TotalAirFIN,
+                    TotalStaticDES = x.TotalStaticDES,
+                    TotalStaticFIN = x.TotalStaticFIN,
+                    SucStaticDES = x.SucStaticDES,
+                    SucStaticFIN = x.SucStaticFIN,
+                    DisStaticFIN = x.DisStaticFIN,
+                    FilterDiffFIN = x.FilterDiffFIN,
+                    VoltageDES = x.VoltageDES,
+                    VoltageFIN = x.VoltageFIN,
+                    AmpsDES = x.AmpsDES,
+                    AmpsFIN = x.AmpsFIN,
+                    VSDFinalHz = x.VSDFinalHz,
+                    StaticPressureRef = x.StaticPressureRef,
+                    Instrument1 = x.Instrument1,
+                    Instrument2 = x.Instrument2,
+                    Make1 = x.Make1,
+                    Make2 = x.Make2,
+                    Serial1 = x.Serial1,
+                    Serial2 = x.Serial2,
+                    FilterSize1B = x.FilterSize1B,
+                    FilterSize1C = x.FilterSize1C,
+                    FilterSize2B = x.FilterSize2B,
+                    FilterSize2C = x.FilterSize2C,
+                    FuseDetailsMDPH = x.FuseDetailsMDPH,
+                    OverloadRangeMS2 = x.OverloadRangeMS2,
+                    OverloadRangeMS3 = x.OverloadRangeMS3,
+                    BMSFanSpeed = x.BMSFanSpeed,
+                    BMSVelocity = x.BMSVelocity,
+                    BMSPressure = x.BMSPressure,
+                    BMSOther = x.BMSOther,
+                    TotalAirPER = x.TotalAirPER,
+                    HeadBuilding = x.HeadBuilding,
+                    WitnessName = x.WitnessName,
+                    WitnessDate = x.WitnessDate,
+                    WitnessSignature = x.WitnessSignature,
+                    BMSFanSpeedType = x.BMSFanSpeedType,
+                    BMSVelocityType = x.BMSVelocityType,
+                }
+                ).FirstOrDefault();
+
+                //Get report header information and add them to the oFanTestDirectDriveReport object.
+                var oReportHeader = context.tblSystemReports.Where(x => x.SystemReportID == val).Select(x => new CommSystemReportViewModel
+                {
+                    SystemReportID = x.SystemReportID,
+                    SystemID = x.SystemID_fk.Value,
+                    TemplateID = x.TemplateID_fk.Value,
+                    Name = x.Name,
+                    TestReference = x.TestReference,
+                    Status = x.Status.Value,
+                    Date = x.DateTime.Value,
+                }
+                ).FirstOrDefault();
+                oFanTestDirectDriveReport.Header = oReportHeader;
+
+                //Get report comments information and add them to the oFanTestDirectDriveReport object.
+                var oReportComments = context.tblSystemReportComments.Where(x => x.SysRepID_fk == val).Select(x => new CommCommentViewModel
+                {
+                    ID = x.ID,
+                    SysRepID_fk = x.SysRepID_fk,
+                    TechnicianID_fk = x.TechnicianID_fk,
+                    DateCreated = x.DateCreated,
+                    Comments = x.Comments,
+                }
+                ).ToList();
+                oFanTestDirectDriveReport.Comments = oReportComments;
+
+                return Request.CreateResponse(HttpStatusCode.OK, oFanTestDirectDriveReport);
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(Ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Save Fan Test Direct Drive report data into the relavant tables. 
+        /// It should provide systemid and templateid along with the report related data.
+        /// </summary>
+        /// <returns>
+        /// The Satatus based on the success or failed.
+        /// </returns>
+        [Authorize]
+        [Route("reports/SaveFanTestDirectDriveReport")]
+        [HttpPost]
+        public HttpResponseMessage SaveFanTestDirectDriveReport([FromBody] FanTestDirectDriveReportViewModel oFanTestDirectDriveReport)
+        {
+            try
+            {
+                //Save report header data and create systemreportid.
+                tblSystemReport oSystemReport = new tblSystemReport();
+                oSystemReport.SystemReportID = Guid.NewGuid();
+                oSystemReport.SystemID_fk = oFanTestDirectDriveReport.Header.SystemID;
+                oSystemReport.TemplateID_fk = oFanTestDirectDriveReport.Header.TemplateID;
+                oSystemReport.Name = oFanTestDirectDriveReport.Header.Name;
+                oSystemReport.TestReference = oFanTestDirectDriveReport.Header.TestReference;
+                oSystemReport.Status = oFanTestDirectDriveReport.Header.Status;
+                oSystemReport.DateTime = oFanTestDirectDriveReport.Header.Date;
+                context.tblSystemReports.Add(oSystemReport);
+                context.SaveChanges();
+                var SysReportId = oSystemReport.SystemReportID;
+
+                //Save report detail data along with the created systemreportid.
+                Rpt_FanTestDirectDrive oRptFanTestDirectDrive = new Rpt_FanTestDirectDrive();
+                oRptFanTestDirectDrive.ReportID = Guid.NewGuid();
+                oRptFanTestDirectDrive.SystemReportID_fk = SysReportId;
+                oRptFanTestDirectDrive.LocationAHU = oFanTestDirectDriveReport.LocationAHU;
+                oRptFanTestDirectDrive.ManufactureAHU = oFanTestDirectDriveReport.ManufactureAHU;
+                oRptFanTestDirectDrive.ModelNoAHU = oFanTestDirectDriveReport.ModelNoAHU;
+                oRptFanTestDirectDrive.SerialNoAHU = oFanTestDirectDriveReport.SerialNoAHU;
+                oRptFanTestDirectDrive.DesignAirLsAHU = oFanTestDirectDriveReport.DesignAirLsAHU;
+                oRptFanTestDirectDrive.DesignAirPaAHU = oFanTestDirectDriveReport.DesignAirPaAHU;
+                oRptFanTestDirectDrive.FanControl = oFanTestDirectDriveReport.FanControl;
+                oRptFanTestDirectDrive.SupplyExhaust = oFanTestDirectDriveReport.SupplyExhaust;
+                oRptFanTestDirectDrive.MSSBNameAHU = oFanTestDirectDriveReport.MSSBNameAHU;
+                oRptFanTestDirectDrive.MSSBLocationAHU = oFanTestDirectDriveReport.MSSBLocationAHU;
+                oRptFanTestDirectDrive.MotorMakeMD = oFanTestDirectDriveReport.MotorMakeMD;
+                oRptFanTestDirectDrive.FrameMD = oFanTestDirectDriveReport.FrameMD;
+                oRptFanTestDirectDrive.ElectricalMD = oFanTestDirectDriveReport.ElectricalMD;
+                oRptFanTestDirectDrive.MotorPowerMD = oFanTestDirectDriveReport.MotorPowerMD;
+                oRptFanTestDirectDrive.FullLoadMD = oFanTestDirectDriveReport.FullLoadMD;
+                oRptFanTestDirectDrive.PoleMD = oFanTestDirectDriveReport.PoleMD;
+                oRptFanTestDirectDrive.PoleRPMMD = oFanTestDirectDriveReport.PoleRPMMD;
+                oRptFanTestDirectDrive.OverloadMakeMS = oFanTestDirectDriveReport.OverloadMakeMS;
+                oRptFanTestDirectDrive.OverloadRangeMS = oFanTestDirectDriveReport.OverloadRangeMS;
+                oRptFanTestDirectDrive.VSDMakeMS = oFanTestDirectDriveReport.VSDMakeMS;
+                oRptFanTestDirectDrive.VSDRangeMS = oFanTestDirectDriveReport.VSDRangeMS;
+                oRptFanTestDirectDrive.FilterType1 = oFanTestDirectDriveReport.FilterType1;
+                oRptFanTestDirectDrive.FilterSize1 = oFanTestDirectDriveReport.FilterSize1;
+                oRptFanTestDirectDrive.NoFilters1 = oFanTestDirectDriveReport.NoFilters1;
+                oRptFanTestDirectDrive.FilterType2 = oFanTestDirectDriveReport.FilterType2;
+                oRptFanTestDirectDrive.FilterSize2 = oFanTestDirectDriveReport.FilterSize2;
+                oRptFanTestDirectDrive.NoFilters2 = oFanTestDirectDriveReport.NoFilters2;
+                oRptFanTestDirectDrive.TotalAirDES = oFanTestDirectDriveReport.TotalAirDES;
+                oRptFanTestDirectDrive.TotalAirFIN = oFanTestDirectDriveReport.TotalAirFIN;
+                oRptFanTestDirectDrive.TotalStaticDES = oFanTestDirectDriveReport.TotalStaticDES;
+                oRptFanTestDirectDrive.TotalStaticFIN = oFanTestDirectDriveReport.TotalStaticFIN;
+                oRptFanTestDirectDrive.SucStaticDES = oFanTestDirectDriveReport.SucStaticDES;
+                oRptFanTestDirectDrive.SucStaticFIN = oFanTestDirectDriveReport.SucStaticFIN;
+                oRptFanTestDirectDrive.DisStaticFIN = oFanTestDirectDriveReport.DisStaticFIN;
+                oRptFanTestDirectDrive.FilterDiffFIN = oFanTestDirectDriveReport.FilterDiffFIN;
+                oRptFanTestDirectDrive.VoltageDES = oFanTestDirectDriveReport.VoltageDES;
+                oRptFanTestDirectDrive.VoltageFIN = oFanTestDirectDriveReport.VoltageFIN;
+                oRptFanTestDirectDrive.AmpsDES = oFanTestDirectDriveReport.AmpsDES;
+                oRptFanTestDirectDrive.AmpsFIN = oFanTestDirectDriveReport.AmpsFIN;
+                oRptFanTestDirectDrive.VSDFinalHz = oFanTestDirectDriveReport.VSDFinalHz;
+                oRptFanTestDirectDrive.StaticPressureRef = oFanTestDirectDriveReport.StaticPressureRef;
+                oRptFanTestDirectDrive.Instrument1 = oFanTestDirectDriveReport.Instrument1;
+                oRptFanTestDirectDrive.Instrument2 = oFanTestDirectDriveReport.Instrument2;
+                oRptFanTestDirectDrive.Make1 = oFanTestDirectDriveReport.Make1;
+                oRptFanTestDirectDrive.Make2 = oFanTestDirectDriveReport.Make2;
+                oRptFanTestDirectDrive.Serial1 = oFanTestDirectDriveReport.Serial1;
+                oRptFanTestDirectDrive.Serial2 = oFanTestDirectDriveReport.Serial2;
+                oRptFanTestDirectDrive.FilterSize1B = oFanTestDirectDriveReport.FilterSize1B;
+                oRptFanTestDirectDrive.FilterSize1C = oFanTestDirectDriveReport.FilterSize1C;
+                oRptFanTestDirectDrive.FilterSize2B = oFanTestDirectDriveReport.FilterSize2B;
+                oRptFanTestDirectDrive.FilterSize2C = oFanTestDirectDriveReport.FilterSize2C;
+                oRptFanTestDirectDrive.FuseDetailsMDPH = oFanTestDirectDriveReport.FuseDetailsMDPH;
+                oRptFanTestDirectDrive.OverloadRangeMS2 = oFanTestDirectDriveReport.OverloadRangeMS2;
+                oRptFanTestDirectDrive.OverloadRangeMS3 = oFanTestDirectDriveReport.OverloadRangeMS3;
+                oRptFanTestDirectDrive.BMSFanSpeed = oFanTestDirectDriveReport.BMSFanSpeed;
+                oRptFanTestDirectDrive.BMSVelocity = oFanTestDirectDriveReport.BMSVelocity;
+                oRptFanTestDirectDrive.BMSPressure = oFanTestDirectDriveReport.BMSPressure;
+                oRptFanTestDirectDrive.BMSOther = oFanTestDirectDriveReport.BMSOther;
+                oRptFanTestDirectDrive.TotalAirPER = oFanTestDirectDriveReport.TotalAirPER;
+                oRptFanTestDirectDrive.HeadBuilding = oFanTestDirectDriveReport.HeadBuilding;
+                oRptFanTestDirectDrive.WitnessName = oFanTestDirectDriveReport.WitnessName;
+                oRptFanTestDirectDrive.WitnessDate = oFanTestDirectDriveReport.WitnessDate;
+                oRptFanTestDirectDrive.WitnessSignature = oFanTestDirectDriveReport.WitnessSignature;
+                oRptFanTestDirectDrive.BMSFanSpeedType = oFanTestDirectDriveReport.BMSFanSpeedType;
+                oRptFanTestDirectDrive.BMSVelocityType = oFanTestDirectDriveReport.BMSVelocityType;
+                context.Rpt_FanTestDirectDrive.Add(oRptFanTestDirectDrive);
+                context.SaveChanges();
+
+                //Save report comments informationn.
+                List<CommCommentViewModel> lstComments = new List<CommCommentViewModel>();
+                lstComments = oFanTestDirectDriveReport.Comments;
+                foreach (var item in lstComments)
+                {
+                    tblSystemReportComment oAhuTestDirectDriveComment = new tblSystemReportComment();
+                    oAhuTestDirectDriveComment.ID = Guid.NewGuid();
+                    oAhuTestDirectDriveComment.SysRepID_fk = SysReportId;
+                    oAhuTestDirectDriveComment.TechnicianID_fk = item.TechnicianID_fk;
+                    oAhuTestDirectDriveComment.DateCreated = item.DateCreated;
+                    oAhuTestDirectDriveComment.Comments = item.Comments;
+                    context.tblSystemReportComments.Add(oAhuTestDirectDriveComment);
+                    context.SaveChanges();
+                }
                 return Request.CreateResponse(HttpStatusCode.OK, 1);
             }
             catch (Exception Ex)

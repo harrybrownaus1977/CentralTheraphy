@@ -30,27 +30,31 @@ namespace AirInfoApi
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<luRole> luRoles { get; set; }
+        public virtual DbSet<Rpt_AhuTest> Rpt_AhuTest { get; set; }
+        public virtual DbSet<Rpt_AhuTestDirectDrive> Rpt_AhuTestDirectDrive { get; set; }
+        public virtual DbSet<Rpt_AirBalance> Rpt_AirBalance { get; set; }
+        public virtual DbSet<Rpt_AirbalanceZones> Rpt_AirbalanceZones { get; set; }
+        public virtual DbSet<Rpt_FanTest> Rpt_FanTest { get; set; }
+        public virtual DbSet<Rpt_FanTestDirectDrive> Rpt_FanTestDirectDrive { get; set; }
+        public virtual DbSet<Rpt_FcuCommissioning> Rpt_FcuCommissioning { get; set; }
+        public virtual DbSet<Rpt_FcuCommissioningDirectDrive> Rpt_FcuCommissioningDirectDrive { get; set; }
         public virtual DbSet<Rpt_PreCommissioning> Rpt_PreCommissioning { get; set; }
         public virtual DbSet<Rpt_PreCommissioningItems> Rpt_PreCommissioningItems { get; set; }
         public virtual DbSet<Rpt_PreCommissioningItemsList> Rpt_PreCommissioningItemsList { get; set; }
+        public virtual DbSet<Rpt_PumpCommissioning> Rpt_PumpCommissioning { get; set; }
+        public virtual DbSet<Rpt_SplitPackage> Rpt_SplitPackage { get; set; }
+        public virtual DbSet<Rpt_VavCommissioning> Rpt_VavCommissioning { get; set; }
+        public virtual DbSet<Rpt_VavCommissioningVavs> Rpt_VavCommissioningVavs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblCustomer> tblCustomers { get; set; }
         public virtual DbSet<tblGroupSystem> tblGroupSystems { get; set; }
         public virtual DbSet<tblProject> tblProjects { get; set; }
         public virtual DbSet<tblProjectGroup> tblProjectGroups { get; set; }
+        public virtual DbSet<tblProjectTechnician> tblProjectTechnicians { get; set; }
         public virtual DbSet<tblSystemMasterReport> tblSystemMasterReports { get; set; }
+        public virtual DbSet<tblSystemReportComment> tblSystemReportComments { get; set; }
         public virtual DbSet<tblSystemReport> tblSystemReports { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
-        public virtual DbSet<Rpt_FcuCommissioning> Rpt_FcuCommissioning { get; set; }
-        public virtual DbSet<Rpt_FcuCommissioningDirectDrive> Rpt_FcuCommissioningDirectDrive { get; set; }
-        public virtual DbSet<tblSystemReportComment> tblSystemReportComments { get; set; }
-        public virtual DbSet<Rpt_VavCommissioning> Rpt_VavCommissioning { get; set; }
-        public virtual DbSet<Rpt_VavCommissioningVavs> Rpt_VavCommissioningVavs { get; set; }
-        public virtual DbSet<Rpt_AirBalance> Rpt_AirBalance { get; set; }
-        public virtual DbSet<Rpt_AirbalanceZones> Rpt_AirbalanceZones { get; set; }
-        public virtual DbSet<Rpt_PumpCommissioning> Rpt_PumpCommissioning { get; set; }
-        public virtual DbSet<Rpt_SplitPackage> Rpt_SplitPackage { get; set; }
         public virtual DbSet<luMasterReportList> luMasterReportLists { get; set; }
-        public virtual DbSet<tblProjectTechnician> tblProjectTechnicians { get; set; }
     }
 }

@@ -16,8 +16,9 @@ namespace AirInfoApi
     {
         public System.Guid ProjectTechnicianID { get; set; }
         public Nullable<System.Guid> ProjectID_fk { get; set; }
-        public string UserID_fk { get; set; }
+        public Nullable<System.Guid> UserID_fk { get; set; }
     
         public virtual tblProject tblProject { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

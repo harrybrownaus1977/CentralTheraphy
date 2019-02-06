@@ -17,14 +17,18 @@ namespace AirInfoApi
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblSystemReport()
         {
-            this.Rpt_PreCommissioning = new HashSet<Rpt_PreCommissioning>();
+            this.Rpt_AhuTest = new HashSet<Rpt_AhuTest>();
+            this.Rpt_AhuTestDirectDrive = new HashSet<Rpt_AhuTestDirectDrive>();
+            this.Rpt_AirBalance = new HashSet<Rpt_AirBalance>();
+            this.Rpt_FanTest = new HashSet<Rpt_FanTest>();
+            this.Rpt_FanTestDirectDrive = new HashSet<Rpt_FanTestDirectDrive>();
             this.Rpt_FcuCommissioning = new HashSet<Rpt_FcuCommissioning>();
             this.Rpt_FcuCommissioningDirectDrive = new HashSet<Rpt_FcuCommissioningDirectDrive>();
-            this.tblSystemReportComments = new HashSet<tblSystemReportComment>();
-            this.Rpt_VavCommissioning = new HashSet<Rpt_VavCommissioning>();
-            this.Rpt_AirBalance = new HashSet<Rpt_AirBalance>();
+            this.Rpt_PreCommissioning = new HashSet<Rpt_PreCommissioning>();
             this.Rpt_PumpCommissioning = new HashSet<Rpt_PumpCommissioning>();
             this.Rpt_SplitPackage = new HashSet<Rpt_SplitPackage>();
+            this.Rpt_VavCommissioning = new HashSet<Rpt_VavCommissioning>();
+            this.tblSystemReportComments = new HashSet<tblSystemReportComment>();
         }
     
         public System.Guid SystemReportID { get; set; }
@@ -36,22 +40,30 @@ namespace AirInfoApi
         public Nullable<System.DateTime> DateTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rpt_PreCommissioning> Rpt_PreCommissioning { get; set; }
-        public virtual tblGroupSystem tblGroupSystem { get; set; }
+        public virtual ICollection<Rpt_AhuTest> Rpt_AhuTest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rpt_AhuTestDirectDrive> Rpt_AhuTestDirectDrive { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rpt_AirBalance> Rpt_AirBalance { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rpt_FanTest> Rpt_FanTest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rpt_FanTestDirectDrive> Rpt_FanTestDirectDrive { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_FcuCommissioning> Rpt_FcuCommissioning { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_FcuCommissioningDirectDrive> Rpt_FcuCommissioningDirectDrive { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSystemReportComment> tblSystemReportComments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rpt_VavCommissioning> Rpt_VavCommissioning { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rpt_AirBalance> Rpt_AirBalance { get; set; }
+        public virtual ICollection<Rpt_PreCommissioning> Rpt_PreCommissioning { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_PumpCommissioning> Rpt_PumpCommissioning { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rpt_SplitPackage> Rpt_SplitPackage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rpt_VavCommissioning> Rpt_VavCommissioning { get; set; }
+        public virtual tblGroupSystem tblGroupSystem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSystemReportComment> tblSystemReportComments { get; set; }
         public virtual luMasterReportList luMasterReportList { get; set; }
     }
 }

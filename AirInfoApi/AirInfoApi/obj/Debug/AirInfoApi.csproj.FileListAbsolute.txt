@@ -72,4 +72,5 @@ C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\bin\Microsoft.Owin.Secur
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\bin\System.Web.Http.Owin.xml
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.dll
 C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.pdb
-C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.csprojResolveAssemblyReference.cache
+C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.csproj.CoreCompileInputs.cache
+C:\KingIT\API Air Info\AirInfoAPI\AirInfoApi\AirInfoApi\obj\Debug\AirInfoApi.csproj.CopyComplete
